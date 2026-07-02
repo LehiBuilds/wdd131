@@ -1,0 +1,36 @@
+body {
+    grid-template: auto 1fr auto / auto 1fr auto;
+    height: 100vh;
+    display: grid;
+}
+
+header {
+    background-color: lightpink;
+    padding: 2rem;
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+body aside:first-of-type {
+    background: lightblue;
+    grid-column: 1/2;
+}
+
+main {
+    background: coral;
+    grid-column: 2/3;
+}
+body aside:last-of-type {
+    background: yellow;
+    grid-column: 3/4;
+}
+footer {
+    background: wheat;
+    grid-column: 1 / -1;
+    padding: 2rem;
+    text-align: center;
+}
+
+aside {
+    padding: 1rem;
+}
