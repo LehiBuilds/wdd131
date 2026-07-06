@@ -21,17 +21,23 @@ body{
 
 }
 
-header, footer {
+header {
     background: var(--accent-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+footer {
+    background: var(--accent-color);
+    display: grid;
     padding: 20px;
 }
 
 #course-title {
     color: #fff;
     font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 h1 {
@@ -231,7 +237,4 @@ footer {
         flex: 1 1 100%;
     }
 
-    nav ul li {
-        padding: 0.5rem;
-    }
 }
