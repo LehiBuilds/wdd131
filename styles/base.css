@@ -26,6 +26,7 @@ header {
 }
 
 footer {
+    display: grid;
     background: var(--accent-color);
     display: grid;
     padding: 20px;
@@ -134,7 +135,6 @@ overflow: hidden;
     padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 0.5rem;
-    text-align: justify;
 }
 
 .flag-grid {
@@ -215,9 +215,6 @@ footer p{
     font-size: smaller;
     text-align: center;
     justify-content: center;
-}
-footer {
-    display: grid;
 }
 
 .modification{
