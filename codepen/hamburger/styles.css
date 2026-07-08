@@ -92,6 +92,6 @@ In most WDD courses there is a requirement to use a separate file. This part wou
 		text-align: center;
 	}
 	#menu {
-		display: none;
+		/* display: none; */
 	}
 }
