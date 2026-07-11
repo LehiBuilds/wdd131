@@ -1,4 +1,4 @@
-# 🛒 Dynamic Shopping List — Beginner-Friendly Code-Along Guide
+        # 🛒 Dynamic Shopping List — Beginner-Friendly Code-Along Guide
 
 > **Goal:** Build a shopping list where users can:
 >

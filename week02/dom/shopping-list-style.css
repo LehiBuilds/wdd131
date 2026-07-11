@@ -1,0 +1,164 @@
+/* ==========================================================================
+   1. GLOBAL RESETS & VARIABLES
+   We clear default browser margins and set up reusable variables for colors.
+   ========================================================================== */
+:root {
+  --bg-color: #f4f7f6;      /* Soft, modern light gray background */
+  --card-bg: #ffffff;       /* Pure white for the main app container */
+  --text-main: #333333;     /* Dark gray for excellent text readability */
+  --accent-color: #4caf50;  /* Clean green for actions like "Add item" */
+  --accent-hover: #45a049;  /* Darker green for button hover states */
+  --border-color: #e0e0e0;  /* Subtle gray for structural lines and borders */
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Includes padding in element width calculations */
+}
+
+/* ==========================================================================
+   2. BODY STYLING
+   Centers the entire application card perfectly in the middle of the screen.
+   ========================================================================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;        /* Forces body to take full screen height */
+  display: flex;
+  flex-direction: column;   /* Stacks elements vertically */
+  align-items: center;      /* Centers horizontally */
+  justify-content: center;   /* Centers vertically */
+  padding: 20px;
+}
+
+/* ==========================================================================
+   3. APP CONTAINER (LAYOUT SHAPING)
+   Because your HTML doesn't have a wrapper div, we style the <body> as the 
+   outer canvas, and we will constrain the width of the form and lists below.
+   ========================================================================== */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* ==========================================================================
+   4. FORM & INPUTS (THE ADD BAR)
+   ========================================================================== */
+form {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 450px;         /* Prevents the app from stretching too wide */
+  display: flex;
+  flex-direction: column;   /* Stacks label, input, and button */
+  gap: 12px;                /* Creates clean, uniform spacing between fields */
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;/* Gives a clean, modern UI feel */
+  letter-spacing: 0.5px;
+  color: #7f8c8d;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease; /* Smooth glow effect on click */
+}
+
+input[type="text"]:focus {
+  outline: none;            /* Removes default ugly browser border */
+  border-color: var(--accent-color); /* Turns green when active */
+}
+
+/* Form Submit Button */
+form button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+form button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   5. THE DYNAMIC SHOPPING LIST (UL & LI)
+   ========================================================================== */
+ul {
+  list-style-type: none;    /* Removes standard bullet points */
+  width: 100%;
+  max-width: 450px;         /* Matches the form width exactly */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;                /* Spacing between list items */
+}
+
+/* Individual List Row */
+li {
+  background: var(--card-bg);
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Lighter shadow than the form */
+  display: flex;
+  justify-content: space-between; /* Pushes text to left, button to right */
+  align-items: center;      /* Vertically aligns text and delete button */
+  border-left: 4px solid var(--accent-color); /* Left accent border stripe */
+  animation: fadeIn 0.3s ease; /* Smooth pop-in when item is added */
+}
+
+/* Text wrapper inside LI (The Span element created by JS) */
+li span {
+  font-size: 1.05rem;
+  word-break: break-word;   /* Prevents long text from breaking the layout */
+  padding-right: 15px;
+}
+
+/* Delete Button inside LI */
+li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 4px;
+  transition: transform 0.1s ease, background-color 0.2s;
+}
+
+li button:hover {
+  background-color: #ffebee; /* Soft red flash background on hover */
+  transform: scale(1.15);    /* Slightly grows the emoji for interactive feedback */
+}
+
+/* ==========================================================================
+   6. ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Slides up slightly as it appears */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
