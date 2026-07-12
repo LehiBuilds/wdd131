@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shopping List</title>
+</head>
+
+<body>
+    <h1>My Shopping List</h1>
+    <form>
+        <label for="item">Enter Item: </label>
+        <input type="text" id="item" placeholder="Enter a new item">
+        <button>➕</button>
+    </form>
+    <ul></ul>
+    <script>
+        const list = document.querySelector('ul');
+        const input = document.querySelector('input');
+        const button = document.querySelector('button');
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const inputValue = input.value;
+            input.value = '';
+
+            const listItem = document.createElement('li');
+            const listText = document.createElement('span');
+            const listBtn = document.createElement('button');
+
+            listText.textContent = inputValue;
+            listBtn.textContent = '❌';
+
+            listItem.appendChild(listText);
+            listItem.appendChild(listBtn);
+
+            list.appendChild(listItem);
+
+            listBtn.addEventListener('click', () => {
+                listItem.remove();
+            });
+            input.focus;
+        })
+
+    </script>
+</body>
+
+</html>
