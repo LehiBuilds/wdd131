@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Script Manipulation</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Change Color</button>
+    <script>
+        const btn = document.querySelector('button');
+
+        function random(number) {
+            return Math.floor(Math.random() * (number + 1));
+        }
+
+        function changeBackground() {
+            const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+            document.body.style.backgroundColor = rndCol;
+        }
+
+        // click
+        // btn.addEventListener('click', changeBackground);
+        // focus
+        // btn.addEventListener('focus', changeBackground);
+        // blur
+        // btn.addEventListener('blur', changeBackground);
+        // dblclick
+        // btn.addEventListener('dblclick', changeBackground);
+        // mouseover
+        // btn.addEventListener('mouseover', changeBackground);
+        // mouseout
+        // btn.addEventListener('mouseout', changeBackground);
+    </script>
+</body>
+
+</html>
