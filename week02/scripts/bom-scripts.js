@@ -14,11 +14,16 @@ button.addEventListener('click', (e) => {
     li.textContent = inputValue;
     deleteButton.textContent = '❌';
 
-    li.appendChild(deleteButton);
-    list.appendChild(li);
 
     deleteButton.addEventListener('click', () => {
         li.remove();
+        input.focus;
     })
-})
-input.focus;
+    if (inputValue.trim() !== '') {
+        li.appendChild(deleteButton);
+        list.appendChild(li);
+        input.focus;
+    } else {
+        alert('Please make sure that the entry is not empty.');
+    }
+});
