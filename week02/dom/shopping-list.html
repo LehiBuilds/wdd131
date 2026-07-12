@@ -122,6 +122,19 @@
             transform: scale(1.15);
             /* Slightly grows the emoji for interactive feedback */
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+                /* Slides up slightly as it appears */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
