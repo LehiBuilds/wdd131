@@ -27,7 +27,7 @@
         }
 
         // click
-        // btn.addEventListener('click', changeBackground);
+        btn.addEventListener('click', changeBackground);
         // focus
         // btn.addEventListener('focus', changeBackground);
         // blur
@@ -38,6 +38,10 @@
         // btn.addEventListener('mouseover', changeBackground);
         // mouseout
         // btn.addEventListener('mouseout', changeBackground);
+
+        btn.removeEventListener('click', changeBackground);
+
+
     </script>
 </body>
 

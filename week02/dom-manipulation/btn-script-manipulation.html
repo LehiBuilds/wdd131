@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <button>Change Color</button>
+    <!-- <button>Change Color</button> -->
+    <button onclick="alert('Hello, this is my old-fashioned event handler!');">Change Color</button>
+    <!-- <button onclick="alert('Hello, this is my old-fashioned event handler!');">
+        Press me
+    </button> -->
     <script>
         const btn = document.querySelector('button');
 
@@ -16,10 +20,19 @@
             return Math.floor(Math.random() * (number + 1));
         }
 
+        // click event 
         btn.addEventListener('click', () => {
             const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
             document.body.style.backgroundColor = rndCol;
         })
+
+        // event handler property `onclick`
+        // btn.onclick = () => {
+        //     const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+        //     document.body.style.backgroundColor = rndCol;
+        // };
+
+
     </script>
 </body>
 
