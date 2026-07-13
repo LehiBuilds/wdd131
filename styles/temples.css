@@ -1,0 +1,105 @@
+:root {
+  --bg-color: #F8F9FA;
+  --text-white: #f8f9fa;
+  --text-main: #2D3436;
+  --accent-color: #26506c;
+  --accent-hover: #3A637E;
+  --border-color: #2D3436;
+  --header-color: rgb(48, 36, 100);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 480px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 400;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+
+header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    background-color: var(--header-color);
+    color: var(--text-white);
+    height: auto;
+}
+main{
+    height: auto;
+    display: grid;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+.logo-name {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--text-white);
+    background: none;
+    border: 0;
+    font-size: 1.5rem;
+}
+
+
+#menu::before {
+    content: "☰";
+}
+
+#menu .open::before{
+    content: 'X';
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+figure img {
+    width: 200px;
+}
+
+footer {
+    display: grid;
+    background: var(--accent-color);
+    padding: 20px;
+}
+
+
+footer p{
+    color: var(--text-white);
+    font-size: smaller;
+    text-align: center;
+    /* justify-content: center; */
+}
+
+.modification{
+    color: rgba(255, 255, 0, 0.95);
+}
+
+
+/* Mobile view */
+@media screen and (max-width: 480px) {
+    header ul {
+        display: none;
+    }
+
+}
+
+/* Tablet view */
+@media screen and (max-width: 768px) {}
