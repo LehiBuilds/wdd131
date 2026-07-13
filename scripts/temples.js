@@ -1,3 +1,10 @@
+const hambutton = document.getElementById('menu');
+const navigation = document.querySelector('navigation');
+
+hambutton.addEventListener('click', () => {
+    hambutton.classList.toggle('open');
+    navigation.classList.toggle('open');
+})
 
 // footer
 const year = document.querySelector("#currentyear");

@@ -6,6 +6,7 @@
   --accent-hover: #3A637E;
   --border-color: #2D3436;
   --header-color: rgb(48, 36, 100);
+  --nav-hover: rgb(60, 44, 128);
 }
 
 * {
@@ -15,9 +16,8 @@
 }
 
 body {
-    min-width: 480px;
     font-family: 'Segoe UI', sans-serif;
-    font-size: 400;
+    font-weight: 400;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
@@ -57,11 +57,34 @@ h1{
 
 
 #menu::before {
-    content: "☰";
+    content: "\2630";
 }
 
-#menu .open::before{
+#menu.open::before{
     content: 'X';
+}
+.navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+.navigation a {
+    display: none;
+    color: var(--text-white);
+    text-decoration: none;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.navigation a:hover{
+    background-color: var(--nav-hover);
+}
+
+.open a {
+    display: block;
 }
 
 figure {
@@ -72,6 +95,10 @@ figure {
 }
 figure img {
     width: 200px;
+}
+
+figure figcaption {
+    padding: 10px 0;
 }
 
 footer {
@@ -93,13 +120,20 @@ footer p{
 }
 
 
-/* Mobile view */
-@media screen and (max-width: 480px) {
-    header ul {
-        display: none;
-    }
+/* Larger View */
+@media screen and (min-width: 768px) {
+   #menu{
+    display: none;
+   }
+
+   .navigation a {
+    display: block;
+   }
+
+   .navigation {
+    display: flex;
+    flex-direction: row;
+    
+   }
 
 }
-
-/* Tablet view */
-@media screen and (max-width: 768px) {}
