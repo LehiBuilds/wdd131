@@ -3,6 +3,20 @@
     --accent-color: #26506c;
 }
 
+ body{
+    font-family: 'Google-sans', sans-serif;
+ }
+header {
+    display: grid;
+    place-items: center;
+    /* background-color: rgba(0, 0, 0 , 0.2); */
+}
+
+.country-name {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 10px;
+}
 footer {
     display: grid;
     background: var(--accent-color);
