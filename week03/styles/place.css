@@ -1,0 +1,16 @@
+:root {
+    --text-white: #f8f9fa;
+    --accent-color: #26506c;
+}
+
+footer {
+    display: grid;
+    background: var(--accent-color);
+    padding: 20px;
+}
+
+footer p{
+    color: var(--text-white);
+    font-size: smaller;
+    text-align: center;
+}

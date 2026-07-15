@@ -26,11 +26,6 @@ header {
     background: var(--accent-color);
 }
 
-footer {
-    display: grid;
-    background: var(--accent-color);
-    padding: 20px;
-}
 
 #course-title {
     color: #fff;
@@ -83,10 +78,10 @@ main {
 }
 
 .card {
-border: 1px solid var(--accent-color);
-border-radius: 8px;
-margin: 0.5rem;
-overflow: hidden;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    margin: 0.5rem;
+    overflow: hidden;
 }
 
 .card h2 {
@@ -150,7 +145,7 @@ overflow: hidden;
     text-align: center;
     font-size: 0.9rem;
     padding: 0.2rem;
-
+    
 }
 .flag-grid figure{
     grid-column: 1/2;
@@ -208,6 +203,12 @@ overflow: hidden;
 
 .resource-links li a:visited {
     color: var(--text-main);
+}
+
+footer {
+    display: grid;
+    background: var(--accent-color);
+    padding: 20px;
 }
 
 footer p{
