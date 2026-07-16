@@ -13,21 +13,38 @@
 </head>
 
 <body>
-    <header>
-        <span class="country-name">Tokyo, Japan</span>
-    </header>
-    <main>
-        <picture></picture>
-        <section>
-            <h2></h2>
-            <ul></ul>
-            <ul></ul>
-        </section>
+    <div class="hero-container">
+        <header>
+            <h1 class="country-name">Japan</h1>
+        </header>
+        <main>
+            <picture>
+                <img src="images/tokyo-large.webp" alt="Background" fetchpriority="high" class="fullscreen-bg">
+            </picture>
+            <section class="ui-card card-grid country-data">
+                <h2>Data </h2>
+                <div class="data-row"><span class="data-label">Area</span><span class="data-value">Value 1</span></div>
+                <div class="data-row"><span class="data-label">Population</span><span class="data-value">Value 2</span></div>
+                <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Value 3</span></div>
+                <div class="data-row"><span class="data-label">Languages</span><span class="data-value">Value 4</span></div>
+                <div class="data-row"><span class="data-label">Currency</span><span class="data-value">Value 5</span></div>
+                <div class="data-row"><span class="data-label">Time Zone</span><span class="data-value">Value 6</span></div>
+                <div class="data-row"><span class="data-label">Calling Code</span><span class="data-value">Value 7</span></div>
+                <div class="data-row"><span class="data-label">Internet TLD</span><span class="data-value">Value 8</span></div>
+            </section>
+            <section class="ui-card card-grid weather-data">
+                <h2>Weather ⛅</h2>
+                <div class="data-row"><span class="data-label">Temperature</span><span class="data-value">Value 1</span></div>
+                <div class="data-row"><span class="data-label">Conditions</span><span class="data-value">Value 2</span></div>
+                <div class="data-row"><span class="data-label">Wind</span><span class="data-value">Value 3</span></div>
+                <div class="data-row"><span class="data-label">Wind Chill</span><span class="data-value">Value 4</span></div>
+            </section>
+        </main>
         <footer>
             <p>&copy;<span id="currentyear"></span> 🎓 Lehi Gomez 🎓 Philippines</p>
             <p class="modification">Last Modification: <span id="lastModified"></span></p>
         </footer>
-    </main>
+    </div>
 </body>
 
 </html>

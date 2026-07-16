@@ -1,30 +1,166 @@
 :root {
-    --text-white: #f8f9fa;
-    --accent-color: #26506c;
+    /* ==========================================================================
+     THE CANVAS (60%)
+     ========================================================================== */
+    --bg-dark-base: #232226;
+    /* Deep charcoal: Used for dark sections & text */
+    --bg-gradient-tint: #f2d0d0;
+    /* Pastel pink: Used as a soft sky overlay tint */
+
+    /* ==========================================================================
+     STRUCTURE & TEXT (30%)
+     ========================================================================== */
+    --text-main-white: #fff;
+    --text-main-on-sky: #232226;
+    /* Dark charcoal: High contrast for titles over the sky */
+    --text-muted-on-sky: #4a494d;
+    /* Muted dark: For secondary descriptions over the sky */
+
+    --text-main-on-dark: #f2d0d0;
+    /* Pastel pink: High contrast text over dark areas */
+    --text-accent-link: #75b2bf;
+    /* Slate blue: For navbar links, tags, or subheadings */
+
+    /* ==========================================================================
+     THE INTERACTIVE ACCENT (10%)
+     ========================================================================== */
+    --action-primary: #f2561d;
+    /* Vibrant orange: For main buttons (matches pagoda glow) */
+    --action-hover: #8c3926;
+    /* Terracotta red: For button hover and active states */
 }
 
- body{
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Google-sans', sans-serif;
- }
+    background-color: var(--bg-dark-base);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 header {
-    display: grid;
-    place-items: center;
-    /* background-color: rgba(0, 0, 0 , 0.2); */
-}
-
-.country-name {
-    font-weight: 700;
-    font-size: 2rem;
-    margin: 10px;
-}
-footer {
-    display: grid;
-    background: var(--accent-color);
+    width: 100%;
     padding: 20px;
+    background-color: rgba(35, 34, 38, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(242, 208, 208, 0.1);
+    text-align: center;
 }
 
-footer p{
-    color: var(--text-white);
-    font-size: smaller;
+header h1 {
+    color: var(--text-main-on-dark);
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ui-card {
+    background-color: rgba(35, 34, 38, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(117, 178, 191, 0.2);
+    border-radius: 8px;
+    padding: 24px;
+    width: 280px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .5);
+}
+
+/* .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card-grid h2 {
+    grid-column: 1/-1;
+} */
+
+
+
+.ui-card h2 {
+    color: var(--text-accent-link);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--action-primary);
+    padding-bottom: 5px;
     text-align: center;
+}
+
+.country-data {
+    position: absolute;
+    top: 7rem;
+    left: 2rem;
+
+}
+
+.weather-data {
+    position: absolute;
+    bottom: 6rem;
+    right: 2rem;
+
+}
+
+.data-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.data-label {
+    color: var(--text-main-white);
+    font-weight: bold;
+}
+
+.data-label::after {
+    content: ":";
+    color: var(--text-main-white);
+    margin: 0 2px;
+    font-weight: bold;
+}
+
+.data-value {
+    color: var(--text-main-white);
+    font-weight: bold;
+}
+
+.fullscreen-bg {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+footer {
+    width: 100%;
+    background-color: rgba(35, 34, 38, 0.85);
+    border-top: 1px solid rgba(242, 208, 208, 0.1);
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p {
+    color: var(--text-main-white);
+
 }
