@@ -1,19 +1,173 @@
+:root {
+    /* Fonts */
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Font Weights */
+    --weight-regular: 400;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    /* Backgrounds */
+    --bg-dark-base: #232226;
+    --bg-header: rgba(35, 34, 38, 0.45);
+    --bg-card: rgba(35, 34, 38, 0.75);
+    --bg-footer: rgba(35, 34, 38, 0.85);
+
+    /* Typography */
+    --text-main-white: #fff;
+    --text-main-on-dark: #f2d0d0;
+    --text-accent-link: #79bbc9;
+
+    /* Accents */
+    --primary: #f2561d;
+
+    /* Reusable UI */
+    --border-light: rgba(242, 208, 208, 0.1);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    background-color: var(--bg-dark-base);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 header {
-    position: static;
+    width: 100%;
+    padding: 1.25rem;
+    background-color: var(--bg-header);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1.1px solid var(--border-light);
+    text-align: center;
 }
 
 .country-name {
+    color: var(--text-main-white);
+    font-family: var(--font-title);
     font-size: 2.5rem;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: letter-spacing 0.25s ease;
+}
+
+.country-name:hover {
+    letter-spacing: 3px;
 }
 
 main {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    padding-bottom: 2rem;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 picture {
     width: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    /* width: 250px; */
+    /* height: auto; */
+    /* display: block; */
+    /* object-fit: cover; object-position: center; */
+}
+
+.ui-card {
+    width: 200px;
+    max-width: 420px;
+    background-color: var(--bg-card);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(117, 178, 191, 0.2);
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ui-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, .6);
+}
+
+.ui-card h2 {
+    color: var(--text-accent-link);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.weather-icon {
+    display: block;
+    width: 60px;
+    height: auto;
+    margin: 0 auto 1rem;
+}
+
+.data-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.data-row:hover {
+    background-color: rgba(255, 255, 255, .08);
+}
+
+.data-label {
+    color: var(--text-main-white);
+    justify-self: flex-end;
+}
+
+.data-label::after {
+    content: ":";
+    color: var(--text-main-white);
+    margin: 0 2.5px;
+}
+
+.data-value {
+    color: var(--text-main-white);
+}
+
+footer {
+    width: 100%;
+    background-color: var(--bg-footer);
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 10px;
+    margin-top: auto;
+}
+
+footer p {
+    color: var(--text-main-white);
 }

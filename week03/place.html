@@ -7,8 +7,10 @@
     <meta name="author" content="Lehi Gomez">
     <meta name="description" content="A showcase of a country page using standard HTML, CSS and JavaScript">
     <title>Country Page</title>
-    <link rel="stylesheet" href="styles/place-mobile.css">
-    <link rel="stylesheet" href="styles/place-larger.css">
+    <!-- <link rel="stylesheet" href="styles/place-mobile.css"> -->
+    <!-- <link rel="stylesheet" href="styles/place-larger.css"> -->
+    <!-- <link rel="stylesheet" href="styles/place.css"> -->
+    <link rel="stylesheet" href="styles/place-mobile-first.css">
     <script src="scripts/place.js" defer></script>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -22,7 +24,8 @@
             <h1 class="country-name">Japan</h1>
         </header>
         <main>
-            <picture>
+            <picture class="hero-image">
+                <source media="(max-width: 768px)" srcset="images/tokyo-mobile.webp">
                 <img src="images/tokyo-large.webp" alt="Background" fetchpriority="high" class="fullscreen-bg">
             </picture>
             <section class="ui-card country-data ">
@@ -38,7 +41,7 @@
             </section>
             <section class="ui-card weather-data">
                 <h2>Weather</h2>
-                <img src="images/weather-icon.svg" alt="Weather icon" class="wheater-icon">
+                <img src="images/weather-icon.svg" alt="Weather icon" class="weather-icon">
                 <div class="data-row"><span class="data-label">Temperature</span><span class="data-value">31°C / 88°F</span></div>
                 <div class="data-row"><span class="data-label">Conditions</span><span class="data-value">Overcast / Rain</span></div>
                 <div class="data-row"><span class="data-label">Wind</span><span class="data-value">SSE at 13 km/h (8 mph)</span></div>

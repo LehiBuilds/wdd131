@@ -1,0 +1,51 @@
+@media screen and (min-width: 768px) {
+    main {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    picture {
+        width: 100%;
+    }
+
+    .fullscreen-bg {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .country-data {
+        position: absolute;
+        top: 7rem;
+        left: 2rem;
+        width: 280px;
+        max-width: none;
+    }
+
+    .weather-data {
+        position: absolute;
+        bottom: 6rem;
+        right: 2rem;
+        width: 280px;
+        max-width: none;
+    }
+
+    .weather-icon {
+        display: none;
+    }
+
+    .country-name {
+        font-size: 3rem;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}
