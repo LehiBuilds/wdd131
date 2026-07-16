@@ -1,35 +1,30 @@
 :root {
-    /* ==========================================================================
-     THE CANVAS (60%)
-     ========================================================================== */
+    /* Fonts */
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Font Weights */
+    --weight-regular: 400;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    /* Backgrounds */
     --bg-dark-base: #232226;
-    /* Deep charcoal: Used for dark sections & text */
-    --bg-gradient-tint: #f2d0d0;
-    /* Pastel pink: Used as a soft sky overlay tint */
+    --bg-header: rgba(35, 34, 38, 0.45);
+    --bg-card: rgba(35, 34, 38, 0.75);
+    --bg-footer: rgba(35, 34, 38, 0.85);
 
-    /* ==========================================================================
-     STRUCTURE & TEXT (30%)
-     ========================================================================== */
+    /* Typography */
     --text-main-white: #fff;
-    --text-main-on-sky: #232226;
-    /* Dark charcoal: High contrast for titles over the sky */
-    --text-muted-on-sky: #4a494d;
-    /* Muted dark: For secondary descriptions over the sky */
-
     --text-main-on-dark: #f2d0d0;
-    /* Pastel pink: High contrast text over dark areas */
-    --text-accent-link: #75b2bf;
-    /* Slate blue: For navbar links, tags, or subheadings */
+    --text-accent-link: #79bbc9;
 
-    /* ==========================================================================
-     THE INTERACTIVE ACCENT (10%)
-     ========================================================================== */
-    --action-primary: #f2561d;
-    /* Vibrant orange: For main buttons (matches pagoda glow) */
-    --action-hover: #8c3926;
-    /* Terracotta red: For button hover and active states */
+    /* Accents */
+    --primary: #f2561d;
+
+    /* Reusable UI */
+    --border-light: rgba(242, 208, 208, 0.1);
 }
-
 
 * {
     padding: 0;
@@ -38,7 +33,8 @@
 }
 
 body {
-    font-family: 'Google-sans', sans-serif;
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
     background-color: var(--bg-dark-base);
     display: flex;
     min-height: 100vh;
@@ -48,19 +44,26 @@ body {
 header {
     width: 100%;
     padding: 20px;
-    background-color: rgba(35, 34, 38, 0.45);
+    background-color: var(--bg-header);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(242, 208, 208, 0.1);
+    /* border-bottom: 1px solid rgba(242, 208, 208, 0.1); */
+    border-bottom: 1.1px solid var(--border-light);
     text-align: center;
 }
 
-header h1 {
-    color: var(--text-main-on-dark);
-    font-size: 2.2rem;
-    font-weight: 600;
-    letter-spacing: 2px;
+.country-name {
+    color: var(--text-main-white);
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    transition: letter-spacing .25s ease;
+}
+
+.country-name:hover {
+    letter-spacing: 3px;
 }
 
 main {
@@ -69,7 +72,7 @@ main {
 }
 
 .ui-card {
-    background-color: rgba(35, 34, 38, 0.75);
+    background-color: var(--bg-card);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(117, 178, 191, 0.2);
@@ -77,64 +80,76 @@ main {
     padding: 24px;
     width: 280px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.ui-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, .6);
 }
-
-.card-grid h2 {
-    grid-column: 1/-1;
-} */
-
-
 
 .ui-card h2 {
     color: var(--text-accent-link);
     font-size: 1.4rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid var(--action-primary);
+    border-bottom: 2px solid var(--primary);
     padding-bottom: 5px;
     text-align: center;
+    text-transform: uppercase;
 }
+
 
 .country-data {
     position: absolute;
     top: 7rem;
     left: 2rem;
-
 }
 
 .weather-data {
     position: absolute;
     bottom: 6rem;
     right: 2rem;
+}
 
+.weather-data h2::after {
+    content: " ⛅";
+    display: inline-block;
+    animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 .data-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     margin-bottom: 10px;
     font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+}
+
+.data-row:hover {
+    background-color: rgba(255, 255, 255, .08);
 }
 
 .data-label {
     color: var(--text-main-white);
-    font-weight: bold;
+    justify-self: flex-end;
 }
 
 .data-label::after {
     content: ":";
     color: var(--text-main-white);
-    margin: 0 2px;
-    font-weight: bold;
+    margin: 0 2.5px;
 }
 
 .data-value {
     color: var(--text-main-white);
-    font-weight: bold;
 }
 
 .fullscreen-bg {
@@ -150,8 +165,8 @@ main {
 
 footer {
     width: 100%;
-    background-color: rgba(35, 34, 38, 0.85);
-    border-top: 1px solid rgba(242, 208, 208, 0.1);
+    background-color: var(--bg-footer);
+    border-top: 1px solid var(--border-light);
     text-align: center;
     font-size: 0.9rem;
     line-height: 1.6;

@@ -7,9 +7,13 @@
     <meta name="author" content="Lehi Gomez">
     <meta name="description" content="A showcase of a country page using standard HTML, CSS and JavaScript">
     <title>Country Page</title>
-    <link rel="stylesheet" href="styles/place.css">
+    <link rel="stylesheet" href="styles/place-mobile.css">
     <link rel="stylesheet" href="styles/place-larger.css">
     <script src="scripts/place.js" defer></script>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -21,23 +25,24 @@
             <picture>
                 <img src="images/tokyo-large.webp" alt="Background" fetchpriority="high" class="fullscreen-bg">
             </picture>
-            <section class="ui-card card-grid country-data">
+            <section class="ui-card country-data ">
                 <h2>Data </h2>
-                <div class="data-row"><span class="data-label">Area</span><span class="data-value">Value 1</span></div>
-                <div class="data-row"><span class="data-label">Population</span><span class="data-value">Value 2</span></div>
-                <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Value 3</span></div>
-                <div class="data-row"><span class="data-label">Languages</span><span class="data-value">Value 4</span></div>
-                <div class="data-row"><span class="data-label">Currency</span><span class="data-value">Value 5</span></div>
-                <div class="data-row"><span class="data-label">Time Zone</span><span class="data-value">Value 6</span></div>
-                <div class="data-row"><span class="data-label">Calling Code</span><span class="data-value">Value 7</span></div>
-                <div class="data-row"><span class="data-label">Internet TLD</span><span class="data-value">Value 8</span></div>
+                <div class="data-row"><span class="data-label">Area</span><span class="data-value">377,975 km²</span></div>
+                <div class="data-row"><span class="data-label">Population</span><span class="data-value">122.4 Million</span></div>
+                <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Tokyo</span></div>
+                <div class="data-row"><span class="data-label">Languages</span><span class="data-value">Japanese</span></div>
+                <div class="data-row"><span class="data-label">Currency</span><span class="data-value">Japanese Yen (JPY)</span></div>
+                <div class="data-row"><span class="data-label">Time Zone</span><span class="data-value">GMT+9 (JST)</span></div>
+                <div class="data-row"><span class="data-label">Calling Code</span><span class="data-value">+81</span></div>
+                <div class="data-row"><span class="data-label">Internet TLD</span><span class="data-value">.jp</span></div>
             </section>
-            <section class="ui-card card-grid weather-data">
-                <h2>Weather ⛅</h2>
-                <div class="data-row"><span class="data-label">Temperature</span><span class="data-value">Value 1</span></div>
-                <div class="data-row"><span class="data-label">Conditions</span><span class="data-value">Value 2</span></div>
-                <div class="data-row"><span class="data-label">Wind</span><span class="data-value">Value 3</span></div>
-                <div class="data-row"><span class="data-label">Wind Chill</span><span class="data-value">Value 4</span></div>
+            <section class="ui-card weather-data">
+                <h2>Weather</h2>
+                <img src="images/weather-icon.svg" alt="Weather icon" class="wheater-icon">
+                <div class="data-row"><span class="data-label">Temperature</span><span class="data-value">31°C / 88°F</span></div>
+                <div class="data-row"><span class="data-label">Conditions</span><span class="data-value">Overcast / Rain</span></div>
+                <div class="data-row"><span class="data-label">Wind</span><span class="data-value">SSE at 13 km/h (8 mph)</span></div>
+                <div class="data-row"><span class="data-label">Wind Chill</span><span class="data-value">36°C / 97 (Heat Index)</span></div>
             </section>
         </main>
         <footer>
