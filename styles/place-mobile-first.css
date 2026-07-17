@@ -1,7 +1,7 @@
 :root {
     /* Fonts */
-    --font-title: 'Bebas Neue', sans-serif;
-    --font-body: 'Montserrat', sans-serif;
+    --font-title: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    --font-body: Arial, Helvetica, sans-serif;
 
     /* Font Weights */
     --weight-regular: 400;
