@@ -154,7 +154,7 @@ main {
 .data-label::after {
     content: ":";
     color: var(--text-main-white);
-    margin: 0 2.5px;
+    margin: 0 3.5px;
 }
 
 .data-value {
