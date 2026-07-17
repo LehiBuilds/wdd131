@@ -7,15 +7,11 @@
     <meta name="author" content="Lehi Gomez">
     <meta name="description" content="A showcase of a country page using standard HTML, CSS and JavaScript">
     <title>Country Page</title>
-    <!-- <link rel="stylesheet" href="styles/place-mobile.css"> -->
-    <!-- <link rel="stylesheet" href="styles/place-larger.css"> -->
-    <!-- <link rel="stylesheet" href="styles/place.css"> -->
     <link rel="stylesheet" href="styles/place-mobile-first.css">
-    <!-- <script src="scripts/place.js" defer></script> -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <script src="scripts/place.js" defer></script>
 </head>
 
 <body>
@@ -45,7 +41,7 @@
                 <div class="data-row"><span class="data-label">Temperature</span><span class="data-value">31°C / 88°F</span></div>
                 <div class="data-row"><span class="data-label">Conditions</span><span class="data-value">Overcast / Rain</span></div>
                 <div class="data-row"><span class="data-label">Wind</span><span class="data-value">SSE at 13 km/h (8 mph)</span></div>
-                <div class="data-row"><span class="data-label">Wind Chill</span><span class="data-value">36°C / 97 (Heat Index)</span></div>
+                <div class="data-row"><span class="data-label">Wind Chill</span><span id="wind-chill-value" class="data-value">36°C / 97 (Heat Index)</span></div>
             </section>
         </main>
         <footer>

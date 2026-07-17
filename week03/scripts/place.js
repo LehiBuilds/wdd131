@@ -23,8 +23,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // 3. Format the combined display string (e.g., "N/A / N/A")
     const displayValue = `${displayC} / ${displayF}`;
 
-    // 4. Update the DOM element
-    const windChillSpan = document.getElementById("wind-chill-value"); if (windChillSpan) {
+    // 4. Update the DOM elegment
+    const windChillSpan = document.getElementById("wind-chill-value");
+    if (windChillSpan) {
         windChillSpan.textContent = displayValue;
     }
 });
@@ -39,18 +40,6 @@ function calculateWindChill(temp, speed, unit) {
         ? Math.round(35.74 + 0.6215 * temp - 35.75 * Math.pow(speed, 0.16) + 0.4275 * temp * Math.pow(speed, 0.16))
         : Math.round(13.12 + 0.6215 * temp - 11.37 * Math.pow(speed, 0.16) + 0.3965 * temp * Math.pow(speed, 0.16));
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // footer content
 const year = document.querySelector("#currentyear");
