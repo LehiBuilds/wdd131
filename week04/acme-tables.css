@@ -1,0 +1,54 @@
+body {
+    font-family: "EB Garamond", Arial, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+table {
+    border: 1px solid gray;
+    box-shadow: 0 0 10px hsl(0, 0%, 50%);
+    border-collapse: collapse;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 10px;
+    color: teal;
+    font-size: 0.85rem;
+}
+
+th,
+td {
+    padding: 7px 15px;
+    border: 1px solid teal;
+}
+
+tr:first-child th {
+    background-color: teal;
+    color: white;
+}
+
+thead tr:nth-child(2) th:first-child {
+    background-color: teal;
+    color: white;
+}
+
+thead tr:nth-child(2) th:not(:first-child) {
+    background-color: rgb(134, 197, 197);
+    color: rgb(0, 0, 0);
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 128, 128, 0.3);
+}
+
+th {
+    font-size: larger;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
