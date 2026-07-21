@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lehi Ontoria Gomez">
+    <meta name="description" content="Listen to an episode from the Philippines Quezon City North Mission Podcast Archive 2020. Follow along with synchronized transcripts, explore episode summaries, and revisit inspiring messages shared during the COVID-19 pandemic lockdown period.">
+    <title>PQCNM Podcast: Now Playing</title>
+    <script type="module" src="scripts/main.js"></script>
+    <link rel="stylesheet" href="styles/podcast-style.css">
+</head>
+
+
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <a href="index.html">The PQCNM Podcast</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a class="active" href="index.html">Archive</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="episode-page">
+        <nav class="breadcrumb">
+            <a href="index.html">Archive</a>
+            <span aria-hidden="true">></span>
+            <span id="breadcrumb-title"></span>
+        </nav>
+
+        <section class="episode-player">
+            <div id="player-artwork" class="player-artwork"></div>
+            <div class="player-content">
+                <h1 id="episode-title"></h1>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <div id="player-controls"></div>
+                <audio id="audio-player" preload="metadata"></audio>
+            </div>
+        </section>
+        <section class="episode-details">
+            <h2>Episode Information</h2>
+            <p id="episode-date"></p>
+            <p id="episode-duration"></p>
+            <div id="episode-keywords"></div>
+        </section>
+        <section class="episode-summary">
+            <h2>Summary</h2>
+            <p id="episode-summary"></p>
+        </section>
+
+        <section class="episode-transcript" aria-labelledby="transcript-heading">
+            <h2 id="transcript-heading">
+                Transcript
+            </h2>
+            <div id="transcript"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 The PQCNM Podcast</p>
+    </footer>
+
+</body>
+
+</html>
