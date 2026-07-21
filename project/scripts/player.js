@@ -34,12 +34,18 @@ export function initializePlayer(episode) {
 
 function setupAudio(episode) {
     audio.src = episode.audioPath;
-    audio.addEventListener(
-        "ended",
-        handleAudioEnded);
+
     audio.addEventListener(
         "loadedmetadata",
         displayDuration
+    );
+    audio.addEventListener(
+        "timeupdate",
+        updateCurrentTime
+    );
+    audio.addEventListener(
+        "ended",
+        handleAudioEnded
     );
     audio.addEventListener("play", () => {
         updatePlayButton(true);
@@ -96,7 +102,7 @@ function handleAudioEnded() {
 
 function displayDuration() {
     totalTimeDisplay.textContent =
-        fomatTime(audio.duration);
+        formatTime(audio.duration);
 }
 
 function formatTime(seconds) {
@@ -107,4 +113,9 @@ function formatTime(seconds) {
         Math.floor(seconds % 60);
 
     return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+}
+
+function updateCurrentTime() {
+    currentTimeDisplay.textContent =
+        formatTime(audio.currentTime);
 }
