@@ -1,0 +1,97 @@
+<body>
+    <!-- BEGIN: MainHeader -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">The PQCNM Podcast</div>
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Archive</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <main class="container">
+        <!-- BEGIN: HeroSection -->
+        <section data-purpose="page-intro">
+            <h1 class="hero-title">The Philippines Quezon City North Mission Podcast Archive 2020</h1>
+            <a class="collection-link" href="#">
+                <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                About This Collection: The PQCNM Mission Podcast Archive 2020
+            </a>
+        </section>
+        <!-- END: HeroSection -->
+
+        <!-- BEGIN: ActivePlayer -->
+        <section class="audio-player" data-purpose="current-episode-player">
+            <div class="player-thumb">
+                <svg fill="none" height="40" stroke="#555" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="40">
+                    <rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+            </div>
+            <div class="player-controls">
+                <div class="player-title">Select an episode to start listening...</div>
+                <div class="player-ui-mock">
+                    <div class="player-progress"></div>
+                </div>
+                <div class="player-buttons">
+                    <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"></path>
+                    </svg>
+                    <svg class="play-btn-large" fill="currentColor" height="24" viewBox="0 0 24 24" width="24">
+                        <rect height="16" width="4" x="6" y="4"></rect>
+                        <rect height="16" width="4" x="14" y="4"></rect>
+                    </svg>
+                    <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                        <path d="M13 6v12l8.5-6L13 6zM4 18l8.5-6L4 6v12z"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <!-- END: ActivePlayer -->
+
+        <!-- BEGIN: EpisodeSection -->
+        <section data-purpose="episode-listing">
+            <div class="section-header">
+                <h2>Episode List</h2>
+                <div class="sort-control">
+                    <select id="sort-episodes">
+                        <option value="desc">Newest First</option>
+                        <option value="asc">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- DYNAMIC CONTAINER: JavaScript will inject episode items here -->
+            <div id="episode-list-container">
+                <!-- JavaScript handles the rendering loop -->
+            </div>
+
+            <!-- LAZY LOADING: Load More Button -->
+            <div class="load-more-wrapper" style="text-align: center; margin: 2rem 0;">
+                <button id="load-more-btn" class="btn-primary" style="padding: 0.75rem 1.5rem; cursor: pointer;">Load More Episodes</button>
+            </div>
+        </section>
+        <!-- END: EpisodeSection -->
+    </main>
+
+    <footer style="padding: 4rem 0; text-align: center; color: var(--color-text-secondary); font-size: 0.8rem;">
+        © 2024 The PQCNM Podcast. All rights reserved.
+    </footer>
+
+    <!-- BEGIN: Scripts (Order matters!) -->
+    <!-- 1. Load your master data file containing the array of all 56 episodes first -->
+    <script src="js/episode-data.js" defer></script>
+
+    <!-- 2. Load your main rendering and lazy-loading logic script last -->
+    <script src="js/main.js" defer></script>
+    <!-- END: Scripts -->
+</body>
