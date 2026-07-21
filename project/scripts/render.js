@@ -1,9 +1,9 @@
 import { Icons } from "./icons.js";
 
 export function renderEpisode(episode) {
-    renderHeader(episode.metadata);
+    renderPlayer();
 
-    renderPlayerControls();
+    renderHeader(episode.metadata);
 
     renderTopics(episode.metadata.keywords);
 
@@ -29,11 +29,12 @@ function renderHeader(metadata) {
     document.title =
         `${metadata.title} | The PQCNM Podcast`;
 
+}
+export function renderPlayer() {
+
     document.getElementById("player-artwork").innerHTML =
         Icons.artwork(40);
-}
 
-function renderPlayerControls() {
     document.getElementById("player-controls").innerHTML = `
         <button id="skip-backward-btn" type="button">
             ${Icons.skipBackward()}

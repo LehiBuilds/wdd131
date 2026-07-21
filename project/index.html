@@ -34,15 +34,20 @@
             <div class="player-content">
                 <h2 id="current-title"></h2>
                 <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <div id="progress-fill"></div>
                 </div>
-                <div id="player-controls">
-                    <!-- JS inserts icons -->
+                <div class="player-time">
+                    <span id="current-time">0:00</span>
+                    <span id="total-time">0:00</span>
                 </div>
+
+                <div id="player-controls"></div>
+
+                <audio id="audio-player" preload="metadata"></audio>
             </div>
         </section>
         <section class="episode-toolbar">
-            <h2>Archive List</h2>
+            <h2>Archive</h2>
             <select id="sort-episodes">
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
