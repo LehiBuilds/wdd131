@@ -88,6 +88,12 @@ function setupControls() {
         "click",
         seekAudio
     );
+    transcriptParagraphs.forEach(paragraph => {
+        paragraph.addEventListener(
+            "click",
+            seekTranscript
+        );
+    });
 }
 
 async function togglePlayback() {
@@ -202,4 +208,12 @@ function highlightParagraph(paragraph) {
     });
 
     activeParagraph = paragraph;
+}
+
+function seekTranscript(event) {
+    const paragraph =
+        event.currentTarget;
+
+    audio.currentTime =
+        Number(paragraph.dataset.start);
 }
