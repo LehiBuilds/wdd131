@@ -1,14 +1,13 @@
-// render.js
+import { Icons } from "./icons.js";
 
 export function renderEpisode(episode) {
     renderHeader(episode.metadata);
 
+    renderPlayerControls();
+
     renderTopics(episode.metadata.keywords);
 
     renderTranscript(episode.paragraphs);
-
-    document.getElementById("audio-player").src =
-        episode.audioPath;
 }
 
 function renderHeader(metadata) {
@@ -29,6 +28,25 @@ function renderHeader(metadata) {
 
     document.title =
         `${metadata.title} | The PQCNM Podcast`;
+
+    document.getElementById("player-artwork").innerHTML =
+        Icons.artwork(40);
+}
+
+function renderPlayerControls() {
+    document.getElementById("player-controls").innerHTML = `
+        <button id="skip-backward-btn" type="button">
+            ${Icons.skipBackward()}
+        </button>
+
+        <button id="play-btn" type="button">
+            ${Icons.play(24)}
+        </button>
+
+        <button id="skip-forward-btn" type="button">
+            ${Icons.skipForward()}
+        </button>
+    `;
 }
 
 function renderTopics(keywords) {

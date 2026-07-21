@@ -1,6 +1,7 @@
 import { Icons } from "./icons.js";
 import { loadEpisode } from "./data.js";
 import { renderEpisode } from "./render.js";
+import { initializePlayer } from "./player.js";
 
 // /* =========================
 //     INDEX.HTML
@@ -29,15 +30,17 @@ import { renderEpisode } from "./render.js";
 EPISODE.HTML
 =========================*/
 
-document.getElementById("player-artwork").innerHTML =
-    Icons.artwork(40);
+// document.getElementById("player-artwork").innerHTML =
+//     Icons.artwork(40);
 
-document.getElementById("player-controls").innerHTML = `
-    <button>${Icons.skipBackward()}</button>
-    <button>${Icons.play(24)}</button>
-    <button>${Icons.skipForward()}</button>
-    `;
+// document.getElementById("player-controls").innerHTML = `
+//     <button>${Icons.skipBackward()}</button>
+//     <button>${Icons.play(24)}</button>
+//     <button>${Icons.skipForward()}</button>
+//     `;
 
 const episode = await loadEpisode(1);
+
 renderEpisode(episode);
-console.log(episode);
+
+initializePlayer(episode);
