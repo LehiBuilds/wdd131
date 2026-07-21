@@ -81,7 +81,10 @@ function renderTranscript(paragraphs) {
     });
 }
 
-export function renderEpisodeList(episodes) {
+export function renderEpisodeList(
+    episodes,
+    onPlayEpisode
+) {
 
     const container =
         document.getElementById("episode-list");
@@ -91,14 +94,20 @@ export function renderEpisodeList(episodes) {
     episodes.forEach(episode => {
 
         const card =
-            createEpisodeCard(episode);
+            createEpisodeCard(
+                episode,
+                onPlayEpisode
+            );
 
         container.appendChild(card);
 
     });
 
 }
-function createEpisodeCard(episode) {
+function createEpisodeCard(
+    episode,
+    onPlayEpisode
+) {
 
     const article =
         document.createElement("article");
@@ -133,6 +142,26 @@ function createEpisodeCard(episode) {
     date.textContent =
         formatDate(episode.metadata.date);
 
+    // --------------------
+    // Play Button
+    // --------------------
+
+    const playButton =
+        document.createElement("button");
+
+    playButton.type = "button";
+    playButton.setAttribute(
+        "aria-label",
+        `Play ${episode.metadata.title}`
+    );
+
+    playButton.innerHTML =
+        `${Icons.play(18)} Play`;
+
+    playButton.addEventListener(
+        "click",
+        () => onPlayEpisode(episode.id)
+    );
     // --------------------
     // Toggle Button
     // --------------------
@@ -196,6 +225,7 @@ function createEpisodeCard(episode) {
     article.append(
         title,
         date,
+        playButton,
         button,
         details
     );

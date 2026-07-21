@@ -1,5 +1,9 @@
 import { loadEpisode, loadEpisodeList } from "./data.js";
-import { renderEpisode, renderEpisodeList } from "./render.js";
+import {
+    renderEpisode,
+    renderEpisodeList,
+    renderPlayer
+} from "./render.js";
 import { initializePlayer } from "./player.js";
 
 /* =========================
@@ -11,8 +15,12 @@ if (document.getElementById("episode-list")) {
     const episodes =
         await loadEpisodeList();
 
+    renderPlayer();
+
     renderEpisodeList(episodes);
 
+    document.getElementById("current-title").textContent =
+        "Select an episode to begin listening";
 }
 
 /* =========================
