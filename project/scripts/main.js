@@ -1,4 +1,3 @@
-import { Icons } from "./icons.js";
 import { loadEpisode } from "./data.js";
 import { renderEpisode } from "./render.js";
 import { initializePlayer } from "./player.js";
@@ -39,7 +38,20 @@ EPISODE.HTML
 //     <button>${Icons.skipForward()}</button>
 //     `;
 
-const episode = await loadEpisode(1);
+const urlParameters =
+    new URLSearchParams(window.location.search);
+
+const episodeId =
+    Number(urlParameters.get("id")) || 1;
+
+if (episodeId < 1 || episodeId > 5) {
+    throw new Error(
+        `Episode ${episodeId} is not available during testing`
+    );
+}
+
+const episode =
+    await loadEpisode(episodeId);
 
 renderEpisode(episode);
 
