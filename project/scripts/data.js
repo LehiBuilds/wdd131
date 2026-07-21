@@ -56,3 +56,18 @@ async function loadSync(folder) {
     }
     return await response.json();
 }
+
+export async function loadEpisodeList() {
+    const episodes = [];
+
+    for (let id = 1; id <= 5; id++) {
+        const episode =
+            await loadEpisode(id);
+
+        episodes.push({
+            id: episode.id,
+            metadata: episode.metadata
+        });
+    }
+    return episodes;
+}

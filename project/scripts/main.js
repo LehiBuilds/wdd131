@@ -1,58 +1,44 @@
-import { loadEpisode } from "./data.js";
+import { loadEpisode, loadEpisodeList } from "./data.js";
 import { renderEpisode } from "./render.js";
+import { renderEpisodeList } from "./archive.js";
 import { initializePlayer } from "./player.js";
 
-// /* =========================
-//     INDEX.HTML
-// =========================*/
-// document.getElementById("collection-title").textContent =
-//     "The Philippines Quezon City North Mission Podcast Archive 2020";
+/* =========================
+    INDEX.HTML
+========================= */
 
-// document.getElementById("collection-link").innerHTML = `
-//     ${Icons.collection()}
-//     About This Collection: The PQCNM Podcast Archive 2020
-//     `;
+if (document.getElementById("episode-list")) {
 
-// document.getElementById("player-artwork").innerHTML =
-//     Icons.artwork(40);
+    const episodes =
+        await loadEpisodeList();
 
-// document.getElementById("current-title").textContent =
-//     "Select an episode to begin listening";
+    renderEpisodeList(episodes);
 
-// document.getElementById("player-controls").innerHTML = `
-//     <button>${Icons.skipBackward()}</button>
-//     <button>${Icons.play(24)}</button>
-//     <button>${Icons.skipForward()}</button>
-//     `;
-
-/*=========================
-EPISODE.HTML
-=========================*/
-
-// document.getElementById("player-artwork").innerHTML =
-//     Icons.artwork(40);
-
-// document.getElementById("player-controls").innerHTML = `
-//     <button>${Icons.skipBackward()}</button>
-//     <button>${Icons.play(24)}</button>
-//     <button>${Icons.skipForward()}</button>
-//     `;
-
-const urlParameters =
-    new URLSearchParams(window.location.search);
-
-const episodeId =
-    Number(urlParameters.get("id")) || 1;
-
-if (episodeId < 1 || episodeId > 5) {
-    throw new Error(
-        `Episode ${episodeId} is not available during testing`
-    );
 }
 
-const episode =
-    await loadEpisode(episodeId);
+/* =========================
+    EPISODE.HTML
+========================= */
 
-renderEpisode(episode);
+if (document.getElementById("audio-player")) {
 
-initializePlayer(episode);
+    const urlParameters =
+        new URLSearchParams(window.location.search);
+
+    const episodeId =
+        Number(urlParameters.get("id")) || 1;
+
+    if (episodeId < 1 || episodeId > 5) {
+        throw new Error(
+            `Episode ${episodeId} is not available during testing`
+        );
+    }
+
+    const episode =
+        await loadEpisode(episodeId);
+
+    renderEpisode(episode);
+
+    initializePlayer(episode);
+
+}
