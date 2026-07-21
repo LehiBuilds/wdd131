@@ -15,7 +15,7 @@ let progressBar;
 let transcriptParagraphs;
 let activeParagraph = null;
 
-export function initializePlayer(episode) {
+export function initializePlayer() {
     audio = document.getElementById("audio-player");
 
     currentTimeDisplay =
@@ -42,36 +42,40 @@ export function initializePlayer(episode) {
     transcriptParagraphs =
         document.querySelectorAll(".transcript-paragraph");
 
-    setupAudio(episode);
+    setupAudio();
     setupControls();
 }
 
-function setupAudio(episode) {
-    audio.src = episode.audioPath;
+function setupAudio() {
 
     audio.addEventListener(
         "loadedmetadata",
         displayDuration
     );
+
     audio.addEventListener(
         "timeupdate",
         () => {
             updateCurrentTime();
             updateProgressBar();
             syncTranscript();
-
         }
     );
+
     audio.addEventListener(
         "ended",
         handleAudioEnded
     );
-    audio.addEventListener("play", () => {
-        updatePlayButton(true);
-    });
-    audio.addEventListener("pause", () => {
-        updatePlayButton(false);
-    });
+
+    audio.addEventListener(
+        "play",
+        () => updatePlayButton(true)
+    );
+
+    audio.addEventListener(
+        "pause",
+        () => updatePlayButton(false)
+    );
 }
 
 function setupControls() {
@@ -216,4 +220,16 @@ function seekTranscript(event) {
 
     audio.currentTime =
         Number(paragraph.dataset.start);
+}
+
+export async function loadEpisodeIntoPlayer(episode) {
+    audio.src = episode.audioPath;
+
+    audio.load();
+
+    transcriptParagraphs =
+        document.querySelectorAll(".transcript-paragraph");
+
+
+    await audio.play();
 }

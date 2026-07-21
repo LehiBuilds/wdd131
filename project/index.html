@@ -7,12 +7,18 @@
     <meta name="author" content="Lehi Ontoria Gomez">
     <meta name="description" content="Explore the 2020 archive of the Philippines Quezon City North Mission Podcast, featuring inspiring missionary episodes, teachings on success and spiritual messages.">
     <title>The PQCNM Podcast</title>
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/index.js"></script>
+    <link rel="stylesheet" href="styles/podcast-style.css">
+
 </head>
 
 <body>
     <header class="site-header">
-        <div class="logo">The PQCNM Podcast</div>
+        <div class="logo">
+            <a href="index.html">
+                The PQCNM Podcast
+            </a>
+        </div>
         <nav>
             <ul>
                 <li><a class="active" href="index.html">Archive</a></li>
@@ -23,12 +29,14 @@
     </header>
 
     <main class="container">
-        <section>
+        <!-- Collection -->
+        <section class="collection-header">
             <h1 id="collection-title"></h1>
             <a id="collection-link" href="#"></a>
         </section>
+        <!-- Player -->
         <section class="player">
-            <div id="player-artwork">
+            <div id="player-artwork" class="player-artwork">
                 <!-- artwork -->
             </div>
             <div class="player-content">
@@ -41,19 +49,22 @@
                     <span id="total-time">0:00</span>
                 </div>
 
-                <div id="player-controls"></div>
+                <div id="player-controls" class="player-controls">
+                </div>
 
                 <audio id="audio-player" preload="metadata"></audio>
             </div>
         </section>
-        <section class="episode-toolbar">
+        <!-- Archive -->
+        <section class="archive-toolbar">
             <h2>Archive</h2>
             <select id="sort-episodes">
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
             </select>
         </section>
-        <section id="episode-list">
+        <!-- Pagination -->
+        <section id="episode-list" class="episode-list">
             <!-- JS renders everything here -->
         </section>
         <section class="load-more-section">
@@ -63,7 +74,9 @@
         </section>
 
     </main>
-    <footer class="site-footer"></footer>
+    <footer class="site-footer">
+        <p>&copy; 2026 The PQCNM Podcast</p>
+    </footer>
 </body>
 
 </html>

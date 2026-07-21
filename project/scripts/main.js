@@ -1,10 +1,16 @@
-import { loadEpisode, loadEpisodeList } from "./data.js";
+import {
+    loadEpisode,
+    loadEpisodeList
+} from "./data.js";
 import {
     renderEpisode,
     renderEpisodeList,
     renderPlayer
 } from "./render.js";
-import { initializePlayer } from "./player.js";
+import {
+    initializePlayer,
+    loadEpisodeIntoPlayer
+} from "./player.js";
 
 /* =========================
     INDEX.HTML
@@ -16,8 +22,18 @@ if (document.getElementById("episode-list")) {
         await loadEpisodeList();
 
     renderPlayer();
+    initializePlayer();
 
-    renderEpisodeList(episodes);
+    renderEpisodeList(
+        episodes,
+        async (id) => {
+            const episode = await loadEpisode(id);
+
+            await loadEpisodeIntoPlayer(episode);
+
+            document.getElementById("current-title").textContent =
+                episode.metadata.title;
+        });
 
     document.getElementById("current-title").textContent =
         "Select an episode to begin listening";
@@ -46,6 +62,8 @@ if (document.getElementById("audio-player")) {
 
     renderEpisode(episode);
 
-    initializePlayer(episode);
+    initializePlayer();
+
+    await loadEpisodeIntoPlayer(episode);
 
 }
