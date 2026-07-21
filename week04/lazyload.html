@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 131 | Lazy Loading Activity</title>
+    <link rel="stylesheet" href="styles/lazyload.css">
+    <script src="scripts/lazyload.js" defer></script>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+
+    img {
+        display: block;
+        padding: 2rem;
+        animation: fade 15px;
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<body>
+    <main>
+        <h1>Lazyload Images</h1>
+
+        <!-- Exactly 6 portrait images with width/height attributes and lazy loading -->
+        <img src="https://picsum.photos/400/600?v=1" alt="Placeholder portrait image 1" loading="lazy" width="400" height="600">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sunt, exercitationem nihil eius deserunt ab obcaecati magnam facilis ea laudantium eum distinctio recusandae, iure fugit numquam! Explicabo quia qui eius in labore tempora, cumque beatae ullam numquam itaque assumenda omnis iusto distinctio minima nam officiis voluptas asperiores sapiente consequuntur. Quas, et maiores, vel est nemo quos velit mollitia dolorem voluptatum facilis a alias temporibus hic molestiae asperiores? Quasi pariatur harum beatae commodi suscipit aspernatur ad et sequi quo, velit unde reiciendis accusantium? Doloribus voluptatum, eius quod deleniti veniam molestias illo sequi commodi, autem pariatur numquam animi nam dicta adipisci ex debitis porro ipsa! Odio voluptas soluta pariatur consequatur. Neque dolorum aliquam possimus tempore, incidunt temporibus enim iste numquam deleniti, doloremque quisquam quia voluptates maxime dolore dolores voluptatem! Numquam amet corporis cum ea officiis distinctio molestias aspernatur officia. In delectus unde dolores. Rem, tenetur. Ut vero nemo, eligendi impedit tempora quae pariatur nisi laboriosam earum, voluptatum illum repellendus? Cupiditate enim placeat fugiat quas commodi natus modi unde labore, recusandae eum voluptates quos doloribus odit adipisci vero, molestias voluptas doloremque nobis laudantium iure? Dolorem ipsam pariatur porro eveniet similique non ratione autem, harum, sint incidunt aperiam corporis at officiis! Laudantium eos corrupti cum possimus, in assumenda deserunt minima aut repellat, eaque quibusdam distinctio numquam provident velit atque voluptatibus obcaecati! Aspernatur, culpa. Magnam vero hic ipsum officia autem dignissimos laudantium velit reprehenderit voluptates deleniti optio iste, id, quia obcaecati consequatur veritatis aut explicabo voluptatem nesciunt! Perspiciatis similique illo magnam doloribus quibusdam saepe quam reiciendis cumque odit voluptate molestiae obcaecati nulla aspernatur officiis nemo pariatur iste dignissimos nihil, soluta laborum sint amet commodi in. Incidunt quia non impedit ea nesciunt molestiae sunt soluta, praesentium ab, enim quam officiis illum perspiciatis nemo voluptatem autem unde, accusamus similique. Nihil natus corporis quaerat amet eius quibusdam consequatur, at vitae voluptatum aliquam, suscipit neque sint error! Quis est iusto temporibus provident ut maiores placeat? Ab modi perspiciatis alias ratione recusandae nostrum minus est, facilis atque numquam consequuntur repudiandae pariatur sunt cupiditate animi error velit delectus beatae corrupti illum? Quia amet earum sequi repellendus accusamus repellat omnis necessitatibus adipisci similique dolor, ipsum perferendis! Eos, ipsam. Temporibus hic necessitatibus error earum labore aperiam asperiores veniam repellendus fugiat ducimus, dolorum facere dolores! Rerum delectus eaque nesciunt repellat ullam vel quod mollitia sapiente minus ipsum, dolorem corporis reprehenderit, aspernatur dolores ab tempore? Facilis, soluta deserunt est corrupti a corporis laboriosam dolorum minima deleniti quos alias nihil distinctio dicta enim nostrum, beatae, aut sint nam repudiandae possimus. Excepturi asperiores perspiciatis non sunt consequatur repudiandae itaque, optio suscipit dignissimos autem quia, laudantium, fuga aut quasi. Cumque a quasi id et iure earum quo itaque eligendi laboriosam quaerat ipsum iusto ipsa provident doloribus temporibus alias eius possimus ipsam voluptatibus minima, est totam. Libero a, vel molestias delectus doloribus sequi doloremque enim voluptatem totam quo impedit facilis quia quasi modi nostrum id, eveniet cumque corporis sint ratione nobis vero dignissimos beatae dolorum! Suscipit assumenda maxime, vero nulla dolore exercitationem totam rerum a nam consectetur corrupti laboriosam.</p>
+        <img src="https://picsum.photos/400/600?v=2" alt="Placeholder portrait image 2" loading="lazy" width="400" height="600">
+        <img src="https://picsum.photos/400/600?v=3" alt="Placeholder portrait image 3" loading="lazy" width="400" height="600">
+        <img src="https://picsum.photos/400/600?v=4" alt="Placeholder portrait image 4" loading="lazy" width="400" height="600">
+        <img src="https://picsum.photos/400/600?v=5" alt="Placeholder portrait image 5" loading="lazy" width="400" height="600">
+        <img src="https://picsum.photos/400/600?v=6" alt="Placeholder portrait image 6" loading="lazy" width="400" height="600">
+    </main>
+
+    <footer>
+        <p>&copy; 2026 | Your Name | Philippines</p>
+        <p>Last Modified: <span id="lastModified"></span></p>
+    </footer>
+</body>
+
+</html>
