@@ -9,6 +9,11 @@ let skipBackwardButton;
 let skipForwardButton;
 let currentTimeDisplay;
 let totalTimeDisplay;
+let progressFill;
+let progressBar;
+
+let transcriptParagraphs;
+let activeParagraph = null;
 
 export function initializePlayer(episode) {
     audio = document.getElementById("audio-player");
@@ -28,6 +33,15 @@ export function initializePlayer(episode) {
     skipForwardButton =
         document.getElementById("skip-forward-btn");
 
+    progressFill =
+        document.getElementById("progress-fill");
+
+    progressBar =
+        document.querySelector(".progress-bar");
+
+    transcriptParagraphs =
+        document.querySelectorAll(".transcript-paragraph");
+
     setupAudio(episode);
     setupControls();
 }
@@ -41,7 +55,12 @@ function setupAudio(episode) {
     );
     audio.addEventListener(
         "timeupdate",
-        updateCurrentTime
+        () => {
+            updateCurrentTime();
+            updateProgressBar();
+            syncTranscript();
+
+        }
     );
     audio.addEventListener(
         "ended",
@@ -64,6 +83,10 @@ function setupControls() {
     );
     skipForwardButton.addEventListener(
         "click", skipForward
+    );
+    progressBar.addEventListener(
+        "click",
+        seekAudio
     );
 }
 
@@ -98,6 +121,10 @@ function updatePlayButton(isPlaying) {
 function handleAudioEnded() {
     updatePlayButton(false);
 
+    progressFill.style.width = "0%";
+
+    currentTimeDisplay.textContent = "0.00";
+
 }
 
 function displayDuration() {
@@ -118,4 +145,61 @@ function formatTime(seconds) {
 function updateCurrentTime() {
     currentTimeDisplay.textContent =
         formatTime(audio.currentTime);
+}
+function updateProgressBar() {
+    const percent =
+        (audio.currentTime / audio.duration) * 100;
+
+    progressFill.style.width = `${percent}%`;
+}
+
+function seekAudio(event) {
+    const rect =
+        progressBar.getBoundingClientRect();
+
+    const clickX =
+        event.clientX - rect.left;
+
+    const percent =
+        clickX / rect.width;
+
+    audio.currentTime =
+        percent * audio.duration;
+}
+
+function syncTranscript() {
+    const currentTime = audio.currentTime;
+
+    transcriptParagraphs.forEach(paragraph => {
+        const start =
+            Number(paragraph.dataset.start);
+
+        const end =
+            Number(paragraph.dataset.end);
+
+        if (currentTime >= start &&
+            currentTime < end) {
+            highlightParagraph(paragraph);
+        }
+    });
+}
+
+function highlightParagraph(paragraph) {
+
+    if (activeParagraph === paragraph) {
+        return;
+    }
+
+    if (activeParagraph) {
+        activeParagraph.classList.remove("active");
+
+    }
+    paragraph.classList.add("active");
+
+    paragraph.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    activeParagraph = paragraph;
 }
