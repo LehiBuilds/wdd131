@@ -1,3 +1,9 @@
 .transcript-paragraph.active {
     background: yellow;
 }
+
+#skip-backward-btn,
+#skip-forward-btn {
+    font-weight: 700;
+    font-size: 0.95rem;
+}

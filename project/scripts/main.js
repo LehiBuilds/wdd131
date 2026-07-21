@@ -1,6 +1,5 @@
 import { loadEpisode, loadEpisodeList } from "./data.js";
-import { renderEpisode } from "./render.js";
-import { renderEpisodeList } from "./archive.js";
+import { renderEpisode, renderEpisodeList } from "./render.js";
 import { initializePlayer } from "./player.js";
 
 /* =========================

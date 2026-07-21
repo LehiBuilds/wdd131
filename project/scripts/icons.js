@@ -41,77 +41,59 @@ export const Icons = {
         `;
     },
 
-    skipBackward(size = 18, className = "") {
-        return `
-            <svg
-                class="${className}"
-                width="${size}"
-                height="${size}"
-                viewBox="0 0 24 24"
-                fill="currentColor">
-
-                <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"></path>
-
-            </svg>
-        `;
-    },
 
     play(size = 20, className = "") {
         return `
             <svg
-                class="${className}"
-                width="${size}"
-                height="${size}"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="10 8 16 12 10 16 10 8"></polygon>
-
+            class="${className}"
+            width="${size}"
+            height="${size}"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            
             </svg>
-        `;
+            `;
     },
 
     pause(size = 20, className = "") {
         return `
-            <svg
-                class="${className}"
-                width="${size}"
-                height="${size}"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="10" y1="15" x2="10" y2="9"></line>
-                <line x1="14" y1="15" x2="14" y2="9"></line>
-
-            </svg>
+        <svg
+        class="${className}"
+        width="${size}"
+        height="${size}"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="10" y1="15" x2="10" y2="9"></line>
+        <line x1="14" y1="15" x2="14" y2="9"></line>
+        
+        </svg>
         `;
+    },
+
+    skipBackward(size = 18, className = "") {
+        return `
+        <span class="${className}">-15</span>
+    `;
     },
 
     skipForward(size = 18, className = "") {
         return `
-            <svg
-                class="${className}"
-                width="${size}"
-                height="${size}"
-                viewBox="0 0 24 24"
-                fill="currentColor">
-
-                <path d="M13 6v12l8.5-6L13 6zM4 18l8.5-6L4 6v12z"></path>
-
-            </svg>
-        `;
+        <span class="${className}">+30</span>
+    `;
     },
-
     listen(size = 18, className = "") {
         return `
             <svg
