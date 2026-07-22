@@ -1,12 +1,3 @@
-/* ==================================================
-   THE PQCNM PODCAST
-   Foundation Styles
-   ================================================== */
-
-/* ==================================================
-   RESET
-   ================================================== */
-
 *,
 *::before,
 *::after {
@@ -24,8 +15,9 @@ html {
 
 body {
     min-height: 100vh;
-    line-height: 1.6;
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
 }
 
 img,
@@ -44,6 +36,13 @@ textarea {
 
 button {
     cursor: pointer;
+    border: none;
+    background: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 ul,
@@ -51,10 +50,10 @@ ol {
     list-style: none;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+audio {
+    display: none;
 }
+
 
 /* ==================================================
    DESIGN TOKENS
@@ -62,57 +61,38 @@ a {
 
 :root {
 
-    /* Brand */
+    /* Colors */
 
-    --background: #131313;
-    --surface: #1c1b1b;
-    --surface-light: #3a3939;
+    --color-surface: #131313;
+    --color-surface-container: #1c1b1b;
+    --color-surface-bright: #3a3939;
 
-    --accent: #ccff00;
+    --color-accent: #ccff00;
 
-    /* Text */
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a0a0;
 
-    --text: #ffffff;
-    --text-muted: #c7c7c7;
-    --text-subtle: #8d8d8d;
-
-    /* Borders */
-
-    --border: #3a3939;
-
-    /* Effects */
-
-    --shadow:
-        0 10px 30px rgba(0, 0, 0, .35);
-
-    --transition:
-        200ms ease;
+    --color-border: #3a3939;
 
     /* Layout */
 
-    --container-width: 1200px;
+    --container-width: 900px;
 
-    --radius: .5rem;
+    --radius: 4px;
 
-    --space-xs: .5rem;
-    --space-sm: .75rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
+    /* Motion */
+
+    --transition: 200ms ease;
 }
+
 
 /* ==================================================
    BASE
    ================================================== */
 
 body {
-
-    background:
-        var(--background);
-
-    color:
-        var(--text);
+    background: var(--color-surface);
+    color: var(--color-text);
 
     font-family:
         Inter,
@@ -131,63 +111,55 @@ main {
 }
 
 .container {
-
-    width: min(92%,
-            var(--container-width));
-
+    width: min(92%, var(--container-width));
     margin-inline: auto;
+}
 
-    padding-block:
-        var(--space-2xl);
+section {
+    margin-bottom: 3rem;
 }
 
 h1,
 h2,
 h3 {
-
-    line-height: 1.2;
-    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
 h1 {
-    font-size: clamp(2rem,
-            5vw,
-            2.75rem);
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    font-weight: 700;
 }
 
 h2 {
-    font-size: 1.35rem;
+    font-size: 1.75rem;
+    font-weight: 600;
 }
 
 h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 p {
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
 }
 
 a {
-
-    transition:
-        color var(--transition);
+    transition: color var(--transition);
 }
 
 a:hover {
-    color: var(--accent);
+    color: var(--color-accent);
 }
 
-button {
-
-    border: none;
-
-    background: none;
-
-    color: inherit;
-
+button,
+select {
     transition:
         background var(--transition),
         color var(--transition),
+        border-color var(--transition),
         transform var(--transition);
 }
 
@@ -199,249 +171,272 @@ button:active {
     transform: translateY(0);
 }
 
-select {
-
-    background:
-        var(--surface);
-
-    color:
-        var(--text);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-
-    padding:
-        .6rem .9rem;
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
 }
+
 
 /* ==================================================
    HEADER
    ================================================== */
 
 .site-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 2.5rem 0;
+}
 
-    width: 100%;
-
-    border-bottom:
-        1px solid var(--border);
-
-    background:
-        var(--background);
-
-    padding:
-        1.5rem 4%;
-
+.site-header {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
-    gap: 2rem;
+    width: min(92%, var(--container-width));
+    margin-inline: auto;
 }
 
 .logo {
-
-    font-size: 1.3rem;
-
+    font-size: 1.125rem;
     font-weight: 700;
-
-    letter-spacing: -.02em;
+    letter-spacing: -0.01em;
 }
 
 .logo a {
-
-    color:
-        var(--text);
+    color: var(--color-text);
 }
 
 .site-header nav ul {
-
     display: flex;
-
-    align-items: center;
-
-    gap: 2rem;
+    gap: 1.75rem;
 }
 
 .site-header nav a {
+    color: var(--color-text);
 
-    color:
-        var(--text-muted);
+    font-size: .875rem;
+    font-weight: 400;
 
     text-transform: uppercase;
+    letter-spacing: .08em;
 
-    font-size: .8rem;
+    padding-bottom: .2rem;
 
-    letter-spacing: .12em;
-
-    font-weight: 600;
-
-    padding-bottom: .35rem;
-
-    border-bottom:
-        2px solid transparent;
-
-    transition:
-        all var(--transition);
+    border-bottom: 2px solid transparent;
 }
 
 .site-header nav a:hover {
-
-    color:
-        var(--accent);
+    color: var(--color-accent);
 }
 
 .site-header nav a.active {
-
-    color:
-        var(--accent);
-
-    border-color:
-        var(--accent);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
+
 
 /* ==================================================
    FOOTER
    ================================================== */
 
 .site-footer {
+    margin-top: 5rem;
+    padding: 3rem 0;
 
-    margin-top: 4rem;
-
-    border-top:
-        1px solid var(--border);
-
-    padding:
-        2rem 4%;
+    border-top: 1px solid var(--color-border);
 
     text-align: center;
 }
 
 .site-footer p {
-
-    color:
-        var(--text-subtle);
-
-    font-size: .9rem;
+    color: var(--color-text-secondary);
+    font-size: .8rem;
+    letter-spacing: .03em;
 }
 
-/* ==================================================
-   SHARED COMPONENTS
-   ================================================== */
-
-/* ==================================================
+/* ==================================================/* ==================================================
    COLLECTION HEADER
    ================================================== */
 
 .collection-header {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 2rem;
 }
 
 #collection-title {
-    margin-bottom: .5rem;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 14ch;
+    margin-bottom: 1.5rem;
 }
 
 #collection-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
     color: var(--accent);
-    font-weight: 600;
+
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 #collection-link:hover {
-    text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* ==================================================
-   PLAYER
+   BREADCRUMB (Episode Page)
+   ================================================== */
+
+.breadcrumb {
+    margin-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    font-size: .75rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: .12em;
+
+    color: var(--color-text-secondary);
+}
+
+.breadcrumb a {
+    color: var(--color-text-secondary);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-text);
+}
+
+.breadcrumb span:last-child {
+    color: var(--color-text);
+}
+
+/* ==================================================
+   SCROLLBAR
+   ================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface-container);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-surface-bright);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+/* ==================================================
+   SHARED AUDIO PLAYER
    ================================================== */
 
 .player {
+    position: sticky;
+    top: 1rem;
+    z-index: 100;
 
     display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
+    overflow: hidden;
 
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 3.5rem;
 
-    padding: var(--space-xl);
-
-    background: var(--surface);
-
-    border: 1px solid var(--border);
-
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
 }
+
+
+/* ==================================================
+   PLAYER ARTWORK
+   ================================================== */
 
 .player-artwork {
-
-    width: 100%;
-
-    aspect-ratio: 1;
+    flex: 0 0 20%;
+    min-width: 120px;
+    max-width: 180px;
 
     display: flex;
-
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
+    padding: 1.5rem;
 
-    background: var(--surface-light);
-
-    border-radius: var(--radius);
+    background: var(--color-surface-bright);
 }
 
+
+/* ==================================================
+   PLAYER CONTENT
+   ================================================== */
+
 .player-content {
+    flex: 1;
 
     display: flex;
-
     flex-direction: column;
+    justify-content: center;
 
-    gap: var(--space-lg);
+    padding: 1.5rem 2rem;
 }
 
 .player-content h1,
 .player-content h2 {
 
-    color: var(--text);
+    margin-bottom: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: 500;
 
     line-height: 1.3;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 /* ==================================================
    PROGRESS BAR
    ================================================== */
 
 .progress-bar {
-
     position: relative;
 
-    height: 8px;
+    height: 4px;
 
-    background: var(--surface-light);
+    margin-bottom: .75rem;
+
+    background: rgba(255, 255, 255, .12);
 
     border-radius: 999px;
-
-    overflow: hidden;
 
     cursor: pointer;
 }
 
 #progress-fill {
-
     width: 0%;
-
     height: 100%;
 
-    background: var(--accent);
+    background: var(--color-accent);
 
     border-radius: inherit;
-
-    transition: width .15s linear;
 }
+
 
 /* ==================================================
    PLAYER TIME
@@ -450,13 +445,14 @@ select {
 .player-time {
 
     display: flex;
-
     justify-content: space-between;
 
-    font-size: .9rem;
+    margin-bottom: 1.25rem;
 
-    color: var(--text-subtle);
+    font-size: .75rem;
+    color: var(--color-text-secondary);
 }
+
 
 /* ==================================================
    PLAYER CONTROLS
@@ -465,58 +461,113 @@ select {
 .player-controls {
 
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    justify-content: center;
+    gap: 2rem;
+}
 
+
+/* Left side controls */
+
+.player-controls .transport {
+
+    display: flex;
     align-items: center;
 
-    gap: 1rem;
+    gap: 1.5rem;
 }
+
+
+/* Every button */
 
 .player-controls button {
 
-    width: 48px;
-
-    height: 48px;
-
     display: flex;
-
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
+    color: var(--color-text);
 
-    border-radius: 50%;
-
-    transition: all var(--transition);
+    transition:
+        color var(--transition),
+        transform var(--transition);
 }
 
 .player-controls button:hover {
-
-    background: var(--surface-light);
-
-    color: var(--accent);
+    color: var(--color-accent);
 }
 
-/* Play button */
+
+/* Main play button */
 
 #play-btn {
 
-    width: 60px;
+    width: 2.5rem;
+    height: 2.5rem;
 
-    height: 60px;
+    border-radius: 50%;
 
-    background: var(--accent);
+    background: var(--color-accent);
 
-    color: var(--background);
+    color: var(--color-surface);
 }
 
 #play-btn:hover {
 
-    background: #d9ff4d;
+    background: #dfff55;
 
-    color: var(--background);
+    color: black;
+}
 
-    transform: scale(1.05);
+
+/* ==================================================
+   PLAYER SVG ICONS
+   ================================================== */
+
+.player-controls svg {
+
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+#play-btn svg {
+
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+
+/* ==================================================
+   PLAYER RESPONSIVE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+    .player {
+
+        flex-direction: column;
+
+        position: static;
+    }
+
+    .player-artwork {
+
+        max-width: none;
+        min-height: 180px;
+    }
+
+    .player-content {
+
+        padding: 1.25rem;
+    }
+
+    .player-content h1,
+    .player-content h2 {
+
+        white-space: normal;
+    }
+
 }
 
 /* ==================================================
@@ -524,163 +575,193 @@ select {
    ================================================== */
 
 .archive-toolbar {
-
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    flex-direction: column;
-
-    gap: var(--space-md);
-
-    margin-bottom: var(--space-xl);
+    margin-bottom: 2.5rem;
 }
 
 .archive-toolbar h2 {
-
-    text-transform: uppercase;
-
-    letter-spacing: .08em;
-
-    font-size: .95rem;
-
-    color: var(--text-subtle);
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
+
+.archive-toolbar select {
+    min-width: 150px;
+
+    padding: .65rem 1rem;
+
+    background: var(--color-surface-container);
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius);
+}
+
 
 /* ==================================================
    EPISODE LIST
    ================================================== */
 
 .episode-list {
-
-    display: grid;
-
-    gap: var(--space-lg);
+    border-top: 1px solid var(--color-border);
 }
 
+
 /* ==================================================
-   EPISODE CARD
+   EPISODE ROW
    ================================================== */
 
 .episode-card {
 
     display: flex;
+    align-items: center;
 
-    flex-direction: column;
+    gap: 1.25rem;
 
-    gap: 1rem;
+    padding: 1.4rem 0;
 
-    padding: 1.5rem;
-
-    background: var(--surface);
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
+    border-bottom: 1px solid var(--color-border);
 
     transition:
-        transform var(--transition),
-        border-color var(--transition),
-        box-shadow var(--transition);
+        background var(--transition),
+        color var(--transition);
 }
 
 .episode-card:hover {
 
-    transform: translateY(-3px);
-
-    border-color: var(--accent);
-
-    box-shadow: var(--shadow);
+    background: rgba(255, 255, 255, .02);
 }
 
-.episode-card h3 {
-
-    font-size: 1.2rem;
-}
-
-.episode-card h3 a {
-
-    color: var(--text);
-}
-
-.episode-card h3 a:hover {
-
-    color: var(--accent);
-}
-
-.episode-card p {
-
-    color: var(--text-subtle);
-}
 
 /* ==================================================
-   EPISODE CARD BUTTONS
+   PLAY BUTTON
    ================================================== */
 
-.episode-card button {
+.episode-play {
 
-    align-self: flex-start;
+    flex-shrink: 0;
 
-    padding: .7rem 1.2rem;
-
-    border-radius: var(--radius);
-
-    border: 1px solid var(--border);
-
-    background: var(--surface-light);
-
-    color: var(--text);
-
-    display: inline-flex;
-
+    display: flex;
     align-items: center;
+    justify-content: center;
 
-    gap: .5rem;
+    color: var(--color-accent);
 }
 
-.episode-card button:hover {
+.episode-play button {
 
-    background: var(--accent);
-
-    color: var(--background);
-
-    border-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.episode-play svg {
+
+    width: 20px;
+    height: 20px;
+}
+
 
 /* ==================================================
-   TOPICS
+   EPISODE MAIN CONTENT
    ================================================== */
 
-.topic-list,
+.episode-content {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.episode-content h3 {
+
+    margin-bottom: .35rem;
+
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.episode-content h3 a {
+
+    color: var(--color-text);
+}
+
+.episode-content h3 a:hover {
+
+    color: var(--color-accent);
+}
+
+.episode-content p {
+
+    font-size: .9rem;
+    line-height: 1.6;
+
+    color: var(--color-text-secondary);
+}
+
+
+/* ==================================================
+   EPISODE METADATA
+   ================================================== */
+
+.episode-meta {
+
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    flex-shrink: 0;
+
+    color: var(--color-text-secondary);
+}
+
+.episode-meta svg {
+
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ==================================================
+   TOPIC TAGS
+   ================================================== */
+
 .episode-topics {
 
     display: flex;
-
     flex-wrap: wrap;
 
-    gap: .6rem;
+    gap: .5rem;
 
-    margin-top: .5rem;
+    margin-top: 1rem;
 }
 
 .topic-tag {
 
-    display: inline-flex;
+    padding: .35rem .8rem;
 
-    align-items: center;
+    background: var(--color-surface-container);
 
-    padding: .4rem .8rem;
+    border: 1px solid var(--color-border);
 
-    border-radius: 999px;
+    border-radius: 3px;
 
-    background: var(--surface-light);
+    color: var(--color-text-secondary);
 
-    color: var(--text-muted);
+    font-size: .7rem;
 
-    font-size: .8rem;
+    font-weight: 700;
 
-    font-weight: 600;
+    text-transform: uppercase;
 
-    letter-spacing: .03em;
+    letter-spacing: .08em;
 }
+
 
 /* ==================================================
    LOAD MORE
@@ -689,32 +770,29 @@ select {
 .load-more-section {
 
     display: flex;
-
     justify-content: center;
 
-    margin-top: var(--space-2xl);
+    margin-top: 3rem;
 }
 
 .load-more-btn {
 
-    padding: .9rem 2rem;
+    padding: 1rem 2.5rem;
+
+    background: var(--color-accent);
+
+    color: var(--color-surface);
+
+    font-size: .85rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: .05em;
 
     border-radius: var(--radius);
-
-    border: 1px solid var(--border);
-
-    background: var(--surface);
-
-    color: var(--text);
-
-    font-weight: 600;
 }
 
 .load-more-btn:hover {
 
-    background: var(--accent);
-
-    color: var(--background);
-
-    border-color: var(--accent);
+    background: #dfff55;
 }

@@ -1,0 +1,35 @@
+:root {
+    --color-surface: #131313;
+    --color-surface-container: #1c1b1b;
+    --color-surface-bright: #3a3939;
+    --color-accent: #ccff00;
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-border: #3a3939;
+    --container-width: 900px;
+    --radius: 4px;
+    --transition: 200ms ease;
+    --font-main: 'Inter', sans-serif;
+}
+
+.site-header {
+    border-bottom: 1px solid var(--color-surface-bright);
+    padding: 1.5rem 0;
+    margin-bottom: 3rem;
+}
+
+
+
+body {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
