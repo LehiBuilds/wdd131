@@ -70,3 +70,75 @@ body {
     max-width: var(--container-width);
     margin: 0 auto;
 }
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+#collection-title {
+    font-size: 3rem;
+    font-weight: 700;
+    max-width: 850px;
+    line-height: 1.1;
+}
+
+h1 {
+    unicode-bidi: isolate;
+}
+
+#collection-link {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#collection-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.player {
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-surface-bright);
+    display: flex;
+    margin: 2.5rem 0;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.player-artwork {
+    background: var(--color-surface-bright);
+    height: 120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-content {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#current-title {
+    font-weight: 00;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+}
