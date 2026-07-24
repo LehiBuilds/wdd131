@@ -8,7 +8,7 @@ document.getElementById("collection-title").textContent =
 
 document.getElementById("collection-link").innerHTML = `
     ${Icons.collection()}
-    About This Collection: The PQCNM Podcast Archive 2020
+     About This Collection: The PQCNM Podcast Archive 2020
     `;
 
 document.getElementById("player-artwork").innerHTML =
