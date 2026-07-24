@@ -92,6 +92,7 @@ nav {
 
 .navigation a:hover {
     background-color: var(--accent-hover);
+    cursor: pointer;
 }
 
 .open a {

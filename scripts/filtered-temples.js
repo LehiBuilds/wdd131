@@ -1,6 +1,7 @@
 console.log("JavaScript loaded!");
 const hambutton = document.getElementById('menu');
 const navigation = document.querySelector('.navigation');
+const container = document.getElementById("temple-container");
 
 hambutton.addEventListener('click', () => {
     hambutton.classList.toggle('open');
@@ -91,21 +92,20 @@ const temples = [
     }
 ];
 
-function displayTemples(temples) {
-    const container = document.getElementById("temple-container");
+function displayTemples(templesList) {
     container.innerHTML = "";
 
-    temples.forEach((temple) => {
+    templesList.forEach((temple) => {
         const card = document.createElement("section");
 
         card.innerHTML = `
         <h2>${temple.templeName}</h2>
-        <div className="details">
+        <div>
             <p><span class="label">Location:</span> ${temple.location}</p>
             <p><span class="label">Dedication:</span> ${temple.dedicated}</p>
             <p><span class="label">Area:</span> ${temple.area.toLocaleString()} sq ft</p>
             <img src="${temple.imageUrl}" 
-            alt="${temple.templeName}"
+            alt="${temple.templeName} Temple"
             loading="lazy">
         </div >
         `;
@@ -113,13 +113,63 @@ function displayTemples(temples) {
     });
 }
 
-console.log(document.getElementById("temple-container"));
-console.log(window.location.pathname);
-
 
 displayTemples(temples);
 
+function showHome() {
+    displayTemples(temples);
+}
 
+function showOld() {
+    const oldTemples = temples.filter((temple) =>
+        Number(temple.dedicated.split(",")[0]) < 1900
+    );
+
+    displayTemples(oldTemples);
+}
+
+function showNew() {
+    const newTemples = temples.filter((temple) =>
+        Number(temple.dedicated.split(",")[0]) > 2000
+    );
+
+    displayTemples(newTemples);
+}
+
+function showLarge() {
+    const largeTemples = temples.filter((temple) =>
+        temple.area > 90000
+    );
+    displayTemples(largeTemples);
+}
+
+function showSmall() {
+    const smallTemples = temples.filter((temple) =>
+        temple.area < 10000
+    );
+    displayTemples(smallTemples);
+}
+
+document.getElementById("home").addEventListener("click", (event) => {
+    event.preventDefault();
+    showHome();
+});
+document.getElementById("old").addEventListener("click", (event) => {
+    event.preventDefault();
+    showOld();
+});
+document.getElementById("new").addEventListener("click", (event) => {
+    event.preventDefault();
+    showNew();
+});
+document.getElementById("large").addEventListener("click", (event) => {
+    event.preventDefault();
+    showLarge();
+});
+document.getElementById("small").addEventListener("click", (event) => {
+    event.preventDefault();
+    showSmall();
+});
 
 // footer
 const year = document.querySelector("#currentyear");
