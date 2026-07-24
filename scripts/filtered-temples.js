@@ -100,16 +100,22 @@ function displayTemples(temples) {
 
         card.innerHTML = `
         <h2>${temple.templeName}</h2>
-        <p>Location: ${temple.location}</p>
-        <p>Dedicated: ${temple.dedicated}</p>
-        <p>Area: ${temple.area.toLocaleString()} sq ft</p>
-        <img src="${temple.imageUrl}" 
-        alt="${temple.templeName}"
-        loading="lazy">
+        <div className="details">
+            <p><span class="label">Location:</span> ${temple.location}</p>
+            <p><span class="label">Dedication:</span> ${temple.dedicated}</p>
+            <p><span class="label">Area:</span> ${temple.area.toLocaleString()} sq ft</p>
+            <img src="${temple.imageUrl}" 
+            alt="${temple.templeName}"
+            loading="lazy">
+        </div >
         `;
         container.appendChild(card);
     });
 }
+
+console.log(document.getElementById("temple-container"));
+console.log(window.location.pathname);
+
 
 displayTemples(temples);
 

@@ -70,6 +70,7 @@ nav {
     display: flex;
     justify-content: center;
 }
+
 .navigation {
     flex-direction: column;
     gap: 2rem;
@@ -96,7 +97,7 @@ nav {
 }
 
 
-.figure-grid{
+.figure-grid {
     grid-row-start: 2;
 }
 
