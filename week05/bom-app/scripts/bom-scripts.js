@@ -17,7 +17,7 @@ button.addEventListener('click', (e) => {
         chaptersArray.push(inputValue);
         setChapterList();
 
-        inputValue = '';
+        input.value = '';
         input.focus();
     }
 });
@@ -26,7 +26,7 @@ function displayList(item) {
     const li = document.createElement('li');
     const deleteButton = document.createElement('button');
 
-    li.textContent = inputValue;
+    li.textContent = item;
     deleteButton.textContent = '❌';
 
     deleteButton.classList.add('delete');
@@ -34,9 +34,9 @@ function displayList(item) {
     list.append(li);
 
     deleteButton.addEventListener('click', () => {
-        li.removeChild();
+        li.remove();
         deleteChapter(li.textContent);
-        input.focus;
+        input.focus();
     })
 }
 
@@ -48,8 +48,7 @@ function getChapterList() {
     return JSON.parse(localStorage.getItem('myFavBOMList'));
 }
 
-function deleteChapter(chapter) {
-    chapter = chapter.slice(0, chapter.length - 1);
-    chaptersArray = chaptersArray.filter((item) => item !== chapter);
+function deleteChapter(item) {
+    chaptersArray = chaptersArray.filter(item => item !== chapter);
     setChapterList();
 }
