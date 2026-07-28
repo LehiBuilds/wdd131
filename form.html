@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form practice for week 05 of WDD 131 - Dynamic Web Fundamentals">
+    <meta name="author" content="Lehi Gomez">
+    <title>Form | Lehi Gomez</title>
+    <link rel="stylesheet" href="styles/form.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script src="scripts/getdates.js" defer></script>
+</head>
+
+<body>
+
+    <h1>Product Review</h1>
+    <form method="get" action="review.html">
+        <label for="product-name">Product Name</label>
+        <select name="product-name" id="product-name" required>
+            <option value="" disabled selected>Select a product:</option>
+            <!-- <option value="flux-capacitor"></option>
+            <option value="power-laces"></option>
+            <option value="time-circuits"></option>
+            <option value="low-voltage-reactor"></option>
+            <option value="warp-equalizer"></option> -->
+        </select>
+        <label for="rating">Overall Rating</label>
+        <input type="radio" value="5" id="fivestar" name="stars" required><label for="fivestar"></label>
+        <input type="radio" value="4" id="fourstar" name="stars" required><label for="fourstar"></label>
+        <input type="radio" value="3" id="threestar" name="stars" required><label for="threestar"></label>
+        <input type="radio" value="2" id="twostar" name="stars" required><label for="twostar"></label>
+        <input type="radio" value="1" id="onestar" name="stars" required><label for="onestar"></label>
+
+        <label for="installation-date">Date of Installation</label>
+        <input type="date" id="installation-date" name="installation-date">
+
+        <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
+        <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
+
+
+    </form>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> 🎓 Lehi Gomez 🎓 Philippines</p>
+        <p class="modification">Last Modification: <span id="lastModified"></span></p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+:root {
+    --bg-color: #F8F9FA;
+    --text-white: #f8f9fa;
+    --text-main: #2D3436;
+    --accent-color: #26506c;
+    --accent-hover: #3A637E;
+    --border-color: #2D3436
+}
+
+footer {
+    display: grid;
+    background: var(--accent-color);
+    padding: 20px;
+}
+
+footer p {
+    color: var(--text-white);
+    font-size: smaller;
+    text-align: center;
+    /* justify-content: center; */
+}
+
+.modification {
+    color: rgba(255, 255, 0, 0.95);
+}
