@@ -7,6 +7,30 @@
     --border-color: #2D3436
 }
 
+.rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.rating label:hover,
+.rating label:hover~label {
+    color: gold;
+}
+
+.rating input:checked~label {
+    color: gold;
+}
+
 footer {
     display: grid;
     background: var(--accent-color);

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/form.js" defer></script>
 </head>
 
 <body>
@@ -21,17 +21,24 @@
     <form method="get" action="review.html">
         <label for="product-name">Product Name</label>
         <select name="product-name" id="product-name" required>
-            <option value="" disabled selected>Select a product:</option>
+            <option value="" disabled selected>Select a product ...</option>
         </select>
         <label for="rating">Overall Rating</label>
-        <input type="radio" value="5" id="fivestar" name="stars" required><label for="fivestar"></label>
-        <input type="radio" value="4" id="fourstar" name="stars" required><label for="fourstar"></label>
-        <input type="radio" value="3" id="threestar" name="stars" required><label for="threestar"></label>
-        <input type="radio" value="2" id="twostar" name="stars" required><label for="twostar"></label>
-        <input type="radio" value="1" id="onestar" name="stars" required><label for="onestar"></label>
+        <div class="rating">
+            <input type="radio" id="fivestar" name="stars" value="5" required>
+            <label for="fivestar">★</label>
+            <input type="radio" id="fourstar" name="stars" value="4">
+            <label for="fourstar">★</label>
+            <input type="radio" id="threestar" name="stars" value="3">
+            <label for="threestar">★</label>
+            <input type="radio" id="twostar" name="stars" value="2">
+            <label for="twostar">★</label>
+            <input type="radio" id="onestar" name="stars" value="1">
+            <label for="onestar">★</label>
+        </div>
 
         <label for="installation-date">Date of Installation</label>
-        <input type="date" id="installation-date" name="installation-date">
+        <input type="date" id="installation-date" name="installation-date" required>
 
         <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
         <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
@@ -42,7 +49,7 @@
         <label for="username">Your Name (Optional)</label>
         <input type="text" id="username" name="username">
 
-        <input type="submit" value="submit-review">
+        <input type="submit" value="Submit Review">
     </form>
 
     <footer>
