@@ -28,7 +28,8 @@ body {
     line-height: 1.5;
 }
 
-h1,
+header,
+main,
 form,
 footer {
     width: min(100%, 700px);
@@ -50,12 +51,19 @@ form {
     border-radius: .5rem;
     padding: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
-    displaY: grid;
+    display: grid;
     gap: 1.35rem;
 }
 
-label {
+label,
+#rating-label {
     font-weight: 600;
+    margin: 0;
+}
+
+.required {
+    color: #b00020;
+    font-weight: 700;
 }
 
 select,
@@ -68,8 +76,7 @@ textarea {
     border-radius: .35rem;
     font-size: 1rem;
     box-sizing: border-box;
-    border-color: .2s;
-    box-shadow: .2s;
+    transition: border-color .2s, box-shadow .2s;
 }
 
 select:hover,
@@ -106,7 +113,8 @@ textarea {
 }
 
 .rating input {
-    display: none;
+    position: absolute;
+    opacity: 0;
 }
 
 .rating label {
@@ -123,6 +131,11 @@ textarea {
 
 .rating input:checked~label {
     color: gold;
+}
+
+.rating input:focus-visible+label {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
 }
 
 .features {
@@ -162,7 +175,7 @@ input[type="submit"] {
     border: none;
     padding: .85rem;
     font-size: 1rem;
-    font-weight: .600;
+    font-weight: 600;
     cursor: pointer;
     transition: .2s;
     border-radius: .5rem;

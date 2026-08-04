@@ -4,80 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Form practice for week 05 of WDD 131 - Dynamic Web Fundamentals">
+    <meta name="description" content="Product review form for week 05 of WDD 131 Dynamic Web Fundamentals">
     <meta name="author" content="Lehi Gomez">
-    <title>Form | Lehi Gomez</title>
+    <title>Product Review Form | Lehi Gomez</title>
     <link rel="stylesheet" href="styles/form.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     <script src="scripts/form.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <h1>Product Review</h1>
+    </header>
 
-    <h1>Product Review</h1>
+    <main>
+        <form method="get" action="review.html">
+            <label for="product-name">Product Name <span class="required">*</span></label>
+            <select name="product-name" id="product-name" required>
+                <option value="" disabled selected>Select a product ...</option>
+            </select>
 
-    <form method="get" action="review.html">
-        <label for="product-name">Product Name</label>
-        <select name="product-name" id="product-name" required>
-            <option value="" disabled selected>Select a product ...</option>
-        </select>
-        <label for="rating">Overall Rating</label>
-        <div class="rating">
-            <input type="radio" id="fivestar" name="stars" value="5" required>
-            <label for="fivestar">★</label>
-            <input type="radio" id="fourstar" name="stars" value="4">
-            <label for="fourstar">★</label>
-            <input type="radio" id="threestar" name="stars" value="3">
-            <label for="threestar">★</label>
-            <input type="radio" id="twostar" name="stars" value="2">
-            <label for="twostar">★</label>
-            <input type="radio" id="onestar" name="stars" value="1">
-            <label for="onestar">★</label>
-        </div>
-
-        <label for="installation-date">Date of Installation</label>
-        <input type="date" id="installation-date" name="installation-date" required>
-
-        <fieldset>
-            <legend>Which features do you find useful in the product?<br> <em>(Check all that apply)</em></legend>
-            <div class="features">
-
-                <div class="feature">
-                    <input type="checkbox" id="durability" name="features" value="Durability">
-                    <label for="durability">Durability</label>
-                </div>
-                <div class="feature">
-                    <input type="checkbox" id="performance" name="features" value="Performance">
-                    <label for="performance">Performance</label>
-                </div>
-                <div class="feature">
-                    <input type="checkbox" id="ease-of-use" name="features" value="Ease of Use">
-                    <label for="ease-of-use">Ease of Use</label>
-                </div>
-                <div class="feature">
-                    <input type="checkbox" id="design" name="features" value="Design">
-                    <label for="design">Design</label>
-                </div>
+            <p id="rating-label">Overall Rating <span class="required">*</span></p>
+            <div class="rating" aria-labelledby="rating-label">
+                <input type="radio" id="fivestar" name="stars" value="5" aria-label="5 stars" required>
+                <label for="fivestar">&#9733;</label>
+                <input type="radio" id="fourstar" name="stars" value="4" aria-label="4 stars" required>
+                <label for="fourstar">&#9733;</label>
+                <input type="radio" id="threestar" name="stars" value="3" aria-label="3 stars" required>
+                <label for="threestar">&#9733;</label>
+                <input type="radio" id="twostar" name="stars" value="2" aria-label="2 stars" required>
+                <label for="twostar">&#9733;</label>
+                <input type="radio" id="onestar" name="stars" value="1" aria-label="1 star" required>
+                <label for="onestar">&#9733;</label>
             </div>
-        </fieldset>
 
-        <label for="written-review">Written Review <span class="optional">(Optional)</span></label>
-        <textarea name="written-review" id="written-review"></textarea>
+            <label for="installation-date">Date of Installation <span class="required">*</span></label>
+            <input type="date" id="installation-date" name="installation-date" required>
 
-        <label for="username">Your Name <span class="optional">(Optional)</span></label>
-        <input type="text" id="username" name="username">
+            <fieldset>
+                <legend>Which features do you find useful in the product?<br><em>(Check all that apply)</em></legend>
+                <div class="features">
+                    <div class="feature">
+                        <input type="checkbox" id="durability" name="features" value="Durability">
+                        <label for="durability">Durability</label>
+                    </div>
+                    <div class="feature">
+                        <input type="checkbox" id="performance" name="features" value="Performance">
+                        <label for="performance">Performance</label>
+                    </div>
+                    <div class="feature">
+                        <input type="checkbox" id="ease-of-use" name="features" value="Ease of Use">
+                        <label for="ease-of-use">Ease of Use</label>
+                    </div>
+                    <div class="feature">
+                        <input type="checkbox" id="design" name="features" value="Design">
+                        <label for="design">Design</label>
+                    </div>
+                </div>
+            </fieldset>
 
-        <input type="submit" value="Submit Review">
-    </form>
+            <label for="written-review">Written Review <span class="optional">(Optional)</span></label>
+            <textarea name="written-review" id="written-review"></textarea>
+
+            <label for="username">Your Name <span class="optional">(Optional)</span></label>
+            <input type="text" id="username" name="username">
+
+            <input type="submit" value="Submit Review">
+        </form>
+    </main>
 
     <footer>
         <p>&copy;<span id="currentyear"></span> 🎓 Lehi Gomez 🎓 Philippines</p>
         <p class="modification">Last Modification: <span id="lastModified"></span></p>
     </footer>
-
 </body>
 
 </html>

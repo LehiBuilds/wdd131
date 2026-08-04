@@ -3,29 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Review Submitted</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confirmation page for submitted product reviews">
+    <meta name="author" content="Lehi Gomez">
+    <title>Product Review Submitted | Lehi Gomez</title>
     <link rel="stylesheet" href="styles/review.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     <script src="scripts/review.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <h1>Thank You!</h1>
+    </header>
 
     <main class="card">
-
-        <h1>🎉 Thank You!</h1>
-
         <p class="message">Your review has been submitted.</p>
 
         <div class="review-box">
-
             <p>Reviews Submitted</p>
             <span id="reviewCount">0</span>
         </div>
-        <a href="form.html" class="button">
-            Submit Another Review
-        </a>
 
+        <a href="form.html" class="button">Submit Another Review</a>
     </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> 🎓 Lehi Gomez 🎓 Philippines</p>
+        <p class="modification">Last Modification: <span id="lastModified"></span></p>
+    </footer>
 </body>
 
 </html>
