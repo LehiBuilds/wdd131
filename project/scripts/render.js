@@ -1,5 +1,3 @@
-import { Icons } from "./icons.js";
-
 export function renderEpisode(episode) {
     renderPlayer();
 
@@ -32,20 +30,21 @@ function renderHeader(metadata) {
 }
 export function renderPlayer() {
 
-    document.getElementById("player-artwork").innerHTML =
-        Icons.artwork(40);
+    document.getElementById("player-artwork").innerHTML = `
+        <span class="material-symbols-outlined" aria-hidden="true">album</span>
+    `;
 
     document.getElementById("player-controls").innerHTML = `
-        <button id="skip-backward-btn" type="button">
-            ${Icons.skipBackward()}
+        <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
+            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
         </button>
 
-        <button id="play-btn" type="button">
-            ${Icons.play(24)}
+        <button id="play-btn" type="button" aria-label="Play">
+            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
         </button>
 
-        <button id="skip-forward-btn" type="button">
-            ${Icons.skipForward()}
+        <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
+            <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
         </button>
     `;
 }
@@ -113,10 +112,22 @@ function createEpisodeCard(
         document.createElement("article");
 
     article.className = "episode-card";
+    article.tabIndex = 0;
+    article.setAttribute("aria-expanded", "false");
 
     // --------------------
-    // Title
+    // Header
     // --------------------
+
+    const cardHeader =
+        document.createElement("div");
+
+    cardHeader.className = "episode-card-header";
+
+    const titleGroup =
+        document.createElement("div");
+
+    titleGroup.className = "episode-title-group";
 
     const title =
         document.createElement("h3");
@@ -132,47 +143,58 @@ function createEpisodeCard(
 
     title.appendChild(link);
 
-    // --------------------
-    // Date
-    // --------------------
-
-    const date =
+    const meta =
         document.createElement("p");
 
-    date.textContent =
-        formatDate(episode.metadata.date);
+    meta.className = "episode-meta";
+    meta.textContent = [
+        formatDate(episode.metadata.date),
+        episode.metadata.duration
+    ].filter(Boolean).join(" / ");
+
+    titleGroup.append(title, meta);
 
     // --------------------
-    // Play Button
+    // Actions
     // --------------------
+
+    const actions =
+        document.createElement("div");
+
+    actions.className = "episode-card-actions";
 
     const playButton =
         document.createElement("button");
 
     playButton.type = "button";
+    playButton.className = "episode-play-btn";
     playButton.setAttribute(
         "aria-label",
         `Play ${episode.metadata.title}`
     );
 
-    playButton.innerHTML =
-        `${Icons.play(18)} Play`;
+    playButton.innerHTML = `
+        <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+        <span>Play</span>
+    `;
 
     playButton.addEventListener(
         "click",
-        () => onPlayEpisode(episode.id)
+        (event) => {
+            event.stopPropagation();
+            onPlayEpisode(episode.id);
+        }
     );
-    // --------------------
-    // Toggle Button
-    // --------------------
 
-    const button =
-        document.createElement("button");
+    const toggleIcon =
+        document.createElement("span");
 
-    button.type = "button";
+    toggleIcon.className = "material-symbols-outlined episode-toggle-icon";
+    toggleIcon.setAttribute("aria-hidden", "true");
+    toggleIcon.textContent = "expand_more";
 
-    button.textContent =
-        "Show Details";
+    actions.append(playButton, toggleIcon);
+    cardHeader.append(titleGroup, actions);
 
     // --------------------
     // Details
@@ -181,7 +203,13 @@ function createEpisodeCard(
     const details =
         document.createElement("div");
 
+    details.className = "episode-details-panel";
     details.hidden = true;
+
+    const summaryCard =
+        document.createElement("div");
+
+    summaryCard.className = "episode-summary-card";
 
     const summary =
         document.createElement("p");
@@ -189,13 +217,15 @@ function createEpisodeCard(
     summary.textContent =
         episode.metadata.summary;
 
+    summaryCard.appendChild(summary);
+
     const topics =
         createTopics(
             episode.metadata.keywords
         );
 
     details.append(
-        summary,
+        summaryCard,
         topics
     );
 
@@ -203,30 +233,31 @@ function createEpisodeCard(
     // Toggle Logic
     // --------------------
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            details.hidden =
-                !details.hidden;
-
-            button.textContent =
-                details.hidden
-                    ? "Show Details"
-                    : "Hide Details";
-
+    article.addEventListener("click", toggleCard);
+    article.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleCard();
         }
-    );
+    });
+
+    link.addEventListener("click", (event) => {
+        event.stopPropagation();
+    });
+
+    function toggleCard() {
+        const isExpanded = article.getAttribute("aria-expanded") === "true";
+
+        article.setAttribute("aria-expanded", String(!isExpanded));
+        details.hidden = isExpanded;
+    }
 
     // --------------------
     // Assemble
     // --------------------
 
     article.append(
-        title,
-        date,
-        playButton,
-        button,
+        cardHeader,
         details
     );
 
@@ -250,7 +281,7 @@ function createTopics(keywords) {
     const container =
         document.createElement("div");
 
-    container.className = "episode-topics";
+    container.className = "episode-tags-card";
 
     keywords.forEach(keyword => {
 

@@ -1,44 +1,42 @@
-import { loadEpisode, loadEpisodeList } from "./data.js";
-import { renderEpisodeList, renderPlayer } from "./render.js";
+import { loadArchiveEpisode, loadEpisodeList } from "./data.js";
+import { renderEpisodeList } from "./render.js";
 import { initializePlayer, loadEpisodeIntoPlayer } from "./player.js";
-import { Icons } from "./icons.js";
+
+const EPISODES_PER_BATCH = 10;
+let visibleEpisodeCount = EPISODES_PER_BATCH;
 
 document.getElementById("collection-title").textContent =
     "The Philippines Quezon City North Mission Podcast Archive 2020";
 
-document.getElementById("collection-link").innerHTML = `
-    ${Icons.collection()}
-     About This Collection: The PQCNM Podcast Archive 2020
-    `;
-
-document.getElementById("player-artwork").innerHTML =
-    Icons.artwork(40);
-
 document.getElementById("current-title").textContent =
     "Select an episode to begin listening";
-
-document.getElementById("player-controls").innerHTML = `
-    <button>${Icons.skipBackward()}</button>
-    <button>${Icons.play(24)}</button>
-    <button>${Icons.skipForward()}</button>
-    `;
 
 const episodes = await loadEpisodeList();
+const loadMoreButton = document.getElementById("load-more-btn");
 
-renderPlayer();
 initializePlayer();
 
-renderEpisodeList(
-    episodes,
-    async (id) => {
-        const episode = await loadEpisode(id);
+renderVisibleEpisodes();
 
-        await loadEpisodeIntoPlayer(episode);
+loadMoreButton.addEventListener("click", () => {
+    visibleEpisodeCount += EPISODES_PER_BATCH;
+    renderVisibleEpisodes();
+});
 
-        document.getElementById("current-title").textContent =
-            episode.metadata.title;
-    }
-);
+function renderVisibleEpisodes() {
+    const visibleEpisodes = episodes.slice(0, visibleEpisodeCount);
 
-document.getElementById("current-title").textContent =
-    "Select an episode to begin listening";
+    renderEpisodeList(
+        visibleEpisodes,
+        async (id) => {
+            const episode = await loadArchiveEpisode(id);
+
+            await loadEpisodeIntoPlayer(episode);
+
+            document.getElementById("current-title").textContent =
+                episode.metadata.title;
+        }
+    );
+
+    loadMoreButton.hidden = visibleEpisodeCount >= episodes.length;
+}

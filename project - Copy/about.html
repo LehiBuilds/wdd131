@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About | THE PQCNM PODCAST</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#b6c9d8",
+                        "inverse-primary": "#506600",
+                        "outline": "#8e9379",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-container": "#d2e5f5",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#d2e5f5",
+                        "tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1d29",
+                        "error": "#ffb4ab",
+                        "on-primary": "#283500",
+                        "surface-variant": "#353534",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#b7b5b4",
+                        "surface-tint": "#abd600",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-container-highest": "#353534",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary-fixed": "#161e00",
+                        "on-error": "#690005",
+                        "secondary-container": "#474746",
+                        "primary": "#ffffff",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary": "#313030",
+                        "outline-variant": "#444933",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#c8c6c5",
+                        "surface": "#131313",
+                        "on-primary-container": "#556d00",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-fixed": "#c3f400",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-container": "#c3f400",
+                        "surface-bright": "#3a3939",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#21323e",
+                        "surface-container-lowest": "#0e0e0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "64px",
+                        "container-max": "1200px",
+                        "xl": "128px",
+                        "sm": "16px",
+                        "md": "32px",
+                        "gutter": "24px",
+                        "xs": "8px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .selection-lime::selection {
+            background: #c3f400;
+            color: #161e00;
+        }
+
+        .hover-lime:hover {
+            color: #c3f400;
+        }
+
+        /* Structural Minimalist Grid Overlay for visual depth */
+        .grid-overlay {
+            background-image: linear-gradient(to right, #262626 1px, transparent 1px),
+                linear-gradient(to bottom, #262626 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="selection-lime">
+    <!-- Top Navigation Shell -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+        <div class="max-w-container-max mx-auto px-gutter py-md flex justify-between items-center h-20">
+            <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">
+                THE PQCNM PODCAST
+            </div>
+            <nav class="hidden md:flex gap-md items-center">
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors duration-200" href="#">Archive</a>
+                <a class="font-label-caps text-label-caps text-primary-fixed font-bold border-b-2 border-primary-fixed transition-colors duration-200" href="#">About</a>
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors duration-200" href="#">Contact</a>
+            </nav>
+            <button class="md:hidden text-primary">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+    <main class="relative min-h-screen pt-32 pb-xl overflow-hidden">
+        <!-- Atmospheric Background Asset -->
+        <div class="absolute inset-0 grid-overlay opacity-20"></div>
+        <div class="absolute top-0 right-0 w-1/2 h-screen opacity-10 pointer-events-none">
+
+        </div>
+        <div class="max-w-[800px] mx-auto px-gutter relative z-10">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-xs mb-lg">
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">ARCHIVE</a>
+                <span class="text-outline-variant font-label-caps">/</span>
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">THE PQCNM PODCAST</a>
+                <span class="text-outline-variant font-label-caps">/</span>
+                <span class="font-label-caps text-label-caps text-primary-fixed">ABOUT</span>
+            </nav>
+            <!-- Page Header -->
+            <div class="mb-xl border-l-4 border-primary-fixed pl-md">
+                <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-sm leading-tight">
+                    About This Collection:<br />The PQCNM Podcast
+                </h1>
+                <p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">
+                    Editorial Narrative &amp; Archival Mission
+                </p>
+            </div>
+            <!-- Content Canvas -->
+            <article class="space-y-md border-t border-outline-variant pt-lg">
+                <div class="prose prose-invert max-w-none">
+                    <p class="font-body-lg text-body-lg text-on-background leading-relaxed">
+                        The PQCNM collective has stated, <span class="text-primary-fixed italic font-semibold">"True insight delighteth in the frequencies of the curious; yea, the broadcast of the rigorous is a bridge unto understanding, and it shall be met with an awakening upon their horizons."</span> Digital discourse can bring clarity, agitation, and inspiration. Listening together can unify our scattered perspectives and global communities in critical inquiry.
+                    </p>
+                    <div class="h-1 w-24 bg-primary-fixed my-lg"></div>
+                    <p class="font-body-lg text-body-lg text-on-background leading-relaxed">
+                        In advance of the publication of the new global digital repository, <span class="text-primary font-bold">The PQCNM Podcast</span>, we are pleased to release curated groups of archival episodes. A new collection of segments will be released every few months until the full retrospective becomes available in our encrypted print-on-demand journal.
+                    </p>
+                    <p class="font-body-lg text-body-lg text-on-background leading-relaxed">
+                        New audio artifacts will be selected from discussions led by leading avant-garde thinkers, field recordings from urban environments, and sonic essays from the PQCNM global sacred audio library. These selections will include both long-form dialogues and microscopic sound studies, all of which can be utilized for research, private immersion, and collective listening sessions.
+                    </p>
+                    <!-- Featured Image / Bento Element -->
+                    <div class="my-xl grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                        <div class="aspect-square bg-surface-container-high border border-outline-variant p-unit overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" data-alt="A high-contrast black and white architectural photograph of a brutalist radio tower against a dark, dramatic sky. The lighting is harsh and cinematic, emphasizing sharp geometric shadows and metallic textures. The overall mood is avant-garde, authoritative, and minimalist, matching a premium dark-themed podcast aesthetic with lime green accent potential." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAetcNawpEiyakz3NZ1RsI7NKSkr6FKk1O23cpfteSdnx-Ax82dJ2d2OCCEdAU_bwsOLqFId6-04ZK7ESwU6uk7GG4pwg9t-rWSfa_uDsAD004PpDpIJaHaAq3NyTTC5AXsrcn6uXIVCJQcwIci1h2W_s6OrIItT-cKvFo_xVxEds3J2i6hltakY4m5pes8tS14OcefFrxw3k7fepjFysiMpN8GgYcJk4VDCWQZOD5fKcWOzDmhmZBMpQ" />
+                        </div>
+                        <div class="flex flex-col justify-end p-md bg-primary-fixed/5 border border-primary-fixed/20 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-sm opacity-20">
+                                <span class="material-symbols-outlined text-[64px]">podcasts</span>
+                            </div>
+                            <h3 class="font-headline-md text-headline-md text-primary-fixed mb-xs">Listen With Intent</h3>
+                            <p class="font-body-sm text-body-sm text-secondary">Our recordings are optimized for spatial audio systems and high-fidelity monitoring.</p>
+                        </div>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-on-background leading-relaxed">
+                        We invite you to become familiar with the new narrative arcs as they are released. Use these selections in your daily analysis and philosophical study. Archival transcripts and high-resolution master recordings can be found on the PQCNM Vault and Sacred Music platforms and at
+                        <a class="text-primary-fixed underline underline-offset-4 decoration-2 hover:text-white transition-all" href="https://pqcnm-archive.org">pqcnm-archive.org</a>.
+                        Instructional materials are also available to help researchers and listeners integrate the PQCNM ethos into their local environments.
+                    </p>
+                </div>
+            </article>
+            <!-- CTA Section -->
+            <section class="mt-xl pt-lg border-t border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-md">
+                <div>
+                    <h4 class="font-headline-md text-headline-md text-primary">Ready to Explore?</h4>
+                    <p class="font-body-sm text-body-sm text-secondary">Join over 50,000 global listeners in the PQCNM ecosystem.</p>
+                </div>
+                <button class="bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps px-lg py-md hover:bg-white hover:text-black transition-all duration-300">
+                    ACCESS FULL ARCHIVE
+                </button>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full border-t border-outline-variant bg-background z-20 relative">
+        <div class="max-w-container-max mx-auto px-gutter py-lg flex flex-col md:flex-row justify-between items-center gap-md">
+            <div class="flex flex-col items-center md:items-start gap-xs">
+                <div class="font-headline-md text-headline-md text-primary font-bold tracking-tighter">THE PQCNM PODCAST</div>
+                <div class="font-label-caps text-label-caps text-secondary opacity-60 uppercase tracking-tighter">
+                    © 2024 THE PQCNM PODCAST. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-md">
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">ARCHIVE</a>
+                <a class="font-label-caps text-label-caps text-primary hover:text-primary-fixed transition-colors" href="#">ABOUT</a>
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">CONTACT</a>
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">PRIVACY</a>
+                <a class="font-label-caps text-label-caps text-secondary hover:text-primary-fixed transition-colors" href="#">TERMS</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Micro-interaction Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0', 'translate-y-4');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('p, h1, nav, section, article').forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script type="module" src="scripts/index.js"></script>
 
     <link rel="stylesheet" href="styles/style.css">
@@ -38,12 +39,15 @@
         <!-- Collection -->
         <section class="collection-header">
             <h1 id="collection-title"></h1>
-            <a id="collection-link" href="#"></a>
+            <a id="collection-link" href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">library_books</span>
+                <span>About This Collection: The PQCNM Podcast Archive 2020</span>
+            </a>
         </section>
         <!-- Player -->
         <section class="player">
             <div id="player-artwork" class="player-artwork">
-                <!-- artwork -->
+                <span class="material-symbols-outlined" aria-hidden="true">album</span>
             </div>
             <div class="player-content">
                 <h2 id="current-title"></h2>
@@ -57,6 +61,15 @@
 
 
                 <div id="player-controls" class="player-controls">
+                    <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
+                        <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
+                    </button>
+                    <button id="play-btn" type="button" aria-label="Play">
+                        <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+                    </button>
+                    <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
+                        <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
+                    </button>
                 </div>
 
                 <audio id="audio-player" preload="metadata"></audio>

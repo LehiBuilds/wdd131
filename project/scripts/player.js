@@ -1,5 +1,3 @@
-import { Icons } from "./icons.js";
-
 const SKIP_BACKWARD_SECONDS = 15;
 const SKIP_FORWARD_SECONDS = 30;
 
@@ -123,9 +121,13 @@ function skipForward() {
 }
 
 function updatePlayButton(isPlaying) {
-    playButton.innerHTML = isPlaying
-        ? Icons.pause(24)
-        : Icons.play(24);
+    playButton.querySelector(".material-symbols-outlined").textContent =
+        isPlaying ? "pause" : "play_arrow";
+
+    playButton.setAttribute(
+        "aria-label",
+        isPlaying ? "Pause" : "Play"
+    );
 }
 
 function handleAudioEnded() {

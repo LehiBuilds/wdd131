@@ -27,11 +27,24 @@ export async function loadEpisode(id) {
     return {
         id,
         metadata,
-        audioPath: `${folder}/${metadata.audio}`,
+        audioPath: getAudioPath(folder, metadata),
         paragraphs
     };
 
 }
+
+export async function loadArchiveEpisode(id) {
+    const episodeNumber = String(id).padStart(2, "0");
+    const folder = `episodes/episode-${episodeNumber}`;
+    const metadata = await loadMetadata(folder);
+
+    return {
+        id,
+        metadata,
+        audioPath: getAudioPath(folder, metadata)
+    };
+}
+
 async function loadMetadata(folder) {
     const response = await fetch(`${folder}/metadata.json`);
     if (!response.ok) {
@@ -58,16 +71,20 @@ async function loadSync(folder) {
 }
 
 export async function loadEpisodeList() {
-    const episodes = [];
+    const response = await fetch("episodes/episodes.json");
 
-    for (let id = 1; id <= 5; id++) {
-        const episode =
-            await loadEpisode(id);
-
-        episodes.push({
-            id: episode.id,
-            metadata: episode.metadata
-        });
+    if (!response.ok) {
+        throw new Error("Could not load episode list");
     }
+
+    const episodeIds = await response.json();
+    const episodes = await Promise.all(
+        episodeIds.map(id => loadArchiveEpisode(id))
+    );
+
     return episodes;
+}
+
+function getAudioPath(folder, metadata) {
+    return `${folder}/${metadata.audio || "audio.m4a"}`;
 }
