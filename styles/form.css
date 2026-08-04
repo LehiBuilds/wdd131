@@ -56,7 +56,7 @@ form {
 }
 
 label,
-#rating-label {
+legend {
     font-weight: 600;
     margin: 0;
 }

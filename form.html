@@ -27,19 +27,21 @@
                 <option value="" disabled selected>Select a product ...</option>
             </select>
 
-            <p id="rating-label">Overall Rating <span class="required">*</span></p>
-            <div class="rating" aria-labelledby="rating-label">
-                <input type="radio" id="fivestar" name="stars" value="5" aria-label="5 stars" required>
-                <label for="fivestar">&#9733;</label>
-                <input type="radio" id="fourstar" name="stars" value="4" aria-label="4 stars" required>
-                <label for="fourstar">&#9733;</label>
-                <input type="radio" id="threestar" name="stars" value="3" aria-label="3 stars" required>
-                <label for="threestar">&#9733;</label>
-                <input type="radio" id="twostar" name="stars" value="2" aria-label="2 stars" required>
-                <label for="twostar">&#9733;</label>
-                <input type="radio" id="onestar" name="stars" value="1" aria-label="1 star" required>
-                <label for="onestar">&#9733;</label>
-            </div>
+            <fieldset class="rating-group">
+                <legend>Overall Rating <span class="required">*</span></legend>
+                <div class="rating">
+                    <input type="radio" id="fivestar" name="stars" value="5" required>
+                    <label for="fivestar">&#9733;</label>
+                    <input type="radio" id="fourstar" name="stars" value="4" required>
+                    <label for="fourstar">&#9733;</label>
+                    <input type="radio" id="threestar" name="stars" value="3" required>
+                    <label for="threestar">&#9733;</label>
+                    <input type="radio" id="twostar" name="stars" value="2" required>
+                    <label for="twostar">&#9733;</label>
+                    <input type="radio" id="onestar" name="stars" value="1" required>
+                    <label for="onestar">&#9733;</label>
+                </div>
+            </fieldset>
 
             <label for="installation-date">Date of Installation <span class="required">*</span></label>
             <input type="date" id="installation-date" name="installation-date" required>
