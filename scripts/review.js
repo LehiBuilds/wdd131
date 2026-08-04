@@ -4,4 +4,5 @@ reviewCount++;
 
 localStorage.setItem("reviewCount", reviewCount);
 
-document.querySelector("reviewCount").textContent = reviewCount;
+document.getElementById("reviewCount").textContent = reviewCount;
+

@@ -18,6 +18,7 @@
 <body>
 
     <h1>Product Review</h1>
+
     <form method="get" action="review.html">
         <label for="product-name">Product Name</label>
         <select name="product-name" id="product-name" required>
@@ -40,13 +41,33 @@
         <label for="installation-date">Date of Installation</label>
         <input type="date" id="installation-date" name="installation-date" required>
 
-        <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
-        <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
+        <fieldset>
+            <legend>Which features do you find useful in the product?<br> <em>(Check all that apply)</em></legend>
+            <div class="features">
 
-        <label for="written-review">Written Review (Optional)</label>
+                <div class="feature">
+                    <input type="checkbox" id="durability" name="features" value="Durability">
+                    <label for="durability">Durability</label>
+                </div>
+                <div class="feature">
+                    <input type="checkbox" id="performance" name="features" value="Performance">
+                    <label for="performance">Performance</label>
+                </div>
+                <div class="feature">
+                    <input type="checkbox" id="ease-of-use" name="features" value="Ease of Use">
+                    <label for="ease-of-use">Ease of Use</label>
+                </div>
+                <div class="feature">
+                    <input type="checkbox" id="design" name="features" value="Design">
+                    <label for="design">Design</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <label for="written-review">Written Review <span class="optional">(Optional)</span></label>
         <textarea name="written-review" id="written-review"></textarea>
 
-        <label for="username">Your Name (Optional)</label>
+        <label for="username">Your Name <span class="optional">(Optional)</span></label>
         <input type="text" id="username" name="username">
 
         <input type="submit" value="Submit Review">
