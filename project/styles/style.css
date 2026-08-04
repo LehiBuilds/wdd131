@@ -119,7 +119,7 @@ h1 {
     display: flex;
     align-items: stretch;
     gap: 0;
-    margin: 2rem 0;
+    margin: 0 0 2rem;
     overflow: hidden;
     box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
 }
@@ -322,6 +322,21 @@ h1 {
 .episode-title-group a {
     color: var(--color-text);
     text-decoration: none;
+}
+
+.episode-number {
+    display: block;
+    color: var(--color-accent);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: .2rem;
+}
+
+.episode-title {
+    display: block;
+    color: inherit;
 }
 
 .episode-title-group a:hover {

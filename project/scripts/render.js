@@ -142,8 +142,13 @@ function createEpisodeCard(
     link.href =
         `episode.html?id=${episode.id}`;
 
-    link.textContent =
-        episode.metadata.title;
+    const episodeNumber =
+        String(episode.id).padStart(2, "0");
+
+    link.innerHTML = `
+    <span class="episode-number">Episode ${episodeNumber}</span>
+    <span class="episode-title">${episode.metadata.title}</span>
+`;
 
     title.appendChild(link);
 
