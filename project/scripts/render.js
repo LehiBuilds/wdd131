@@ -82,13 +82,16 @@ function renderTranscript(paragraphs) {
 
 export function renderEpisodeList(
     episodes,
-    onPlayEpisode
+    onPlayEpisode,
+    clear = false
 ) {
 
     const container =
         document.getElementById("episode-list");
 
-    container.innerHTML = "";
+    if (clear) {
+        container.innerHTML = "";
+    }
 
     episodes.forEach(episode => {
 
@@ -103,6 +106,7 @@ export function renderEpisodeList(
     });
 
 }
+
 function createEpisodeCard(
     episode,
     onPlayEpisode

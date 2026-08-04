@@ -372,9 +372,13 @@ h1 {
 }
 
 .episode-details-panel {
-    display: grid;
+    display: none;
     gap: .75rem;
     margin-top: 1rem;
+}
+
+.episode-card[aria-expanded="true"] .episode-details-panel {
+    display: grid;
 }
 
 .episode-summary-card,

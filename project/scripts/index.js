@@ -3,7 +3,7 @@ import { renderEpisodeList } from "./render.js";
 import { initializePlayer, loadEpisodeIntoPlayer } from "./player.js";
 
 const EPISODES_PER_BATCH = 10;
-let visibleEpisodeCount = EPISODES_PER_BATCH;
+let nextEpisodeIndex = 0;
 
 document.getElementById("collection-title").textContent =
     "The Philippines Quezon City North Mission Podcast Archive 2020";
@@ -18,16 +18,17 @@ initializePlayer();
 
 renderVisibleEpisodes();
 
-loadMoreButton.addEventListener("click", () => {
-    visibleEpisodeCount += EPISODES_PER_BATCH;
-    renderVisibleEpisodes();
-});
+loadMoreButton.addEventListener("click", renderVisibleEpisodes);
 
 function renderVisibleEpisodes() {
-    const visibleEpisodes = episodes.slice(0, visibleEpisodeCount);
+
+    const batch = episodes.slice(
+        nextEpisodeIndex,
+        nextEpisodeIndex + EPISODES_PER_BATCH
+    );
 
     renderEpisodeList(
-        visibleEpisodes,
+        batch,
         async (id) => {
             const episode = await loadArchiveEpisode(id);
 
@@ -38,5 +39,8 @@ function renderVisibleEpisodes() {
         }
     );
 
-    loadMoreButton.hidden = visibleEpisodeCount >= episodes.length;
+    nextEpisodeIndex += batch.length;
+
+    loadMoreButton.hidden =
+        nextEpisodeIndex >= episodes.length;
 }
