@@ -22,11 +22,6 @@
         <label for="product-name">Product Name</label>
         <select name="product-name" id="product-name" required>
             <option value="" disabled selected>Select a product:</option>
-            <!-- <option value="flux-capacitor"></option>
-            <option value="power-laces"></option>
-            <option value="time-circuits"></option>
-            <option value="low-voltage-reactor"></option>
-            <option value="warp-equalizer"></option> -->
         </select>
         <label for="rating">Overall Rating</label>
         <input type="radio" value="5" id="fivestar" name="stars" required><label for="fivestar"></label>
@@ -41,7 +36,13 @@
         <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
         <label for="useful-features">Which features do you find useful in the product? <br> (Check all that apply)</label>
 
+        <label for="written-review">Written Review (Optional)</label>
+        <textarea name="written-review" id="written-review"></textarea>
 
+        <label for="username">Your Name (Optional)</label>
+        <input type="text" id="username" name="username">
+
+        <input type="submit" value="submit-review">
     </form>
 
     <footer>
