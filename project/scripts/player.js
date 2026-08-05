@@ -289,21 +289,14 @@ function updateEpisodeCardButton(isPlaying) {
             const icon =
                 button.querySelector(".material-symbols-outlined");
 
-            const label =
-                button.querySelector("span:last-child");
-
             if (button.dataset.episodeId === String(activeEpisodeId)) {
 
                 icon.textContent =
                     isPlaying ? "pause" : "play_arrow";
 
-                label.textContent =
-                    isPlaying ? "Pause" : "Play";
-
             } else {
 
                 icon.textContent = "play_arrow";
-                label.textContent = "Play";
 
             }
 
@@ -314,7 +307,11 @@ function updateEpisodeCardButton(isPlaying) {
 export async function toggleEpisodePlayback(episode) {
 
     if (activeEpisodeId !== episode.id) {
+
         await loadEpisodeIntoPlayer(episode);
+
+        await audio.play();
+
         return;
     }
 

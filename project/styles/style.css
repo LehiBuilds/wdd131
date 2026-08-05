@@ -301,10 +301,14 @@ h1 {
 
 .episode-card:hover,
 .episode-card:focus-visible {
-    background: #222121;
+    background:
+        linear-gradient(135deg,
+            rgba(204, 255, 0, .05),
+            rgba(255, 255, 255, .015));
     border-color: #565656;
     outline: none;
     transform: translateY(-1px);
+    cursor: auto;
 }
 
 .episode-card[aria-expanded="true"] {
@@ -330,7 +334,7 @@ h1 {
 
 .episode-card-left {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -387,19 +391,27 @@ h1 {
 }
 
 .episode-play-btn {
+    width: 46px;
+    height: 46px;
     border: 1px solid var(--color-border);
-    border-radius: 999px;
+    border-radius: 50%;
     background: var(--color-surface);
     color: var(--color-text);
-    cursor: pointer;
     display: inline-flex;
+    justify-content: center;
     align-items: center;
-    gap: .35rem;
-    min-height: 34px;
-    padding: 0 .8rem;
+    cursor: pointer;
+    flex-shrink: 0;
     transition:
         border-color var(--transition),
-        color var(--transition);
+        color var(--transition),
+        transform var(--transition);
+}
+
+.episode-play-btn .material-symbols-outlined {
+    font-size: 28px;
+    line-height: 1;
+    display: block;
 }
 
 .episode-play-btn:hover {
@@ -407,13 +419,45 @@ h1 {
     color: var(--color-accent);
 }
 
-.episode-toggle-icon {
+.episode-toggle-btn {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+
     color: var(--color-text-secondary);
-    transition: transform var(--transition), color var(--transition);
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+.episode-toggle-btn:hover {
+    background:
+        linear-gradient(135deg,
+            rgba(204, 255, 0, .12),
+            rgba(204, 255, 0, .03));
+
+    border-color: var(--color-accent);
+
+    color: var(--color-accent);
+}
+
+.episode-card[aria-expanded="true"] .episode-toggle-btn {
+    color: var(--color-accent);
 }
 
 .episode-card[aria-expanded="true"] .episode-toggle-icon {
-    color: var(--color-accent);
     transform: rotate(180deg);
 }
 
@@ -427,8 +471,7 @@ h1 {
     display: grid;
 }
 
-.episode-summary-card,
-.episode-tags-card {
+.episode-summary-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 6px;
@@ -436,25 +479,57 @@ h1 {
 }
 
 .episode-summary-card p {
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, .86);
     font-size: .9rem;
     line-height: 1.6;
     margin: 0;
 }
 
 .episode-tags-card {
+
     display: flex;
     flex-wrap: wrap;
-    gap: .45rem;
+
+    gap: .55rem;
+
+    margin-top: 1rem;
+
+    padding-top: .9rem;
+
+    border-top: 1px solid var(--color-border);
+
 }
 
 .topic-tag {
+
     border: 1px solid var(--color-border);
+
     border-radius: 999px;
-    color: var(--color-text);
+
+    padding: .42rem .62rem;
+
     font-size: .75rem;
-    line-height: 1;
-    padding: .4rem .55rem;
+
+    cursor: default;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+
+}
+
+.topic-tag:hover {
+
+    background:
+        linear-gradient(135deg,
+            rgba(204, 255, 0, .12),
+            rgba(204, 255, 0, .02));
+
+    border-color: var(--color-accent);
+
+    transform: translateY(-1px);
+
 }
 
 .load-more-section {

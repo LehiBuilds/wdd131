@@ -114,8 +114,6 @@ function createEpisodeCard(episode, onPlayEpisode) {
 
     article.className = "episode-card";
     article.dataset.episodeId = episode.id;
-
-    article.tabIndex = 0;
     article.setAttribute("aria-expanded", "false");
 
     // --------------------
@@ -181,9 +179,10 @@ function createEpisodeCard(episode, onPlayEpisode) {
     );
 
     playButton.innerHTML = `
-        <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-        <span>Play</span>
-    `;
+    <span class="material-symbols-outlined" aria-hidden="true">
+        play_arrow
+    </span>
+`;
 
     playButton.addEventListener(
         "click",
@@ -193,8 +192,6 @@ function createEpisodeCard(episode, onPlayEpisode) {
         }
     );
 
-    const toggleIcon =
-        document.createElement("span");
 
     const leftSection =
         document.createElement("div");
@@ -207,14 +204,44 @@ function createEpisodeCard(episode, onPlayEpisode) {
         titleGroup
     );
 
-    cardHeader.append(
-        leftSection,
-        toggleIcon
+    const toggleButton =
+        document.createElement("button");
+
+    toggleButton.className =
+        "episode-toggle-btn";
+
+    toggleButton.type = "button";
+
+    toggleButton.setAttribute(
+        "aria-label",
+        "Expand episode"
     );
 
-    toggleIcon.className = "material-symbols-outlined episode-toggle-icon";
-    toggleIcon.setAttribute("aria-hidden", "true");
-    toggleIcon.textContent = "expand_more";
+    const toggleIcon =
+        document.createElement("span");
+
+    toggleIcon.className =
+        "material-symbols-outlined episode-toggle-icon";
+
+    toggleIcon.textContent =
+        "expand_more";
+
+    toggleButton.appendChild(toggleIcon);
+
+    cardHeader.append(
+        leftSection,
+        toggleButton
+    );
+
+    toggleButton.addEventListener(
+        "click",
+        event => {
+            event.stopPropagation();
+            toggleCard();
+        }
+    );
+
+
 
 
     // --------------------
@@ -245,22 +272,21 @@ function createEpisodeCard(episode, onPlayEpisode) {
             episode.metadata.keywords
         );
 
-    details.append(
-        summaryCard,
-        topics
-    );
+    summaryCard.appendChild(topics);
+
+    details.append(summaryCard);
 
     // --------------------
     // Toggle Logic
     // --------------------
 
-    article.addEventListener("click", toggleCard);
-    article.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            toggleCard();
-        }
-    });
+    // article.addEventListener("click", toggleCard);
+    // article.addEventListener("keydown", (event) => {
+    //     if (event.key === "Enter" || event.key === " ") {
+    //         event.preventDefault();
+    //         toggleCard();
+    //     }
+    // });
 
     link.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -299,6 +325,7 @@ function formatDate(dateString) {
 
 function createTopics(keywords) {
 
+
     const container =
         document.createElement("div");
 
@@ -312,6 +339,7 @@ function createTopics(keywords) {
         topic.className = "topic-tag";
 
         topic.textContent = keyword;
+        topic.title = "Search coming soon";
 
         container.appendChild(topic);
 
