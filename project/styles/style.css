@@ -224,6 +224,7 @@ h1 {
     cursor: not-allowed;
 }
 
+
 .player-controls button:disabled:hover {
     color: var(--color-text);
     transform: none;
@@ -243,7 +244,7 @@ h1 {
 }
 
 #play-btn:hover {
-    color: #111;
+    filter: brightness(1);
 }
 
 .archive-toolbar {
@@ -382,22 +383,18 @@ h1 {
 }
 
 .episode-play-btn {
-    width: 46px;
-    height: 46px;
-    /* border: 1px solid var(--color-border); */
+    width: 42px;
+    height: 42px;
     border: none;
     border-radius: 50%;
-    background: var(--color-surface-container);
-    color: var(--color-text);
+    background: transparent;
+    color: var(--color-text-secondary);
     display: inline-flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     flex-shrink: 0;
-    transition:
-        border-color var(--transition),
-        color var(--transition),
-        transform var(--transition);
+    transition: color var(--transition);
 }
 
 .episode-play-btn .material-symbols-outlined {
@@ -407,26 +404,20 @@ h1 {
 }
 
 .episode-play-btn:hover {
-    border-color: var(--color-accent);
     color: var(--color-accent);
 }
 
 .episode-toggle-btn {
     width: 42px;
     height: 42px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: transparent;
     border: 1px solid transparent;
     border-radius: 50%;
-
     color: var(--color-text-secondary);
-
     cursor: pointer;
-
     transition:
         background var(--transition),
         border-color var(--transition),
@@ -435,13 +426,6 @@ h1 {
 }
 
 .episode-toggle-btn:hover {
-    background:
-        linear-gradient(135deg,
-            rgba(204, 255, 0, .12),
-            rgba(204, 255, 0, .03));
-
-    border-color: var(--color-accent);
-
     color: var(--color-accent);
 }
 
