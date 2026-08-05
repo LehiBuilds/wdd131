@@ -6,21 +6,32 @@ export async function loadEpisode(episodeId) {
         const metadataResponse = await fetch(`${basePath}/metadata.json`);
         const metadata = await metadataResponse.json();
 
-        const transcriptResponse = await fetch(`${basePath}/transcript.json`);
+        // 1. Resolve dynamic transcript filename from metadata
+        const transcriptFileName = metadata.transcript || "transcript.json";
+        const transcriptResponse = await fetch(`${basePath}/${transcriptFileName}`);
         const transcriptData = await transcriptResponse.json();
 
         let syncData = null;
         let hasSync = false;
 
-        // Sync files exist for the first 5 episodes
-        if (episodeId <= 5) {
+        // 2. Resolve dynamic sync filename (e.g. transcript-sync.json or sync.json)
+        const syncFileName = metadata.transcriptSync || "sync.json";
+
+        try {
+            const syncResponse = await fetch(`${basePath}/${syncFileName}`);
+            if (syncResponse.ok) {
+                syncData = await syncResponse.json();
+                hasSync = true;
+            }
+        } catch {
+            // Fallback check for sync.json if transcriptSync property was missing
             try {
-                const syncResponse = await fetch(`${basePath}/sync.json`);
-                if (syncResponse.ok) {
-                    syncData = await syncResponse.json();
+                const fallbackSync = await fetch(`${basePath}/sync.json`);
+                if (fallbackSync.ok) {
+                    syncData = await fallbackSync.json();
                     hasSync = true;
                 }
-            } catch (err) {
+            } catch {
                 console.warn(`Sync data not available for episode ${episodeId}`);
             }
         }
@@ -32,7 +43,7 @@ export async function loadEpisode(episodeId) {
             metadata,
             paragraphs,
             hasSync,
-            audioPath: `${basePath}/audio.m4a`
+            audioPath: `${basePath}/${metadata.audio || "audio.m4a"}`
         };
     } catch (error) {
         console.error(`Failed to load episode ${episodeId}:`, error);
@@ -49,7 +60,6 @@ function buildParagraphs(transcriptData, syncData) {
         let start = p.start ?? 0;
         let end = p.end ?? 0;
 
-        // If detailed sync.json timing exists, map timing to paragraph
         if (syncData && syncData[index]) {
             start = syncData[index].start ?? start;
             end = syncData[index].end ?? end;
@@ -63,7 +73,6 @@ function buildParagraphs(transcriptData, syncData) {
         };
     });
 }
-
 export async function loadArchiveEpisode(id) {
     const episodeNumber = String(id).padStart(2, "0");
     const folder = `episodes/episode-${episodeNumber}`;
@@ -72,7 +81,7 @@ export async function loadArchiveEpisode(id) {
     return {
         id,
         metadata,
-        audioPath: getAudioPath(folder, metadata)
+        audioPath: `${folder}/${metadata.audio || "audio.m4a"}`
     };
 }
 
@@ -103,19 +112,15 @@ async function loadSync(folder) {
 
 export async function loadEpisodeList() {
     const response = await fetch("episodes/episodes.json");
-
     if (!response.ok) {
         throw new Error("Could not load episode list");
     }
 
     const episodeIds = await response.json();
-    const episodes = await Promise.all(
+    return await Promise.all(
         episodeIds.map(id => loadArchiveEpisode(id))
     );
-
-    return episodes;
 }
-
 function getAudioPath(folder, metadata) {
     return `${folder}/${metadata.audio || "audio.m4a"}`;
 }

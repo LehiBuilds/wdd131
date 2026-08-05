@@ -15,53 +15,33 @@ function renderHeader(metadata) {
 }
 
 export function renderPlayer() {
-
     document.getElementById("player-artwork").innerHTML = `
         <span class="material-symbols-outlined" aria-hidden="true">album</span>
     `;
 
     document.getElementById("player-controls").innerHTML = `
-
-    <button id="previous-episode-btn" type="button" aria-label="Previous episode">
-        <span class="material-symbols-outlined" aria-hidden="true">
-            skip_previous
-        </span>
-    </button>
-
-    <button id="skip-backward-btn" type="button" aria-label="Skip back 10 seconds">
-        <span class="material-symbols-outlined" aria-hidden="true">
-            replay_10
-        </span>
-    </button>
-
-
-    <button id="play-btn" type="button" aria-label="Play">
-        <span class="material-symbols-outlined" aria-hidden="true">
-            play_arrow
-        </span>
-    </button>
-
-
-    <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
-        <span class="material-symbols-outlined" aria-hidden="true">
-            forward_30
-        </span>
-    </button>
-
-
-    <button id="next-episode-btn" type="button" aria-label="Next episode">
-        <span class="material-symbols-outlined" aria-hidden="true">
-            skip_next
-        </span>
-    </button>
-
-    <div class="volume-container">
-        <button id="volume-btn" type="button" aria-label="Mute / Unmute">
-            <span class="material-symbols-outlined" aria-hidden="true">volume_up</span>
+        <button id="previous-episode-btn" type="button" aria-label="Previous episode">
+            <span class="material-symbols-outlined" aria-hidden="true">skip_previous</span>
         </button>
-        <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume slider">
-    </div>
-`;
+        <button id="skip-backward-btn" type="button" aria-label="Skip back 10 seconds">
+            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
+        </button>
+        <button id="play-btn" type="button" aria-label="Play">
+            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+        </button>
+        <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
+            <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
+        </button>
+        <button id="next-episode-btn" type="button" aria-label="Next episode">
+            <span class="material-symbols-outlined" aria-hidden="true">skip_next</span>
+        </button>
+        <div class="volume-container">
+            <button id="volume-btn" type="button" aria-label="Mute / Unmute">
+                <span class="material-symbols-outlined" aria-hidden="true">volume_up</span>
+            </button>
+            <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume slider">
+        </div>
+    `;
 }
 
 function renderTopics(keywords = []) {
@@ -79,15 +59,32 @@ function renderTopics(keywords = []) {
 
 function renderTranscript(paragraphs, hasSync = false) {
     const container = document.getElementById("transcript");
-    const badgeContainer = document.getElementById("read-along-status");
+    const statusContainer = document.getElementById("read-along-status");
     if (!container) return;
 
     container.innerHTML = "";
 
-    if (badgeContainer) {
-        badgeContainer.innerHTML = hasSync
-            ? `<span class="badge read-along-active"><span class="material-symbols-outlined">bolt</span> Interactive Read-Along</span>`
-            : `<span class="badge read-along-disabled"><span class="material-symbols-outlined">notes</span> Text Transcript</span>`;
+    if (statusContainer) {
+        if (hasSync) {
+            statusContainer.innerHTML = `
+                <div class="read-along-controls">
+                    <span class="read-along-label">
+                        <span class="material-symbols-outlined">bolt</span>
+                        Read-Along
+                    </span>
+                    <label class="toggle-switch" aria-label="Toggle Read-Along mode">
+                        <input type="checkbox" id="read-along-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            `;
+        } else {
+            statusContainer.innerHTML = `
+                <span class="badge read-along-disabled">
+                    <span class="material-symbols-outlined">notes</span> Text Only
+                </span>
+            `;
+        }
     }
 
     paragraphs.forEach(paragraph => {
@@ -113,11 +110,7 @@ function formatDate(dateString) {
     });
 }
 
-export function renderEpisodeList(
-    episodes,
-    onPlayEpisode,
-    clear = false
-) {
+export function renderEpisodeList(episodes, onPlayEpisode, clear = false) {
 
     const container =
         document.getElementById("episode-list");
