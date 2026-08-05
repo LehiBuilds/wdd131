@@ -10,17 +10,25 @@
     --radius: 4px;
     --transition: 200ms ease;
     --font-main: 'Inter', sans-serif;
+    --header-height: 60px;
 }
 
 .site-header {
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-surface-bright);
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: var(--header-height);
+    background: rgba(19, 19, 19, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
 }
 
+/* Constrain nav to main content grid */
 .nav-wrapper {
-
+    max-width: var(--container-width);
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,9 +40,19 @@
     letter-spacing: -0.02em;
 }
 
+/* .logo a {
+    text-decoration: none;
+    color: var(--color-text);
+} */
+
 .logo a {
     text-decoration: none;
     color: var(--color-text);
+    transition: color var(--transition);
+}
+
+.logo a:hover {
+    color: var(--color-accent);
 }
 
 nav ul {
@@ -45,7 +63,7 @@ nav ul {
     padding: 0;
 }
 
-nav a {
+/* nav a {
     color: var(--color-accent);
     font-weight: 400;
     font-size: 0.875rem;
@@ -56,6 +74,33 @@ nav a.active {
     color: var(--color-accent);
     border-bottom: 2px solid var(--color-accent);
     padding-bottom: 2px;
+} */
+/* Nav Links - Muted Inactive States */
+nav a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: color var(--transition), border-color var(--transition);
+}
+
+nav a:hover {
+    color: var(--color-text);
+}
+
+nav a.active {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.25rem;
 }
 
 body {
@@ -89,7 +134,7 @@ h1 {
     unicode-bidi: isolate;
 }
 
-#collection-link {
+/* #collection-link {
     font-size: 0.85rem;
     color: var(--color-accent);
     text-transform: uppercase;
@@ -98,34 +143,49 @@ h1 {
     align-items: center;
     text-decoration: none;
     gap: .4rem;
+} */
+
+#collection-link {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    gap: .4rem;
+    transition: color var(--transition);
 }
 
 #collection-link:hover {
-    text-decoration: underline;
+    color: var(--color-accent);
     cursor: pointer;
+    text-decoration: none;
 }
 
+#collection-link:hover span:not(.material-symbols-outlined) {
+    text-decoration: underline;
+}
+
+/* Desktop Sticky Player - Docks cleanly under the sticky header */
 .player-wrapper {
     position: sticky;
-    top: 0rem;
-    z-index: 20;
+    top: var(--header-height);
+    z-index: 30;
     background: var(--color-surface);
-    padding: 1rem 0 .05rem;
-    border-bottom-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    padding: 0.75rem 0 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .player {
-    position: static;
+    position: relative;
     background: var(--color-surface-container);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     display: flex;
-    align-items: stretch;
-    gap: 0;
-    margin: 0;
+    align-items: center;
     overflow: hidden;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .player-artwork {
@@ -625,35 +685,104 @@ h1 {
 
 @media (max-width: 640px) {
     .site-header {
-        padding: .9rem 1rem;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
     }
 
     .nav-wrapper {
-        align-items: flex-start;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-toggle .material-symbols-outlined {
+        font-size: 26px;
+    }
+
+    /* Mobile Dropdown Menu Drawer */
+    header nav {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: rgba(19, 19, 19, 0.96);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+        padding: 0.5rem 1rem 1rem;
+        display: none;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    header nav.open {
+        display: block;
+    }
+
+    nav ul {
         flex-direction: column;
-        gap: .75rem;
+        gap: 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.75rem 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    nav a.active {
+        border-bottom: 1px solid var(--color-accent);
     }
 
     #collection-title {
         font-size: 2rem;
     }
 
+    .player-wrapper {
+        position: fixed;
+        top: auto;
+        bottom: 1.25rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 100;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+    }
+
     .player {
-        align-items: center;
-        top: 1rem;
-        padding: .75rem;
+        border-radius: 12px;
+        background: rgba(28, 27, 27, 0.95);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .player-artwork {
-        width: 64px;
-        height: 64px;
-        flex: 0 0 64px;
-        min-height: 64px;
-        border-radius: 6px;
+        width: 54px;
+        height: 54px;
+        flex: 0 0 54px;
+        border-radius: 8px 0 0 8px;
+    }
+
+    .player-artwork .material-symbols-outlined {
+        font-size: 24px;
     }
 
     .player-content {
-        padding: 0 0 0 .9rem;
+        padding: 0.5rem 0.75rem;
+        gap: 0.2rem;
     }
 
     .archive-toolbar,
@@ -669,5 +798,17 @@ h1 {
 
     .episode-card-actions {
         justify-content: space-between;
+    }
+
+    #current-title {
+        font-size: 0.85rem;
+    }
+
+    .player-controls button .material-symbols-outlined {
+        font-size: 20px;
+    }
+
+    #play-btn .material-symbols-outlined {
+        font-size: 26px;
     }
 }

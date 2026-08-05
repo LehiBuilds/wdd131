@@ -64,3 +64,25 @@ function renderVisibleEpisodes() {
     loadMoreButton.hidden =
         nextEpisodeIndex >= episodes.length;
 }
+
+// Add this helper or include inside your initialization logic in index.js
+function setupMobileNav() {
+    const toggleBtn = document.getElementById("nav-toggle");
+    const nav = document.querySelector("header nav");
+
+    if (!toggleBtn || !nav) return;
+
+    toggleBtn.addEventListener("click", () => {
+        const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
+        toggleBtn.setAttribute("aria-expanded", String(!isExpanded));
+        nav.classList.toggle("open");
+
+        const icon = toggleBtn.querySelector(".material-symbols-outlined");
+        if (icon) {
+            icon.textContent = isExpanded ? "menu" : "close";
+        }
+    });
+}
+
+// Call inside your main DOMContentLoaded listener:
+setupMobileNav();
