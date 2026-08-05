@@ -35,18 +35,42 @@ export function renderPlayer() {
     `;
 
     document.getElementById("player-controls").innerHTML = `
-        <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
-            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
-        </button>
 
-        <button id="play-btn" type="button" aria-label="Play">
-            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-        </button>
+    <button id="previous-episode-btn" type="button" aria-label="Previous episode">
+        <span class="material-symbols-outlined" aria-hidden="true">
+            skip_previous
+        </span>
+    </button>
 
-        <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
-            <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
-        </button>
-    `;
+
+    <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
+        <span class="material-symbols-outlined" aria-hidden="true">
+            replay_10
+        </span>
+    </button>
+
+
+    <button id="play-btn" type="button" aria-label="Play">
+        <span class="material-symbols-outlined" aria-hidden="true">
+            play_arrow
+        </span>
+    </button>
+
+
+    <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
+        <span class="material-symbols-outlined" aria-hidden="true">
+            forward_30
+        </span>
+    </button>
+
+
+    <button id="next-episode-btn" type="button" aria-label="Next episode">
+        <span class="material-symbols-outlined" aria-hidden="true">
+            skip_next
+        </span>
+    </button>
+
+`;
 }
 
 function renderTopics(keywords) {

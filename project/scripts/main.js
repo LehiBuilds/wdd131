@@ -9,7 +9,8 @@ import {
 } from "./render.js";
 import {
     initializePlayer,
-    loadEpisodeIntoPlayer
+    loadEpisodeIntoPlayer,
+    configureEpisodeNavigation
 } from "./player.js";
 
 /* =========================
@@ -23,6 +24,20 @@ if (document.getElementById("episode-list")) {
 
     renderPlayer();
     initializePlayer();
+    configureEpisodeNavigation(
+        episodes,
+        async (id) => {
+
+            const episode =
+                await loadEpisode(id);
+
+            await loadEpisodeIntoPlayer(episode);
+
+            document.getElementById("current-title").textContent =
+                episode.metadata.title;
+
+        }
+    );
 
     renderEpisodeList(
         episodes,

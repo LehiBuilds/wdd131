@@ -2,13 +2,20 @@ const SKIP_BACKWARD_SECONDS = 15;
 const SKIP_FORWARD_SECONDS = 30;
 
 let audio;
-let playButton;
+let previousEpisodeButton;
 let skipBackwardButton;
+let playButton;
 let skipForwardButton;
+let nextEpisodeButton;
 let currentTimeDisplay;
 let totalTimeDisplay;
 let progressFill;
 let progressBar;
+
+
+let episodes = [];
+let currentEpisodeIndex = -1;
+let episodeLoader;
 
 let transcriptParagraphs;
 let activeParagraph = null;
@@ -23,6 +30,9 @@ export function initializePlayer() {
     totalTimeDisplay =
         document.getElementById("total-time");
 
+    previousEpisodeButton =
+        document.getElementById("previous-episode-btn");
+
     playButton =
         document.getElementById("play-btn");
 
@@ -31,6 +41,8 @@ export function initializePlayer() {
 
     skipForwardButton =
         document.getElementById("skip-forward-btn");
+    nextEpisodeButton =
+        document.getElementById("next-episode-btn");
 
     progressFill =
         document.getElementById("progress-fill");
@@ -97,11 +109,20 @@ function setupControls() {
     playButton.addEventListener(
         "click", togglePlayback
     );
+    previousEpisodeButton.addEventListener(
+        "click",
+        playPreviousEpisode
+    );
+
     skipBackwardButton.addEventListener(
         "click", skipBackward
     );
     skipForwardButton.addEventListener(
         "click", skipForward
+    );
+    nextEpisodeButton.addEventListener(
+        "click",
+        playNextEpisode
     );
     progressBar.addEventListener(
         "click",
@@ -247,6 +268,13 @@ export async function loadEpisodeIntoPlayer(episode) {
 
     activeEpisodeId = episode.id;
 
+    currentEpisodeIndex =
+        episodes.findIndex(
+            item => item.id === episode.id
+        );
+
+    updateEpisodeNavigationButtons();
+
     setActiveEpisodeCard(activeEpisodeId);
 
     updateEpisodeCardButton(false);
@@ -320,5 +348,52 @@ export async function toggleEpisodePlayback(episode) {
     } else {
         audio.pause();
     }
+
+}
+
+function playPreviousEpisode() {
+
+    if (currentEpisodeIndex <= 0) {
+        return;
+    }
+
+    const previousEpisode =
+        episodes[currentEpisodeIndex - 1];
+
+    episodeLoader(previousEpisode.id);
+
+}
+
+
+function playNextEpisode() {
+
+    if (currentEpisodeIndex >= episodes.length - 1) {
+        return;
+    }
+
+    const nextEpisode =
+        episodes[currentEpisodeIndex + 1];
+
+    episodeLoader(nextEpisode.id);
+
+}
+
+export function configureEpisodeNavigation(
+    episodeList,
+    loader
+) {
+
+    episodes = episodeList;
+    episodeLoader = loader;
+
+}
+
+function updateEpisodeNavigationButtons() {
+
+    previousEpisodeButton.disabled =
+        currentEpisodeIndex <= 0;
+
+    nextEpisodeButton.disabled =
+        currentEpisodeIndex >= episodes.length - 1;
 
 }
