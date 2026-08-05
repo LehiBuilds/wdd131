@@ -69,6 +69,12 @@ export function renderPlayer() {
         </span>
     </button>
 
+    <div class="volume-container">
+        <button id="volume-btn" type="button" aria-label="Mute / Unmute">
+            <span class="material-symbols-outlined" aria-hidden="true">volume_up</span>
+        </button>
+        <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume slider">
+    </div>
 `;
 }
 

@@ -12,6 +12,10 @@ let totalTimeDisplay;
 let progressFill;
 let progressBar;
 
+let volumeButton;
+let volumeSlider;
+let previousVolume = 1;
+
 
 let episodes = [];
 let currentEpisodeIndex = -1;
@@ -49,6 +53,9 @@ export function initializePlayer() {
 
     progressBar =
         document.querySelector(".progress-bar");
+
+    volumeButton = document.getElementById("volume-btn");
+    volumeSlider = document.getElementById("volume-slider");
 
     transcriptParagraphs =
         document.querySelectorAll(".transcript-paragraph");
@@ -128,6 +135,8 @@ function setupControls() {
         "click",
         seekAudio
     );
+    volumeSlider?.addEventListener("input", handleVolumeChange);
+    volumeButton?.addEventListener("click", toggleMute);
     transcriptParagraphs.forEach(paragraph => {
         paragraph.addEventListener(
             "click",
@@ -411,4 +420,37 @@ function updateEpisodeNavigationButtons() {
     nextEpisodeButton.disabled =
         currentEpisodeIndex >= episodes.length - 1;
 
+}
+
+function handleVolumeChange(event) {
+    const value = parseFloat(event.target.value);
+    audio.volume = value;
+    updateVolumeIcon(value);
+}
+
+function toggleMute() {
+    if (audio.volume > 0) {
+        previousVolume = audio.volume;
+        audio.volume = 0;
+        if (volumeSlider) volumeSlider.value = 0;
+        updateVolumeIcon(0);
+    } else {
+        audio.volume = previousVolume || 1;
+        if (volumeSlider) volumeSlider.value = audio.volume;
+        updateVolumeIcon(audio.volume);
+    }
+}
+
+function updateVolumeIcon(volume) {
+    if (!volumeButton) return;
+    const icon = volumeButton.querySelector(".material-symbols-outlined");
+    if (!icon) return;
+
+    if (volume === 0) {
+        icon.textContent = "volume_off";
+    } else if (volume < 0.5) {
+        icon.textContent = "volume_down";
+    } else {
+        icon.textContent = "volume_up";
+    }
 }
