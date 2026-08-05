@@ -111,6 +111,7 @@ h1 {
     z-index: 20;
     background: var(--color-surface);
     padding: 1rem 0 .05rem;
+    border-radius: 8px;
 }
 
 .player {
@@ -154,7 +155,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: .45rem;
+    gap: .15rem;
     min-width: 0;
 }
 
@@ -314,11 +315,23 @@ h1 {
     border-color: var(--color-accent);
 }
 
-.episode-card-header {
+/* .episode-card-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 1rem;
     align-items: center;
+} */
+
+.episode-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.episode-card-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .episode-title-group {
@@ -332,6 +345,11 @@ h1 {
 }
 
 .episode-title-group a {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+
     color: var(--color-text);
     text-decoration: none;
 }
@@ -353,6 +371,7 @@ h1 {
 
 .episode-title-group a:hover {
     color: var(--color-accent);
+    text-decoration: underline;
 }
 
 .episode-meta {

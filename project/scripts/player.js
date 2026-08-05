@@ -258,8 +258,8 @@ export async function loadEpisodeIntoPlayer(episode) {
     transcriptParagraphs =
         document.querySelectorAll(".transcript-paragraph");
 
-
-    await audio.play();
+    // No autoplay
+    // await audio.play();
 }
 
 function clearActiveEpisodeCard() {

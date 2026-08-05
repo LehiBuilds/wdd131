@@ -107,10 +107,7 @@ export function renderEpisodeList(
 
 }
 
-function createEpisodeCard(
-    episode,
-    onPlayEpisode
-) {
+function createEpisodeCard(episode, onPlayEpisode) {
 
     const article =
         document.createElement("article");
@@ -141,8 +138,9 @@ function createEpisodeCard(
     const link =
         document.createElement("a");
 
-    link.href =
-        `episode.html?id=${episode.id}`;
+    link.href = `episode.html?id=${episode.id}`;
+    link.target = "_blank";
+    link.rel = "noopener";
 
     const episodeNumber =
         String(episode.id).padStart(2, "0");
@@ -169,10 +167,7 @@ function createEpisodeCard(
     // Actions
     // --------------------
 
-    const actions =
-        document.createElement("div");
 
-    actions.className = "episode-card-actions";
 
     const playButton =
         document.createElement("button");
@@ -201,12 +196,26 @@ function createEpisodeCard(
     const toggleIcon =
         document.createElement("span");
 
+    const leftSection =
+        document.createElement("div");
+
+    leftSection.className =
+        "episode-card-left";
+
+    leftSection.append(
+        playButton,
+        titleGroup
+    );
+
+    cardHeader.append(
+        leftSection,
+        toggleIcon
+    );
+
     toggleIcon.className = "material-symbols-outlined episode-toggle-icon";
     toggleIcon.setAttribute("aria-hidden", "true");
     toggleIcon.textContent = "expand_more";
 
-    actions.append(playButton, toggleIcon);
-    cardHeader.append(titleGroup, actions);
 
     // --------------------
     // Details
