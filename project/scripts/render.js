@@ -42,8 +42,7 @@ export function renderPlayer() {
         </span>
     </button>
 
-
-    <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
+    <button id="skip-backward-btn" type="button" aria-label="Skip back 10 seconds">
         <span class="material-symbols-outlined" aria-hidden="true">
             replay_10
         </span>

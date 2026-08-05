@@ -11,6 +11,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="icon" href="data:,">
     <script type="module" src="scripts/index.js"></script>
 
     <link rel="stylesheet" href="styles/style.css">
@@ -85,10 +86,6 @@
 
             <div class="archive-toolbar">
                 <h2>Archive</h2>
-                <select id="sort-episodes">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                </select>
             </div>
             <!-- Pagination -->
             <div id="episode-list" class="episode-list">
@@ -102,6 +99,30 @@
         </section>
 
     </main>
+    <div class="archive-navigation">
+
+        <button id="jump-episode-btn" type="button" aria-label="Jump to episode">
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+        </button>
+
+
+        <button id="back-top-btn" type="button" aria-label="Back to top">
+            <span class="material-symbols-outlined">
+                arrow_upward
+            </span>
+        </button>
+
+
+        <div id="episode-jump-menu" class="episode-jump-menu" hidden>
+            <h3>Jump to Episode</h3>
+
+            <div id="episode-jump-list"></div>
+
+        </div>
+
+    </div>
     <footer class="site-footer">
         <p>&copy; 2026 The PQCNM Podcast</p>
     </footer>

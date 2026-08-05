@@ -1,4 +1,4 @@
-const SKIP_BACKWARD_SECONDS = 15;
+const SKIP_BACKWARD_SECONDS = 10;
 const SKIP_FORWARD_SECONDS = 30;
 
 let audio;
@@ -109,7 +109,7 @@ function setupControls() {
     playButton.addEventListener(
         "click", togglePlayback
     );
-    previousEpisodeButton.addEventListener(
+    previousEpisodeButton?.addEventListener(
         "click",
         playPreviousEpisode
     );
@@ -120,7 +120,7 @@ function setupControls() {
     skipForwardButton.addEventListener(
         "click", skipForward
     );
-    nextEpisodeButton.addEventListener(
+    nextEpisodeButton?.addEventListener(
         "click",
         playNextEpisode
     );
@@ -136,11 +136,16 @@ function setupControls() {
     });
 }
 
+// In player.js
 async function togglePlayback() {
-    if (audio.paused) {
-        await audio.play();
-    } else {
-        audio.pause();
+    try {
+        if (audio.paused) {
+            await audio.play();
+        } else {
+            audio.pause();
+        }
+    } catch (error) {
+        if (error.name !== "AbortError") console.error(error);
     }
 }
 
@@ -351,7 +356,7 @@ export async function toggleEpisodePlayback(episode) {
 
 }
 
-function playPreviousEpisode() {
+async function playPreviousEpisode() {
 
     if (currentEpisodeIndex <= 0) {
         return;
@@ -360,12 +365,12 @@ function playPreviousEpisode() {
     const previousEpisode =
         episodes[currentEpisodeIndex - 1];
 
-    episodeLoader(previousEpisode.id);
+    await episodeLoader(previousEpisode.id);
 
 }
 
 
-function playNextEpisode() {
+async function playNextEpisode() {
 
     if (currentEpisodeIndex >= episodes.length - 1) {
         return;
@@ -374,7 +379,7 @@ function playNextEpisode() {
     const nextEpisode =
         episodes[currentEpisodeIndex + 1];
 
-    episodeLoader(nextEpisode.id);
+    await episodeLoader(nextEpisode.id);
 
 }
 
@@ -389,6 +394,16 @@ export function configureEpisodeNavigation(
 }
 
 function updateEpisodeNavigationButtons() {
+
+    if (!previousEpisodeButton || !nextEpisodeButton) {
+        return;
+    }
+
+    if (episodes.length === 0) {
+        previousEpisodeButton.disabled = true;
+        nextEpisodeButton.disabled = true;
+        return;
+    }
 
     previousEpisodeButton.disabled =
         currentEpisodeIndex <= 0;

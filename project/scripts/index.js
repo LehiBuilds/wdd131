@@ -1,6 +1,7 @@
 import { loadArchiveEpisode, loadEpisodeList } from "./data.js";
-import { renderEpisodeList } from "./render.js";
+import { renderEpisodeList, renderPlayer } from "./render.js";
 import { initializePlayer, toggleEpisodePlayback } from "./player.js";
+import { initializeArchiveNavigation } from "./archive-navigation.js";
 
 const EPISODES_PER_BATCH = 10;
 let nextEpisodeIndex = 0;
@@ -12,7 +13,10 @@ document.getElementById("current-title").textContent =
     "Select an episode to begin listening";
 
 const episodes = await loadEpisodeList();
+initializeArchiveNavigation(episodes);
 const loadMoreButton = document.getElementById("load-more-btn");
+
+renderPlayer();
 
 initializePlayer();
 
