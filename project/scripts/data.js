@@ -1,36 +1,67 @@
-export async function loadEpisode(id) {
+export async function loadEpisode(episodeId) {
+    const formattedId = String(episodeId).padStart(2, "0");
+    const basePath = `episodes/episode-${formattedId}`;
 
-    const episodeNumber = String(id).padStart(2, "0");
-    const folder = `episodes/episode-${episodeNumber}`;
+    try {
+        const metadataResponse = await fetch(`${basePath}/metadata.json`);
+        const metadata = await metadataResponse.json();
 
-    // const metadata = await loadMetadata(folder);
-    // const transcript = await loadTranscript(folder);
-    // const sync = await loadSync(folder);
+        const transcriptResponse = await fetch(`${basePath}/transcript.json`);
+        const transcriptData = await transcriptResponse.json();
 
-    // return {
-    //     id,
-    //     metadata,
-    //     transcript,
-    //     sync,
-    //     audioPath: `${folder}/${metadata.audio}`
-    // };
+        let syncData = null;
+        let hasSync = false;
 
-    const metadata = await loadMetadata(folder);
-    const transcript = await loadTranscript(folder);
-    const sync = await loadSync(folder);
+        // Sync files exist for the first 5 episodes
+        if (episodeId <= 5) {
+            try {
+                const syncResponse = await fetch(`${basePath}/sync.json`);
+                if (syncResponse.ok) {
+                    syncData = await syncResponse.json();
+                    hasSync = true;
+                }
+            } catch (err) {
+                console.warn(`Sync data not available for episode ${episodeId}`);
+            }
+        }
 
-    const paragraphs = transcript.paragraphs.map((paragraph, index) => ({
-        ...paragraph,
-        ...sync.paragraphs[index]
-    }));
+        const paragraphs = buildParagraphs(transcriptData, syncData);
 
-    return {
-        id,
-        metadata,
-        audioPath: getAudioPath(folder, metadata),
-        paragraphs
-    };
+        return {
+            id: episodeId,
+            metadata,
+            paragraphs,
+            hasSync,
+            audioPath: `${basePath}/audio.m4a`
+        };
+    } catch (error) {
+        console.error(`Failed to load episode ${episodeId}:`, error);
+        throw error;
+    }
+}
 
+function buildParagraphs(transcriptData, syncData) {
+    const rawParagraphs = Array.isArray(transcriptData)
+        ? transcriptData
+        : transcriptData.paragraphs || [];
+
+    return rawParagraphs.map((p, index) => {
+        let start = p.start ?? 0;
+        let end = p.end ?? 0;
+
+        // If detailed sync.json timing exists, map timing to paragraph
+        if (syncData && syncData[index]) {
+            start = syncData[index].start ?? start;
+            end = syncData[index].end ?? end;
+        }
+
+        return {
+            number: index + 1,
+            text: typeof p === "string" ? p : p.text,
+            start,
+            end
+        };
+    });
 }
 
 export async function loadArchiveEpisode(id) {

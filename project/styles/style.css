@@ -13,6 +13,15 @@
     --header-height: 60px;
 }
 
+body {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
 .site-header {
     position: sticky;
     top: 0;
@@ -40,11 +49,6 @@
     letter-spacing: -0.02em;
 }
 
-/* .logo a {
-    text-decoration: none;
-    color: var(--color-text);
-} */
-
 .logo a {
     text-decoration: none;
     color: var(--color-text);
@@ -63,18 +67,7 @@ nav ul {
     padding: 0;
 }
 
-/* nav a {
-    color: var(--color-accent);
-    font-weight: 400;
-    font-size: 0.875rem;
-    text-decoration: none;
-}
 
-nav a.active {
-    color: var(--color-accent);
-    border-bottom: 2px solid var(--color-accent);
-    padding-bottom: 2px;
-} */
 /* Nav Links - Muted Inactive States */
 nav a {
     color: var(--color-text-secondary);
@@ -103,20 +96,37 @@ nav a.active {
     padding: 0.25rem;
 }
 
-body {
-    background-color: var(--color-surface);
-    color: var(--color-text);
-    font-family: var(--font-main);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+/* Breadcrumb Navigation */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin: 1rem 0 1.25rem;
 }
+
+.breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-accent);
+}
+
+.breadcrumb .material-symbols-outlined {
+    font-size: 16px;
+}
+
 
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 1rem 3rem;
 }
+
 
 section {
     display: block;
@@ -133,17 +143,6 @@ section {
 h1 {
     unicode-bidi: isolate;
 }
-
-/* #collection-link {
-    font-size: 0.85rem;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    gap: .4rem;
-} */
 
 #collection-link {
     font-size: 0.85rem;
@@ -336,15 +335,6 @@ h1 {
     margin: 0;
 }
 
-/* .archive-toolbar select {
-    background: var(--color-surface-container);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    color: var(--color-text);
-    font: inherit;
-    font-size: .85rem;
-    padding: .55rem .75rem;
-} */
 
 .archive-section {
     position: relative;
@@ -356,9 +346,110 @@ h1 {
     gap: .85rem;
 }
 
+/* Episode Detail Card */
+.episode-details-card {
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+}
 
+.episode-meta-header {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
 
+.meta-badge {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    background: rgba(204, 255, 0, 0.08);
+    border: 1px solid rgba(204, 255, 0, 0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+}
 
+.episode-summary-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 1rem;
+}
+
+/* Transcript Header & Read-Along Badges */
+.transcript-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.75rem;
+}
+
+.transcript-header h2 {
+    font-size: 1.35rem;
+    margin: 0;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+}
+
+.badge .material-symbols-outlined {
+    font-size: 16px;
+}
+
+.read-along-active {
+    background: var(--color-accent);
+    color: #111;
+}
+
+.read-along-disabled {
+    background: var(--color-surface-bright);
+    color: var(--color-text-secondary);
+}
+
+/* Interactive Transcript Paragraphs */
+.transcript-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.transcript-paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    padding: 0.85rem 1rem;
+    border-left: 3px solid transparent;
+    border-radius: 0 6px 6px 0;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.transcript-paragraph.clickable {
+    cursor: pointer;
+}
+
+.transcript-paragraph.clickable:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text);
+}
+
+/* Active Sync Highlighting */
+.transcript-paragraph.active {
+    color: var(--color-text);
+    background: rgba(204, 255, 0, 0.06);
+    border-left-color: var(--color-accent);
+}
+
+/* Archive List */
 .episode-card {
     background: var(--color-surface-container);
     border: 1px solid var(--color-border);

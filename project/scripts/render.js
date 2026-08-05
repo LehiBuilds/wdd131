@@ -1,33 +1,19 @@
 export function renderEpisode(episode) {
     renderPlayer();
-
     renderHeader(episode.metadata);
-
     renderTopics(episode.metadata.keywords);
-
-    renderTranscript(episode.paragraphs);
+    renderTranscript(episode.paragraphs, episode.hasSync);
 }
 
 function renderHeader(metadata) {
-    document.getElementById("breadcrumb-title").textContent =
-        metadata.title;
-
-    document.getElementById("episode-title").textContent =
-        metadata.title;
-
-    document.getElementById("episode-summary").textContent =
-        metadata.summary;
-
-    document.getElementById("episode-date").textContent =
-        metadata.date;
-
-    document.getElementById("episode-duration").textContent =
-        metadata.duration;
-
-    document.title =
-        `${metadata.title} | The PQCNM Podcast`;
-
+    document.getElementById("breadcrumb-title").textContent = metadata.title;
+    document.getElementById("episode-title").textContent = metadata.title;
+    document.getElementById("episode-summary").textContent = metadata.summary;
+    document.getElementById("episode-date").textContent = formatDate(metadata.date);
+    document.getElementById("episode-duration").textContent = metadata.duration;
+    document.title = `${metadata.title} | The PQCNM Podcast`;
 }
+
 export function renderPlayer() {
 
     document.getElementById("player-artwork").innerHTML = `
@@ -78,9 +64,9 @@ export function renderPlayer() {
 `;
 }
 
-function renderTopics(keywords) {
-    const container =
-        document.getElementById("episode-keywords");
+function renderTopics(keywords = []) {
+    const container = document.getElementById("episode-keywords");
+    if (!container) return;
     container.innerHTML = "";
 
     keywords.forEach(keyword => {
@@ -91,21 +77,39 @@ function renderTopics(keywords) {
     });
 }
 
-function renderTranscript(paragraphs) {
-    const container =
-        document.getElementById("transcript");
+function renderTranscript(paragraphs, hasSync = false) {
+    const container = document.getElementById("transcript");
+    const badgeContainer = document.getElementById("read-along-status");
+    if (!container) return;
+
     container.innerHTML = "";
+
+    if (badgeContainer) {
+        badgeContainer.innerHTML = hasSync
+            ? `<span class="badge read-along-active"><span class="material-symbols-outlined">bolt</span> Interactive Read-Along</span>`
+            : `<span class="badge read-along-disabled"><span class="material-symbols-outlined">notes</span> Text Transcript</span>`;
+    }
+
     paragraphs.forEach(paragraph => {
         const p = document.createElement("p");
         p.className = "transcript-paragraph";
+        if (hasSync) p.classList.add("clickable");
 
         p.dataset.number = paragraph.number;
         p.dataset.start = paragraph.start;
         p.dataset.end = paragraph.end;
-
         p.textContent = paragraph.text;
 
         container.appendChild(p);
+    });
+}
+
+function formatDate(dateString) {
+    if (!dateString) return "";
+    return new Date(dateString).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
     });
 }
 
@@ -341,16 +345,6 @@ function createEpisodeCard(episode, onPlayEpisode) {
 
 }
 
-function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString(
-        "en-US",
-        {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        }
-    );
-}
 
 function createTopics(keywords) {
 
