@@ -1,6 +1,10 @@
 import { loadArchiveEpisode, loadEpisodeList } from "./data.js";
 import { renderEpisodeList, renderPlayer } from "./render.js";
-import { initializePlayer, toggleEpisodePlayback } from "./player.js";
+import {
+    initializePlayer,
+    toggleEpisodePlayback,
+    configureEpisodeNavigation
+} from "./player.js";
 import { initializeArchiveNavigation } from "./archive-navigation.js";
 
 const EPISODES_PER_BATCH = 10;
@@ -16,16 +20,28 @@ const episodes = await loadEpisodeList();
 initializeArchiveNavigation(episodes);
 const loadMoreButton = document.getElementById("load-more-btn");
 
+// 1. Render player buttons first
 renderPlayer();
 
+// 2. Attach button click listeners
 initializePlayer();
+
+// 3. Configure episode list & loader for prev/next buttons
+configureEpisodeNavigation(
+    episodes,
+    async (id) => {
+        const episode = await loadArchiveEpisode(id);
+        await toggleEpisodePlayback(episode);
+        document.getElementById("current-title").textContent =
+            episode.metadata.title;
+    }
+);
 
 renderVisibleEpisodes();
 
 loadMoreButton.addEventListener("click", renderVisibleEpisodes);
 
 function renderVisibleEpisodes() {
-
     const batch = episodes.slice(
         nextEpisodeIndex,
         nextEpisodeIndex + EPISODES_PER_BATCH
