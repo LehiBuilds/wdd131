@@ -116,6 +116,8 @@ function createEpisodeCard(
         document.createElement("article");
 
     article.className = "episode-card";
+    article.dataset.episodeId = episode.id;
+
     article.tabIndex = 0;
     article.setAttribute("aria-expanded", "false");
 
@@ -177,6 +179,7 @@ function createEpisodeCard(
 
     playButton.type = "button";
     playButton.className = "episode-play-btn";
+    playButton.dataset.episodeId = episode.id;
     playButton.setAttribute(
         "aria-label",
         `Play ${episode.metadata.title}`

@@ -1,6 +1,6 @@
 import { loadArchiveEpisode, loadEpisodeList } from "./data.js";
 import { renderEpisodeList } from "./render.js";
-import { initializePlayer, loadEpisodeIntoPlayer } from "./player.js";
+import { initializePlayer, toggleEpisodePlayback } from "./player.js";
 
 const EPISODES_PER_BATCH = 10;
 let nextEpisodeIndex = 0;
@@ -32,7 +32,7 @@ function renderVisibleEpisodes() {
         async (id) => {
             const episode = await loadArchiveEpisode(id);
 
-            await loadEpisodeIntoPlayer(episode);
+            await toggleEpisodePlayback(episode);
 
             document.getElementById("current-title").textContent =
                 episode.metadata.title;

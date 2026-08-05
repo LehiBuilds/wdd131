@@ -12,6 +12,7 @@ let progressBar;
 
 let transcriptParagraphs;
 let activeParagraph = null;
+let activeEpisodeId = null;
 
 export function initializePlayer() {
     audio = document.getElementById("audio-player");
@@ -65,14 +66,30 @@ function setupAudio() {
         handleAudioEnded
     );
 
+    // audio.addEventListener(
+    //     "play",
+    //     () => updatePlayButton(true)
+    // );
+
+    // audio.addEventListener(
+    //     "pause",
+    //     () => updatePlayButton(false)
+    // );
+
     audio.addEventListener(
         "play",
-        () => updatePlayButton(true)
+        () => {
+            updatePlayButton(true);
+            updateEpisodeCardButton(true);
+        }
     );
 
     audio.addEventListener(
         "pause",
-        () => updatePlayButton(false)
+        () => {
+            updatePlayButton(false);
+            updateEpisodeCardButton(false);
+        }
     );
 }
 
@@ -225,6 +242,15 @@ function seekTranscript(event) {
 }
 
 export async function loadEpisodeIntoPlayer(episode) {
+
+    clearActiveEpisodeCard();
+
+    activeEpisodeId = episode.id;
+
+    setActiveEpisodeCard(activeEpisodeId);
+
+    updateEpisodeCardButton(false);
+
     audio.src = episode.audioPath;
 
     audio.load();
@@ -234,4 +260,68 @@ export async function loadEpisodeIntoPlayer(episode) {
 
 
     await audio.play();
+}
+
+function clearActiveEpisodeCard() {
+
+    document
+        .querySelector(".episode-card.active")
+        ?.classList.remove("active");
+
+}
+
+function setActiveEpisodeCard(episodeId) {
+
+    document
+        .querySelector(
+            `.episode-card[data-episode-id="${episodeId}"]`
+        )
+        ?.classList.add("active");
+
+}
+
+function updateEpisodeCardButton(isPlaying) {
+
+    document
+        .querySelectorAll(".episode-play-btn")
+        .forEach(button => {
+
+            const icon =
+                button.querySelector(".material-symbols-outlined");
+
+            const label =
+                button.querySelector("span:last-child");
+
+            if (button.dataset.episodeId === String(activeEpisodeId)) {
+
+                icon.textContent =
+                    isPlaying ? "pause" : "play_arrow";
+
+                label.textContent =
+                    isPlaying ? "Pause" : "Play";
+
+            } else {
+
+                icon.textContent = "play_arrow";
+                label.textContent = "Play";
+
+            }
+
+        });
+
+}
+
+export async function toggleEpisodePlayback(episode) {
+
+    if (activeEpisodeId !== episode.id) {
+        await loadEpisodeIntoPlayer(episode);
+        return;
+    }
+
+    if (audio.paused) {
+        await audio.play();
+    } else {
+        audio.pause();
+    }
+
 }
