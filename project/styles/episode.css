@@ -1,3 +1,18 @@
+:root {
+    --color-surface: #131313;
+    --color-surface-container: #1c1b1b;
+    --color-surface-bright: #3a3939;
+    --color-accent: #ccff00;
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-border: #3a3939;
+    --container-width: 900px;
+    --radius: 4px;
+    --transition: 200ms ease;
+    --font-main: 'Inter', sans-serif;
+    --header-height: 60px;
+}
+
 /* ==========================================================================
    1. Page Layout & Grid Setup
    ========================================================================== */
@@ -103,19 +118,27 @@
 
 .summary-section {
     border-top: 1px solid var(--color-border, #27272a);
-    padding-top: 1rem;
-    margin-top: 1rem;
+    /* padding-top: 1rem; */
+    /* margin-top: 1rem; */
+}
+
+.summary-section p {
+    background-color: var(--color-surface-container);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0;
 }
 
 .summary-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: .2rem 0;
     cursor: pointer;
     user-select: none;
     min-height: 44px;
 }
+
 
 .summary-header h2 {
     font-size: 0.75rem;
@@ -124,6 +147,7 @@
     letter-spacing: 0.08em;
     color: var(--color-text-secondary, #a1a1aa);
     margin: 0;
+    margin-left: .5rem;
 }
 
 .summary-chevron {
@@ -149,11 +173,16 @@
     transform: rotate(180deg);
 }
 
+#episode-summary {
+    margin-bottom: 1rem;
+}
+
 .episode-summary-text {
     font-size: 0.95rem;
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.85);
-    margin: 0;
+    margin: 0 1rem 1rem;
+    text-indent: 12px;
 }
 
 /* ==========================================================================
@@ -163,7 +192,7 @@
 .transcript-section {
     border-top: 1px solid var(--color-border, #27272a);
     padding-top: 1.25rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 
 .transcript-header {
@@ -180,6 +209,7 @@
     letter-spacing: 0.08em;
     color: var(--color-text-secondary, #a1a1aa);
     margin: 0;
+    margin-left: .5rem;
 }
 
 .transcript-content {
@@ -209,7 +239,7 @@
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     color: var(--color-text-secondary, #a1a1aa);
-    vertical-align: top;
+    /* vertical-align: top; */
 }
 
 .transcript-paragraph.active .transcript-timestamp {
@@ -222,6 +252,9 @@
 
 .transcript-paragraph.clickable {
     cursor: pointer;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
 }
 
 .transcript-paragraph.clickable:active {
@@ -243,6 +276,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    border-top: 1px solid var(--color-surface-bright);
+    padding-top: 1rem;
 }
 
 .sidebar-group h3 {
@@ -306,13 +341,18 @@
 .sidebar-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 @media (min-width: 992px) {
     .sidebar-actions {
         display: flex;
         flex-direction: column;
+    }
+
+    .episode-sidebar {
+        border-top: none;
+        padding-top: 0;
     }
 }
 
