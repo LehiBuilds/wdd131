@@ -105,7 +105,19 @@
    ========================================================================== */
 
 .read-along-toggle-btn.active {
-    color: var(--color-accent, #ccff00);
+    color: var(--color-accent);
+}
+
+.read-along-toggle-btn.active:hover {
+    color: var(--color-accent);
+    filter: drop-shadow(0 30px 30px #333);
+    /* background:
+            linear-gradient(135deg,
+                rgba(204, 255, 0, .12),
+                rgba(204, 255, 0, .02));
+        border-color: var(--color-accent); */
+    transform: translateY(-1px);
+
 }
 
 .read-along-toggle-btn:not(.active) {
@@ -280,7 +292,8 @@
     padding-top: 1rem;
 }
 
-.sidebar-group h3 {
+.sidebar-group h3,
+.sidebar-actions h3 {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -340,15 +353,12 @@
 
 .sidebar-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
 }
 
 @media (min-width: 992px) {
-    .sidebar-actions {
-        display: flex;
-        flex-direction: column;
-    }
+    /* .sidebar-actions {
+        display: grid;
+    } */
 
     .episode-sidebar {
         border-top: none;
@@ -362,12 +372,11 @@
     justify-content: center;
     gap: 0.5rem;
     min-height: 44px;
-    padding: 0.65rem 1rem;
+    padding: 0.25rem 1rem;
     background: transparent;
     border: 1px solid var(--color-border, #27272a);
     border-radius: var(--radius, 8px);
     color: var(--color-text, #ffffff);
-    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -378,9 +387,26 @@
 
 .btn-action:active,
 .btn-action:hover {
-    background: var(--color-surface-bright, #27272a);
+    /* background: var(--color-surface-bright, #27272a);
     border-color: var(--color-text-secondary);
-    color: var(--color-accent, #ccff00);
+    color: var(--color-accent, #ccff00); */
+    background:
+        linear-gradient(135deg,
+            rgba(204, 255, 0, .12),
+            rgba(204, 255, 0, .02));
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+.download-section {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    display: grid;
+    gap: .5rem;
+}
+
+.download-text {
+    font-size: .6rem;
 }
 
 .episode-tags-card {
