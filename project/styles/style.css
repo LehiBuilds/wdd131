@@ -199,6 +199,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+    margin-left: 10px;
 }
 
 .player-artwork .material-symbols-outlined {
@@ -696,6 +698,7 @@ h1 {
 
 .load-more-btn:hover {
     filter: brightness(.95);
+    transform: translateY(-1px);
 }
 
 /* Notion-Style Side TOC */
@@ -878,6 +881,14 @@ input:checked+.toggle-slider:before {
     font-weight: 500;
 }
 
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--color-border);
+}
+
+
 @media (max-width: 768px) {
     .side-toc {
         display: none;
@@ -951,14 +962,14 @@ input:checked+.toggle-slider:before {
     }
 
     .player-wrapper {
-        position: fixed;
-        top: auto;
-        bottom: 1.25rem;
+        position: sticky;
+        top: 5rem;
+        /* bottom: 1.25rem; */
         left: 1rem;
         right: 1rem;
         z-index: 100;
         padding: 0;
-        margin: 0;
+        margin: 1rem 0 1rem;
         background: transparent;
     }
 
@@ -974,7 +985,7 @@ input:checked+.toggle-slider:before {
         width: 54px;
         height: 54px;
         flex: 0 0 54px;
-        border-radius: 8px 0 0 8px;
+        border-radius: 8px;
     }
 
     .player-artwork .material-symbols-outlined {
