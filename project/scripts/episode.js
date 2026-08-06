@@ -1,40 +1,85 @@
-import { loadEpisode } from "./data.js";
+import { loadEpisode, loadEpisodeList } from "./data.js";
 import { renderEpisode } from "./render.js";
-import { initializePlayer, loadEpisodeIntoPlayer } from "./player.js";
+import {
+    initializePlayer,
+    loadEpisodeIntoPlayer,
+    configureEpisodeNavigation
+} from "./player.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     setupMobileNav();
+    setupReadAlongSync();
 
     const urlParameters = new URLSearchParams(window.location.search);
     const episodeId = Number(urlParameters.get("id")) || 1;
 
     try {
-        const episode = await loadEpisode(episodeId);
+        // Load the requested episode and the full archive order in parallel,
+        // so Previous/Next Episode buttons work relative to the whole archive.
+        const [episode, episodeList] = await Promise.all([
+            loadEpisode(episodeId),
+            loadEpisodeList()
+        ]);
+
+        configureEpisodeNavigation(episodeList, loadEpisodeById);
+
+        // renderEpisode() injects the player's buttons into #player-controls -
+        // must happen before initializePlayer() queries for them.
         renderEpisode(episode);
         setupDownloadButtons(episode);
+        setupBackLink(episode);
+
         initializePlayer();
         await loadEpisodeIntoPlayer(episode);
-
-        setupReadAlongSync(episode.hasSync);
     } catch (error) {
         console.error("Could not initialize episode page:", error);
     }
 });
 
-function setupReadAlongSync(hasSync) {
-    if (!hasSync) return;
+// Handles Previous/Next Episode clicks (called by player.js) as well as any
+// future in-place episode switch: re-renders the page content without a
+// full reload and keeps the URL/back-button in sync.
+async function loadEpisodeById(id) {
+    try {
+        const episode = await loadEpisode(id);
 
+        renderEpisode(episode);
+        setupDownloadButtons(episode);
+        setupBackLink(episode);
+        await loadEpisodeIntoPlayer(episode);
+
+        const url = new URL(window.location);
+        url.searchParams.set("id", episode.id);
+        window.history.pushState({ episodeId: episode.id }, "", url);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+        console.error(`Could not load episode ${id}:`, error);
+    }
+}
+
+// Support browser back/forward between episodes visited via Previous/Next
+window.addEventListener("popstate", () => {
+    const urlParameters = new URLSearchParams(window.location.search);
+    const episodeId = Number(urlParameters.get("id")) || 1;
+    loadEpisodeById(episodeId);
+});
+
+// Bound once. The toggle switch and transcript paragraphs get replaced every
+// time an episode renders, so this reads their live state from the DOM on
+// each event rather than closing over references that would go stale.
+function setupReadAlongSync() {
     const audioPlayer = document.getElementById("audio-player");
-    const toggleSwitch = document.getElementById("read-along-toggle");
+    const statusContainer = document.getElementById("read-along-status");
     const transcriptContainer = document.getElementById("transcript");
 
-    if (!audioPlayer || !toggleSwitch || !transcriptContainer) return;
+    if (!audioPlayer || !statusContainer || !transcriptContainer) return;
 
-    let isReadAlongEnabled = toggleSwitch.checked;
-
-    toggleSwitch.addEventListener("change", (e) => {
-        isReadAlongEnabled = e.target.checked;
-        if (!isReadAlongEnabled) {
+    // Delegated: keeps working even after render.js swaps in a fresh
+    // #read-along-toggle checkbox for each newly loaded episode.
+    statusContainer.addEventListener("change", (e) => {
+        if (e.target.id !== "read-along-toggle") return;
+        if (!e.target.checked) {
             document.querySelectorAll(".transcript-paragraph").forEach(p => {
                 p.classList.remove("active");
             });
@@ -43,7 +88,8 @@ function setupReadAlongSync(hasSync) {
 
     // Real-time audio sync highlighting & auto-scroll
     audioPlayer.addEventListener("timeupdate", () => {
-        if (!isReadAlongEnabled) return;
+        const toggle = document.getElementById("read-along-toggle");
+        if (!toggle || !toggle.checked) return;
 
         const currentTime = audioPlayer.currentTime;
         const paragraphElements = document.querySelectorAll(".transcript-paragraph");
@@ -56,7 +102,7 @@ function setupReadAlongSync(hasSync) {
                 if (!p.classList.contains("active")) {
                     paragraphElements.forEach(el => el.classList.remove("active"));
                     p.classList.add("active");
-                    p.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    p.scrollIntoView({ behavior: "smooth", block: "center" });
                 }
             }
         });
@@ -107,5 +153,14 @@ function setupDownloadButtons(episode) {
         const episodeNum = String(episode.id).padStart(2, "0");
         const transcriptFileName = episode.metadata.transcript || "transcript.json";
         transcriptBtn.href = `episodes/episode-${episodeNum}/${transcriptFileName}`;
+    }
+}
+
+// Points "Back to Archive" at the episode currently playing, so index.js can
+// scroll the archive back to that card instead of landing at the top.
+function setupBackLink(episode) {
+    const backLink = document.querySelector(".back-link");
+    if (backLink && episode?.id) {
+        backLink.href = `index.html?ep=${episode.id}`;
     }
 }

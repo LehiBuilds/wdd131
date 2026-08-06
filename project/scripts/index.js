@@ -43,10 +43,41 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (loadMoreButton) {
             loadMoreButton.addEventListener("click", renderVisibleEpisodes);
         }
+
+        // Returning from an episode page ("Back to Archive") should land
+        // back on that episode's card, not the top of the list.
+        const params = new URLSearchParams(window.location.search);
+        const returnEpisodeId = Number(params.get("ep"));
+        if (returnEpisodeId) {
+            scrollToEpisodeCard(returnEpisodeId);
+            window.history.replaceState({}, "", "index.html");
+        }
     } catch (error) {
         console.error("Failed to load archive episodes:", error);
     }
 });
+
+// Keeps loading batches (same as clicking "Load More") until the target
+// episode's card exists in the DOM, then scrolls to it and briefly flashes it.
+function scrollToEpisodeCard(episodeId) {
+    while (
+        !document.querySelector(`[data-episode-id="${episodeId}"]`) &&
+        nextEpisodeIndex < episodes.length
+    ) {
+        renderVisibleEpisodes();
+    }
+
+    const card = document.querySelector(`[data-episode-id="${episodeId}"]`);
+    if (!card) return;
+
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+    card.classList.add("highlight-return");
+    card.addEventListener(
+        "animationend",
+        () => card.classList.remove("highlight-return"),
+        { once: true }
+    );
+}
 
 // Centralized play handler to avoid code duplication
 async function handleEpisodePlay(id) {

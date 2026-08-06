@@ -59,21 +59,23 @@
             <div class="episode-main-content">
 
                 <!-- Direct Compact Player Container -->
-                <section class="player">
-                    <div class="player-content">
-                        <div class="progress-bar">
-                            <div id="progress-fill"></div>
-                        </div>
+                <div class="player-wrapper">
+                    <section class="player">
+                        <div class="player-content">
+                            <div class="progress-bar">
+                                <div id="progress-fill"></div>
+                            </div>
 
-                        <div class="player-time">
-                            <span id="current-time">0:00</span>
-                            <span id="total-time">0:00</span>
-                        </div>
+                            <div class="player-time">
+                                <span id="current-time">0:00</span>
+                                <span id="total-time">0:00</span>
+                            </div>
 
-                        <div id="player-controls" class="player-controls"></div>
-                        <audio id="audio-player" preload="metadata"></audio>
-                    </div>
-                </section>
+                            <div id="player-controls" class="player-controls"></div>
+                            <audio id="audio-player" preload="metadata"></audio>
+                        </div>
+                    </section>
+                </div>
 
                 <!-- Collapsible Summary Section -->
                 <section class="summary-section">
@@ -119,22 +121,29 @@
                     <div id="episode-keywords" class="episode-tags-card"></div>
                 </div>
 
-                <!-- Date Metadata -->
-                <div class="sidebar-group">
-                    <h3>Date</h3>
-                    <p id="episode-date" class="sidebar-value accent"></p>
-                </div>
-
-                <!-- Duration Metadata -->
-                <div class="sidebar-group">
-                    <h3>Duration</h3>
-                    <p id="episode-duration" class="sidebar-value"></p>
-                </div>
-
-                <!-- Speaker Metadata -->
-                <div class="sidebar-group">
-                    <h3>Voice</h3>
-                    <p id="episode-speaker" class="sidebar-value speaker-link">President Stewart Hughes</p>
+                <!-- Episode Info: Date, Duration, Voice -->
+                <div class="episode-info-card">
+                    <div class="info-row">
+                        <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                        <div class="info-row-body">
+                            <span class="info-label">Date</span>
+                            <p id="episode-date" class="sidebar-value accent"></p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                        <div class="info-row-body">
+                            <span class="info-label">Duration</span>
+                            <p id="episode-duration" class="sidebar-value"></p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <span class="material-symbols-outlined" aria-hidden="true">mic</span>
+                        <div class="info-row-body">
+                            <span class="info-label">Voice</span>
+                            <p id="episode-speaker" class="sidebar-value">President Stewart Hughes</p>
+                        </div>
+                    </div>
                 </div>
 
             </aside>
