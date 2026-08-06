@@ -11,6 +11,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         const episode = await loadEpisode(episodeId);
         renderEpisode(episode);
+        setupDownloadButtons(episode);
+
+        function setupDownloadButtons(episode) {
+            const audioBtn = document.getElementById("download-audio-btn");
+            const transcriptBtn = document.getElementById("download-transcript-btn");
+
+            if (audioBtn && episode.audioPath) {
+                audioBtn.href = episode.audioPath;
+            }
+
+            if (transcriptBtn && episode.metadata) {
+                const episodeNum = String(episode.id).padStart(2, "0");
+                const transcriptFileName = episode.metadata.transcript || "transcript.json";
+                transcriptBtn.href = `episodes/episode-${episodeNum}/${transcriptFileName}`;
+            }
+        }
         initializePlayer();
         await loadEpisodeIntoPlayer(episode);
 
@@ -94,20 +110,3 @@ function setupMobileNav() {
     });
 }
 
-// Inside episode.js -> DOMContentLoaded block, right after renderEpisode(episode)
-setupDownloadButtons(episode);
-
-function setupDownloadButtons(episode) {
-    const audioBtn = document.getElementById("download-audio-btn");
-    const transcriptBtn = document.getElementById("download-transcript-btn");
-
-    if (audioBtn && episode.audioPath) {
-        audioBtn.href = episode.audioPath;
-    }
-
-    if (transcriptBtn && episode.metadata) {
-        const episodeNum = String(episode.id).padStart(2, "0");
-        const transcriptFileName = episode.metadata.transcript || "transcript.json";
-        transcriptBtn.href = `episodes/episode-${episodeNum}/${transcriptFileName}`;
-    }
-}
