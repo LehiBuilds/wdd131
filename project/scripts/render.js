@@ -133,10 +133,28 @@ function renderTranscript(paragraphs = [], hasSync = false) {
         p.dataset.number = paragraph.number;
         p.dataset.start = paragraph.start;
         p.dataset.end = paragraph.end;
-        p.textContent = paragraph.text;
+
+        if (hasSync) {
+            const timestamp = document.createElement("span");
+            timestamp.className = "transcript-timestamp";
+            timestamp.textContent = formatTimestamp(paragraph.start);
+            p.appendChild(timestamp);
+        }
+
+        const text = document.createElement("span");
+        text.className = "transcript-text";
+        text.textContent = paragraph.text;
+        p.appendChild(text);
 
         container.appendChild(p);
     });
+}
+
+function formatTimestamp(seconds) {
+    if (typeof seconds !== "number" || isNaN(seconds)) return "";
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
 }
 
 function formatDate(dateString) {
@@ -280,4 +298,4 @@ function createTopics(keywords) {
     });
 
     return container;
-}
+}   
