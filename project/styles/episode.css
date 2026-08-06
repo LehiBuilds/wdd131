@@ -67,10 +67,6 @@
     margin-bottom: 1.5rem;
 }
 
-#episode-title {
-    font-size: 1.6rem;
-}
-
 .episode-main-title {
     font-size: 1.75rem;
     font-weight: 700;
@@ -92,6 +88,14 @@
    duplicated here — episode.html reuses .player-wrapper/.player/etc. from
    style.css so the player looks and behaves identically to the archive page.
    ========================================================================== */
+
+.read-along-toggle-btn.active {
+    color: var(--color-accent, #ccff00);
+}
+
+.read-along-toggle-btn:not(.active) {
+    opacity: 0.5;
+}
 
 /* ==========================================================================
    4. Collapsible Summary & Metadata

@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderEpisode(episode);
         setupDownloadButtons(episode);
         setupBackLink(episode);
+        setupReadAlongToggleButton(episode.hasSync);
 
         initializePlayer();
         await loadEpisodeIntoPlayer(episode);
@@ -46,6 +47,7 @@ async function loadEpisodeById(id) {
         renderEpisode(episode);
         setupDownloadButtons(episode);
         setupBackLink(episode);
+        setupReadAlongToggleButton(episode.hasSync);
         await loadEpisodeIntoPlayer(episode);
 
         const url = new URL(window.location);
@@ -65,31 +67,56 @@ window.addEventListener("popstate", () => {
     loadEpisodeById(episodeId);
 });
 
-// Bound once. The toggle switch and transcript paragraphs get replaced every
-// time an episode renders, so this reads their live state from the DOM on
-// each event rather than closing over references that would go stale.
-function setupReadAlongSync() {
-    const audioPlayer = document.getElementById("audio-player");
-    const statusContainer = document.getElementById("read-along-status");
-    const transcriptContainer = document.getElementById("transcript");
+// renderPlayer() (called every episode load) rebuilds #player-controls from
+// scratch, so this button has to be re-injected after each render rather
+// than created once.
+function setupReadAlongToggleButton(hasSync) {
+    const playerControls = document.getElementById("player-controls");
+    if (!playerControls) return;
 
-    if (!audioPlayer || !statusContainer || !transcriptContainer) return;
+    playerControls.querySelector("#read-along-toggle-btn")?.remove();
+    if (!hasSync) return;
 
-    // Delegated: keeps working even after render.js swaps in a fresh
-    // #read-along-toggle checkbox for each newly loaded episode.
-    statusContainer.addEventListener("change", (e) => {
-        if (e.target.id !== "read-along-toggle") return;
-        if (!e.target.checked) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.id = "read-along-toggle-btn";
+    button.className = "read-along-toggle-btn active";
+    button.setAttribute("aria-pressed", "true");
+    button.setAttribute("aria-label", "Toggle Read-Along");
+    button.title = "Toggle Read-Along";
+    button.innerHTML = `<span class="material-symbols-outlined" aria-hidden="true">bolt</span>`;
+
+    button.addEventListener("click", () => {
+        const isActive = button.classList.toggle("active");
+        button.setAttribute("aria-pressed", String(isActive));
+        if (!isActive) {
             document.querySelectorAll(".transcript-paragraph").forEach(p => {
                 p.classList.remove("active");
             });
         }
     });
 
+    const volumeContainer = playerControls.querySelector(".volume-container");
+    if (volumeContainer) {
+        playerControls.insertBefore(button, volumeContainer);
+    } else {
+        playerControls.appendChild(button);
+    }
+}
+
+// Bound once. The toggle button and transcript paragraphs get replaced every
+// time an episode renders, so this reads their live state from the DOM on
+// each event rather than closing over references that would go stale.
+function setupReadAlongSync() {
+    const audioPlayer = document.getElementById("audio-player");
+    const transcriptContainer = document.getElementById("transcript");
+
+    if (!audioPlayer || !transcriptContainer) return;
+
     // Real-time audio sync highlighting & auto-scroll
     audioPlayer.addEventListener("timeupdate", () => {
-        const toggle = document.getElementById("read-along-toggle");
-        if (!toggle || !toggle.checked) return;
+        const toggleBtn = document.getElementById("read-along-toggle-btn");
+        if (!toggleBtn || !toggleBtn.classList.contains("active")) return;
 
         const currentTime = audioPlayer.currentTime;
         const paragraphElements = document.querySelectorAll(".transcript-paragraph");

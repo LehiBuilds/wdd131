@@ -115,18 +115,7 @@ function renderTranscript(paragraphs = [], hasSync = false) {
 
     if (statusContainer) {
         if (hasSync) {
-            statusContainer.innerHTML = `
-                <div class="read-along-controls">
-                    <span class="read-along-label">
-                        <span class="material-symbols-outlined">bolt</span>
-                        Read-Along
-                    </span>
-                    <label class="toggle-switch" aria-label="Toggle Read-Along mode">
-                        <input type="checkbox" id="read-along-toggle" checked>
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-            `;
+            statusContainer.innerHTML = "";
         } else {
             statusContainer.innerHTML = `
                 <span class="badge read-along-disabled">
