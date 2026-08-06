@@ -20,8 +20,6 @@ let episodes = [];
 let currentEpisodeIndex = -1;
 let episodeLoader;
 
-let transcriptParagraphs;
-let activeParagraph = null;
 let activeEpisodeId = null;
 
 export function initializePlayer() {
@@ -38,8 +36,6 @@ export function initializePlayer() {
     volumeButton = document.getElementById("volume-btn");
     volumeSlider = document.getElementById("volume-slider");
 
-    transcriptParagraphs = document.querySelectorAll(".transcript-paragraph");
-
     setupAudio();
     setupControls();
 }
@@ -51,7 +47,6 @@ function setupAudio() {
     audio.addEventListener("timeupdate", () => {
         updateCurrentTime();
         updateProgressBar();
-        syncTranscript();
     });
 
     audio.addEventListener("ended", handleAudioEnded);
@@ -76,10 +71,6 @@ function setupControls() {
     progressBar?.addEventListener("click", seekAudio);
     volumeSlider?.addEventListener("input", handleVolumeChange);
     volumeButton?.addEventListener("click", toggleMute);
-
-    transcriptParagraphs.forEach(paragraph => {
-        paragraph.addEventListener("click", seekTranscript);
-    });
 }
 
 async function togglePlayback() {
@@ -152,42 +143,6 @@ function seekAudio(event) {
     audio.currentTime = percent * audio.duration;
 }
 
-function syncTranscript() {
-    if (!audio) return;
-    const currentTime = audio.currentTime;
-
-    transcriptParagraphs.forEach(paragraph => {
-        const start = Number(paragraph.dataset.start);
-        const end = Number(paragraph.dataset.end);
-
-        if (currentTime >= start && currentTime < end) {
-            highlightParagraph(paragraph);
-        }
-    });
-}
-
-function highlightParagraph(paragraph) {
-    if (activeParagraph === paragraph) return;
-
-    if (activeParagraph) {
-        activeParagraph.classList.remove("active");
-    }
-    paragraph.classList.add("active");
-
-    paragraph.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-    activeParagraph = paragraph;
-}
-
-function seekTranscript(event) {
-    if (!audio) return;
-    const paragraph = event.currentTarget;
-    audio.currentTime = Number(paragraph.dataset.start);
-}
-
 export async function loadEpisodeIntoPlayer(episode) {
     clearActiveEpisodeCard();
 
@@ -202,12 +157,6 @@ export async function loadEpisodeIntoPlayer(episode) {
         audio.src = episode.audioPath;
         audio.load();
     }
-
-    // Safely re-query transcript paragraphs since they get injected dynamically
-    transcriptParagraphs = document.querySelectorAll(".transcript-paragraph");
-    transcriptParagraphs.forEach(paragraph => {
-        paragraph.addEventListener("click", seekTranscript);
-    });
 }
 
 function clearActiveEpisodeCard() {

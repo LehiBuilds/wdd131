@@ -56,9 +56,10 @@ function buildParagraphs(transcriptData, syncData) {
         let start = p.start ?? 0;
         let end = p.end ?? 0;
 
-        if (syncData && syncData[index]) {
-            start = syncData[index].start ?? start;
-            end = syncData[index].end ?? end;
+        const syncParagraph = syncData?.paragraphs?.[index];
+        if (syncParagraph) {
+            start = syncParagraph.start ?? start;
+            end = syncParagraph.end ?? end;
         }
 
         return {
@@ -69,6 +70,7 @@ function buildParagraphs(transcriptData, syncData) {
         };
     });
 }
+
 export async function loadArchiveEpisode(id) {
     const episodeNumber = String(id).padStart(2, "0");
     const folder = `episodes/episode-${episodeNumber}`;
@@ -89,23 +91,6 @@ async function loadMetadata(folder) {
     return await response.json();
 }
 
-async function loadTranscript(folder) {
-    const response = await fetch(`${folder}/transcript.json`);
-
-    if (!response.ok) {
-        throw new Error(`Could not load transcript from ${folder}`);
-    }
-    return await response.json();
-}
-
-async function loadSync(folder) {
-    const response = await fetch(`${folder}/sync.json`);
-    if (!response.ok) {
-        throw new Error(`Could not load sync data from ${folder}`);
-    }
-    return await response.json();
-}
-
 export async function loadEpisodeList() {
     const response = await fetch("episodes/episodes.json");
     if (!response.ok) {
@@ -116,8 +101,4 @@ export async function loadEpisodeList() {
     return await Promise.all(
         episodeIds.map(id => loadArchiveEpisode(id))
     );
-}
-
-function getAudioPath(folder, metadata) {
-    return `${folder}/${metadata.audio || "audio.m4a"}`;
 }
