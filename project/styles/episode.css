@@ -1,203 +1,129 @@
-/* Breadcrumb Navigation */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
-    margin: 1rem 0 1.25rem;
+/* ==========================================================================
+   Back Link & Title
+   ========================================================================== */
+
+.back-nav {
+    margin: 1.25rem 0 0.75rem;
 }
 
-.breadcrumb a {
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: color var(--transition);
-}
-
-.breadcrumb a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-}
-
-.breadcrumb .material-symbols-outlined {
-    font-size: 16px;
-}
-
-/* Episode Detail Card */
-.episode-details-card {
-    background: var(--color-surface-container);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 1.25rem;
-    margin-bottom: 2rem;
-}
-
-.episode-meta-header {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.meta-badge {
-    font-size: 0.8rem;
-    color: var(--color-accent);
-    background: rgba(204, 255, 0, 0.08);
-    border: 1px solid rgba(204, 255, 0, 0.2);
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-}
-
-.episode-summary-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0 0 1rem;
-}
-
-/* Transcript Header & Read-Along Badges */
-.transcript-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 0.75rem;
-}
-
-.transcript-header h2 {
-    font-size: 1.35rem;
-    margin: 0;
-}
-
-.badge {
+.back-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary, #a1a1aa);
+    text-decoration: none;
+    transition: color var(--transition, 200ms ease);
 }
 
-.badge .material-symbols-outlined {
-    font-size: 16px;
+.back-link span.material-symbols-outlined {
+    font-size: 18px;
+    transition: transform var(--transition, 200ms ease);
 }
 
-.read-along-active {
-    background: var(--color-accent);
-    color: #111;
+.back-link:hover {
+    color: var(--color-accent, #ccff00);
 }
 
-.read-along-disabled {
-    background: var(--color-surface-bright);
-    color: var(--color-text-secondary);
+.back-link:hover span.material-symbols-outlined {
+    transform: translateX(-3px);
 }
 
-/* Read-Along Toggle Switch UI */
-.read-along-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--color-surface-container);
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-border);
+.episode-header {
+    margin-bottom: 1.5rem;
 }
 
-.read-along-label {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-text);
+.episode-main-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-text, #ffffff);
+    margin: 0;
+    letter-spacing: -0.02em;
 }
 
-.read-along-label .material-symbols-outlined {
-    font-size: 16px;
-    color: var(--color-accent);
+@media (min-width: 768px) {
+    .episode-main-title {
+        font-size: 2.25rem;
+    }
 }
 
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 20px;
-}
+/* ==========================================================================
+   New Direct Player Card Styles
+   ========================================================================== */
 
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--color-surface-bright);
-    transition: 200ms ease;
-    border-radius: 20px;
-}
-
-.toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: var(--color-text);
-    transition: 200ms ease;
-    border-radius: 50%;
-}
-
-input:checked+.toggle-slider {
-    background-color: var(--color-accent);
-}
-
-input:checked+.toggle-slider:before {
-    transform: translateX(16px);
-    background-color: #111;
-}
-
-/* Transcript Typography & Layout */
-.transcript-content {
+.player {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    max-width: 780px;
-    margin: 0 auto;
+    gap: 1rem;
+    max-width: 600px;
+    /* Clean size constraint */
+    background: var(--color-surface, #18181b);
+    border: 1px solid var(--color-border, #27272a);
+    border-radius: var(--radius, 12px);
+    padding: 1.25rem;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
 }
 
-.transcript-paragraph {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #d0d0d0;
-    padding: 0.85rem 1.25rem;
-    border-left: 3px solid transparent;
-    border-radius: 0 8px 8px 0;
-    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+@media (min-width: 576px) {
+    .player {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        align-items: center;
+    }
 }
 
-.transcript-paragraph.clickable {
+.player-artwork {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background-color: var(--color-surface-bright, #27272a);
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.player-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: var(--color-border, #27272a);
+    border-radius: 3px;
     cursor: pointer;
+    overflow: hidden;
 }
 
-.transcript-paragraph.clickable:hover {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--color-text);
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent, #ccff00);
+    border-radius: 3px;
+    transition: width 100ms linear;
 }
 
-/* Active Sync Highlighting */
-.transcript-paragraph.active {
-    color: var(--color-text);
-    background: rgba(204, 255, 0, 0.08);
-    border-left-color: var(--color-accent);
-    font-weight: 500;
+.player-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-secondary, #a1a1aa);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
 }

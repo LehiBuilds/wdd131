@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Lehi Ontoria Gomez">
     <meta name="description" content="Listen to an episode from the Philippines Quezon City North Mission Podcast Archive 2020 with interactive transcripts and read-along features.">
-    <title>PQCNM Podcast: Now Playing</title>
+    <title>The PQCNM Podcast</title>
 
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="icon" href="data:,">
+
+    <script type="module" src="scripts/episode.js"></script>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/episode.css">
-    <script type="module" src="scripts/episode.js"></script>
 </head>
 
 <body>
@@ -38,67 +39,109 @@
     </header>
 
     <main class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Archive</a>
-            <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
-            <span id="breadcrumb-title">Loading...</span>
-        </nav>
-
-        <!-- Player -->
-        <div class="player-wrapper">
-            <section class="player">
-                <div id="player-artwork" class="player-artwork">
-                    <span class="material-symbols-outlined" aria-hidden="true">album</span>
-                </div>
-                <div class="player-content">
-                    <h2 id="current-title"></h2>
-                    <div class="progress-bar">
-                        <div id="progress-fill"></div>
-                    </div>
-                    <div class="player-time">
-                        <span id="current-time">0:00</span>
-                        <span id="total-time">0:00</span>
-                    </div>
-
-
-                    <div id="player-controls" class="player-controls">
-
-                        <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
-                            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
-                        </button>
-
-                        <button id="play-btn" type="button" aria-label="Play">
-                            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-                        </button>
-
-                        <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
-                            <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
-                        </button>
-
-                    </div>
-                    <audio id="audio-player" preload="metadata"></audio>
-                </div>
-            </section>
+        <!-- Back Navigation Button -->
+        <div class="back-nav">
+            <a href="index.html" class="back-link">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                <span>Back to Archive</span>
+            </a>
         </div>
 
-        <!-- Episode Information Card -->
-        <section class="episode-details-card">
-            <div class="episode-meta-header">
-                <span id="episode-date" class="meta-badge"></span>
-                <span id="episode-duration" class="meta-badge"></span>
-            </div>
-            <p id="episode-summary" class="episode-summary-text"></p>
-            <div id="episode-keywords" class="episode-tags-card"></div>
-        </section>
+        <!-- Single Primary Episode Title -->
+        <header class="episode-header">
+            <h1 id="episode-title" class="episode-main-title">Loading episode...</h1>
+        </header>
 
-        <!-- Transcript Section -->
-        <section class="episode-transcript" aria-labelledby="transcript-heading">
-            <div class="transcript-header">
-                <h2 id="transcript-heading">Transcript</h2>
-                <div id="read-along-status"></div>
+        <!-- Main 2-Column Layout -->
+        <div class="episode-grid">
+
+            <!-- LEFT COLUMN: Direct Player Card, Summary, Transcript -->
+            <div class="episode-main-content">
+
+                <!-- Direct Compact Player Container -->
+                <section class="player">
+                    <!-- <div id="player-artwork" class="player-artwork"></div> -->
+
+                    <div class="player-content">
+                        <div class="progress-bar">
+                            <div id="progress-fill"></div>
+                        </div>
+
+                        <div class="player-time">
+                            <span id="current-time">0:00</span>
+                            <span id="total-time">0:00</span>
+                        </div>
+
+                        <div id="player-controls" class="player-controls"></div>
+                        <audio id="audio-player" preload="metadata"></audio>
+                    </div>
+                </section>
+
+                <!-- Collapsible Summary Section -->
+                <section class="summary-section">
+                    <input type="checkbox" id="summary-toggle" class="summary-toggle-checkbox" hidden>
+                    <label for="summary-toggle" class="summary-header">
+                        <h2>Summary</h2>
+                        <span class="material-symbols-outlined summary-chevron" aria-hidden="true">expand_more</span>
+                    </label>
+                    <div class="summary-content">
+                        <p id="episode-summary" class="episode-summary-text"></p>
+                    </div>
+                </section>
+
+                <!-- Transcript Section -->
+                <section class="transcript-section" aria-labelledby="transcript-heading">
+                    <div class="transcript-header">
+                        <h2 id="transcript-heading">Transcript</h2>
+                        <div id="read-along-status"></div>
+                    </div>
+                    <div id="transcript" class="transcript-content"></div>
+                </section>
+
             </div>
-            <div id="transcript" class="transcript-content"></div>
-        </section>
+
+            <!-- RIGHT COLUMN: Sidebar Actions & Metadata -->
+            <aside class="episode-sidebar">
+
+                <!-- Action Buttons -->
+                <div class="sidebar-actions">
+                    <a id="download-audio-btn" href="#" download class="btn-action">
+                        <span class="material-symbols-outlined" aria-hidden="true">download</span>
+                        Download Audio
+                    </a>
+                    <a id="download-transcript-btn" href="#" download class="btn-action">
+                        <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                        Download Transcript
+                    </a>
+                </div>
+
+                <!-- Topic Metadata -->
+                <div class="sidebar-group">
+                    <h3>Topic</h3>
+                    <div id="episode-keywords" class="episode-tags-card"></div>
+                </div>
+
+                <!-- Date Metadata -->
+                <div class="sidebar-group">
+                    <h3>Date</h3>
+                    <p id="episode-date" class="sidebar-value accent"></p>
+                </div>
+
+                <!-- Duration Metadata -->
+                <div class="sidebar-group">
+                    <h3>Duration</h3>
+                    <p id="episode-duration" class="sidebar-value"></p>
+                </div>
+
+                <!-- Speaker Metadata -->
+                <div class="sidebar-group">
+                    <h3>Voice</h3>
+                    <p id="episode-speaker" class="sidebar-value speaker-link">President Stewart Hughes</p>
+                </div>
+
+            </aside>
+
+        </div>
     </main>
 
     <footer class="site-footer">
