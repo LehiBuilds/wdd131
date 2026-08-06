@@ -9,63 +9,69 @@ import { initializeArchiveNavigation } from "./archive-navigation.js";
 
 const EPISODES_PER_BATCH = 10;
 let nextEpisodeIndex = 0;
+let episodes = [];
 
-document.getElementById("collection-title").textContent =
-    "The Philippines Quezon City North Mission Podcast Archive 2020";
+document.addEventListener("DOMContentLoaded", async () => {
+    setupMobileNav();
 
-document.getElementById("current-title").textContent =
-    "Select an episode to begin listening";
+    const collectionTitle = document.getElementById("collection-title");
+    const currentTitle = document.getElementById("current-title");
+    const loadMoreButton = document.getElementById("load-more-btn");
 
-const episodes = await loadEpisodeList();
-initializeArchiveNavigation(episodes);
-const loadMoreButton = document.getElementById("load-more-btn");
-
-// 1. Render player buttons first
-renderPlayer();
-
-// 2. Attach button click listeners
-initializePlayer();
-
-// 3. Configure episode list & loader for prev/next buttons
-configureEpisodeNavigation(
-    episodes,
-    async (id) => {
-        const episode = await loadArchiveEpisode(id);
-        await toggleEpisodePlayback(episode);
-        document.getElementById("current-title").textContent =
-            episode.metadata.title;
+    if (collectionTitle) {
+        collectionTitle.textContent = "The Philippines Quezon City North Mission Podcast Archive 2020";
     }
-);
 
-renderVisibleEpisodes();
+    if (currentTitle) {
+        currentTitle.textContent = "Select an episode to begin listening";
+    }
 
-loadMoreButton.addEventListener("click", renderVisibleEpisodes);
+    // Render player controls and setup audio listeners
+    renderPlayer();
+    initializePlayer();
 
-function renderVisibleEpisodes() {
-    const batch = episodes.slice(
-        nextEpisodeIndex,
-        nextEpisodeIndex + EPISODES_PER_BATCH
-    );
+    try {
+        episodes = await loadEpisodeList();
+        initializeArchiveNavigation(episodes);
 
-    renderEpisodeList(
-        batch,
-        async (id) => {
-            const episode = await loadArchiveEpisode(id);
+        // Configure player navigation buttons (prev / next)
+        configureEpisodeNavigation(episodes, handleEpisodePlay);
 
-            await toggleEpisodePlayback(episode);
+        // Render initial batch of episodes
+        renderVisibleEpisodes();
 
-            document.getElementById("current-title").textContent =
-                episode.metadata.title;
+        if (loadMoreButton) {
+            loadMoreButton.addEventListener("click", renderVisibleEpisodes);
         }
-    );
+    } catch (error) {
+        console.error("Failed to load archive episodes:", error);
+    }
+});
 
-    nextEpisodeIndex += batch.length;
+// Centralized play handler to avoid code duplication
+async function handleEpisodePlay(id) {
+    const episode = await loadArchiveEpisode(id);
+    await toggleEpisodePlayback(episode);
 
-    loadMoreButton.hidden =
-        nextEpisodeIndex >= episodes.length;
+    const currentTitleEl = document.getElementById("current-title");
+    if (currentTitleEl && episode.metadata) {
+        const episodeNum = String(episode.id).padStart(2, "0");
+        currentTitleEl.textContent = `Episode ${episodeNum}: ${episode.metadata.title}`;
+    }
 }
 
-// Add this helper or include inside your initialization logic in index.js
+function renderVisibleEpisodes() {
+    const loadMoreButton = document.getElementById("load-more-btn");
+    const batch = episodes.slice(nextEpisodeIndex, nextEpisodeIndex + EPISODES_PER_BATCH);
+
+    renderEpisodeList(batch, handleEpisodePlay);
+
+    nextEpisodeIndex += batch.length;
+    if (loadMoreButton) {
+        loadMoreButton.hidden = nextEpisodeIndex >= episodes.length;
+    }
+}
+
 function setupMobileNav() {
     const toggleBtn = document.getElementById("nav-toggle");
     const nav = document.querySelector("header nav");
@@ -83,6 +89,3 @@ function setupMobileNav() {
         }
     });
 }
-
-// Call inside your main DOMContentLoaded listener:
-setupMobileNav();

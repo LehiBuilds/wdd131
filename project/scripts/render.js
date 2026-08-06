@@ -1,17 +1,24 @@
 export function renderEpisode(episode) {
     renderPlayer();
-    renderHeader(episode.metadata);
+    renderHeader(episode);
     renderTopics(episode.metadata.keywords);
     renderTranscript(episode.paragraphs, episode.hasSync);
 }
 
-function renderHeader(metadata) {
-    document.getElementById("breadcrumb-title").textContent = metadata.title;
-    document.getElementById("episode-title").textContent = metadata.title;
-    document.getElementById("episode-summary").textContent = metadata.summary;
-    document.getElementById("episode-date").textContent = formatDate(metadata.date);
-    document.getElementById("episode-duration").textContent = metadata.duration;
-    document.title = `${metadata.title} | The PQCNM Podcast`;
+function renderHeader(episode) {
+    const episodeNum = String(episode.id).padStart(2, "0");
+    const fullTitle = `Episode ${episodeNum}: ${episode.metadata.title}`;
+
+    const breadcrumbTitle = document.getElementById("breadcrumb-title");
+    if (breadcrumbTitle) breadcrumbTitle.textContent = episode.metadata.title;
+
+    const episodeTitle = document.getElementById("episode-title");
+    if (episodeTitle) episodeTitle.textContent = fullTitle;
+
+    document.getElementById("episode-summary").textContent = episode.metadata.summary;
+    document.getElementById("episode-date").textContent = formatDate(episode.metadata.date);
+    document.getElementById("episode-duration").textContent = episode.metadata.duration;
+    document.title = `${fullTitle} | The PQCNM Podcast`;
 }
 
 export function renderPlayer() {
@@ -133,6 +140,44 @@ export function renderEpisodeList(episodes, onPlayEpisode, clear = false) {
 
 }
 
+// export function createEpisodeCard(episode, onPlayEpisode) {
+//     const article = document.createElement("article");
+//     article.className = "episode-card";
+//     article.dataset.episodeId = episode.id;
+
+//     // Play Button
+//     const playBtn = document.createElement("button");
+//     playBtn.type = "button";
+//     playBtn.className = "episode-play-btn";
+//     playBtn.dataset.episodeId = episode.id;
+//     playBtn.setAttribute("aria-label", `Play Episode ${episode.id}`);
+//     playBtn.innerHTML = `<span class="material-symbols-outlined">play_arrow</span>`;
+
+//     if (typeof onPlayEpisode === "function") {
+//         playBtn.addEventListener("click", () => onPlayEpisode(episode.id));
+//     }
+
+//     // Episode Link & Info
+//     const link = document.createElement("a");
+//     const slugQuery = episode.metadata.slug ? `&slug=${encodeURIComponent(episode.metadata.slug)}` : "";
+//     link.href = `episode.html?id=${episode.id}${slugQuery}`;
+//     link.target = "_blank";
+//     link.rel = "noopener";
+//     link.className = "episode-card-info";
+
+//     const episodeNumber = String(episode.id).padStart(2, "0");
+//     link.innerHTML = `
+//         <span class="episode-number">Episode ${episodeNumber}</span>
+//         <h3 class="episode-title">${episode.metadata.title}</h3>
+//         <p class="episode-summary">${episode.metadata.summary || ""}</p>
+//     `;
+
+//     // Append all elements to the article card
+//     article.appendChild(playBtn);
+//     article.appendChild(link);
+
+//     return article;
+// }
 function createEpisodeCard(episode, onPlayEpisode) {
 
     const article =

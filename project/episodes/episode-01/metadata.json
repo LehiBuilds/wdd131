@@ -20,5 +20,5 @@
 
     "audio": "audio.m4a",
     "transcript": "transcript.json",
-    "transcriptSync": "transcript-sync.json"
+    "transcriptSync": "sync.json"
 }

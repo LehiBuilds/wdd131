@@ -6,37 +6,33 @@ export async function loadEpisode(episodeId) {
         const metadataResponse = await fetch(`${basePath}/metadata.json`);
         const metadata = await metadataResponse.json();
 
-        // 1. Resolve dynamic transcript filename from metadata
         const transcriptFileName = metadata.transcript || "transcript.json";
         const transcriptResponse = await fetch(`${basePath}/${transcriptFileName}`);
         const transcriptData = await transcriptResponse.json();
 
         let syncData = null;
-        let hasSync = false;
-
-        // 2. Resolve dynamic sync filename (e.g. transcript-sync.json or sync.json)
         const syncFileName = metadata.transcriptSync || "sync.json";
 
         try {
             const syncResponse = await fetch(`${basePath}/${syncFileName}`);
             if (syncResponse.ok) {
                 syncData = await syncResponse.json();
-                hasSync = true;
             }
         } catch {
-            // Fallback check for sync.json if transcriptSync property was missing
             try {
                 const fallbackSync = await fetch(`${basePath}/sync.json`);
                 if (fallbackSync.ok) {
                     syncData = await fallbackSync.json();
-                    hasSync = true;
                 }
             } catch {
-                console.warn(`Sync data not available for episode ${episodeId}`);
+                console.warn(`Sync data missing for episode ${episodeId}`);
             }
         }
 
         const paragraphs = buildParagraphs(transcriptData, syncData);
+
+        // Evaluates to true if start/end timestamps are present and valid
+        const hasSync = paragraphs.some(p => typeof p.start === "number" && typeof p.end === "number" && p.end > 0);
 
         return {
             id: episodeId,
@@ -121,6 +117,7 @@ export async function loadEpisodeList() {
         episodeIds.map(id => loadArchiveEpisode(id))
     );
 }
+
 function getAudioPath(folder, metadata) {
     return `${folder}/${metadata.audio || "audio.m4a"}`;
 }

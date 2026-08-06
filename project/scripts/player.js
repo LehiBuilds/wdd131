@@ -277,31 +277,26 @@ function seekTranscript(event) {
 }
 
 export async function loadEpisodeIntoPlayer(episode) {
-
     clearActiveEpisodeCard();
 
     activeEpisodeId = episode.id;
-
-    currentEpisodeIndex =
-        episodes.findIndex(
-            item => item.id === episode.id
-        );
+    currentEpisodeIndex = episodes.findIndex(item => item.id === episode.id);
 
     updateEpisodeNavigationButtons();
-
     setActiveEpisodeCard(activeEpisodeId);
-
     updateEpisodeCardButton(false);
 
     audio.src = episode.audioPath;
-
     audio.load();
 
-    transcriptParagraphs =
-        document.querySelectorAll(".transcript-paragraph");
+    // Dynamically formats player title to "Episode XX: Title"
+    const currentTitleEl = document.getElementById("current-title");
+    if (currentTitleEl && episode.metadata) {
+        const episodeNum = String(episode.id).padStart(2, "0");
+        currentTitleEl.textContent = `Episode ${episodeNum}: ${episode.metadata.title}`;
+    }
 
-    // No autoplay
-    // await audio.play();
+    transcriptParagraphs = document.querySelectorAll(".transcript-paragraph");
 }
 
 function clearActiveEpisodeCard() {

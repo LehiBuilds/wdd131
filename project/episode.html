@@ -44,14 +44,14 @@
             <span id="breadcrumb-title">Loading...</span>
         </nav>
 
-        <!-- Sticky Player Wrapper -->
+        <!-- Player -->
         <div class="player-wrapper">
             <section class="player">
                 <div id="player-artwork" class="player-artwork">
                     <span class="material-symbols-outlined" aria-hidden="true">album</span>
                 </div>
                 <div class="player-content">
-                    <h1 id="episode-title">Loading episode...</h1>
+                    <h2 id="current-title"></h2>
                     <div class="progress-bar">
                         <div id="progress-fill"></div>
                     </div>
@@ -59,8 +59,22 @@
                         <span id="current-time">0:00</span>
                         <span id="total-time">0:00</span>
                     </div>
+
+
                     <div id="player-controls" class="player-controls">
-                        <!-- Rendered by render.js -->
+
+                        <button id="skip-backward-btn" type="button" aria-label="Skip back 15 seconds">
+                            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
+                        </button>
+
+                        <button id="play-btn" type="button" aria-label="Play">
+                            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+                        </button>
+
+                        <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
+                            <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
+                        </button>
+
                     </div>
                     <audio id="audio-player" preload="metadata"></audio>
                 </div>
