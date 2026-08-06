@@ -415,21 +415,127 @@
     gap: 0.5rem;
 }
 
-@media (max-width: 767px) {
-    .episode-tags-card {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+/* ==========================================================================
+   7. Mobile-only compact layout (< 992px)
+   Reorders sidebar above transcript; tightens spacing and chrome.
+   Desktop two-column layout is unchanged at 992px+.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .episode-grid {
+        gap: 1rem;
     }
 
-    .episode-tags-card::-webkit-scrollbar {
+    .episode-main-content,
+    .episode-sidebar {
+        display: contents;
+    }
+
+    .player-wrapper { order: 1; }
+    .summary-section { order: 2; }
+    .episode-info-card { order: 3; }
+    .sidebar-group { order: 4; }
+    .sidebar-actions { order: 5; }
+    .transcript-section { order: 6; }
+
+    .back-nav {
+        margin: 0.75rem 0 0.5rem;
+    }
+
+    .episode-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .episode-main-title {
+        font-size: 1.5rem;
+    }
+
+    .transcript-section {
+        padding-top: 0.75rem;
+    }
+
+    .transcript-header {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Inline meta: Jan 12 · 18:42 · Pres. Hughes */
+    .episode-info-card {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0;
+        background: none;
+        border: none;
+        border-top: 1px solid var(--color-border, #27272a);
+        border-radius: 0;
+        padding: 0.75rem 0 0;
+    }
+
+    .info-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+    }
+
+    .info-row:not(:last-child)::after {
+        content: "·";
+        margin: 0 0.4rem;
+        color: var(--color-text-secondary, #a1a1aa);
+        font-weight: 400;
+    }
+
+    .info-row .material-symbols-outlined,
+    .info-label {
         display: none;
     }
 
+    .info-row-body {
+        flex-direction: row;
+    }
+
+    .sidebar-value {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .sidebar-group h3,
+    .sidebar-actions h3 {
+        display: none;
+    }
+
+    .sidebar-group {
+        margin-top: 0.35rem;
+    }
+
+    .sidebar-actions {
+        margin-top: 0.35rem;
+    }
+
+    .episode-tags-card {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        padding-bottom: 0;
+    }
+
     .topic-tag {
-        flex-shrink: 0;
-        white-space: nowrap;
+        flex-shrink: 1;
+        white-space: normal;
+    }
+
+    .download-section {
+        border-top: none;
+        padding-top: 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .btn-action {
+        min-height: 36px;
+        padding: 0.2rem 0.5rem;
+        gap: 0.35rem;
+    }
+
+    .btn-action .material-symbols-outlined {
+        font-size: 18px;
     }
 }
