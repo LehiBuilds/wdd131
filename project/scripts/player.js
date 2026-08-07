@@ -1,3 +1,5 @@
+import { Storage } from "./storage.js";
+
 const SKIP_BACKWARD_SECONDS = 10;
 const SKIP_FORWARD_SECONDS = 30;
 
@@ -69,6 +71,14 @@ function setupAudio() {
     audio.addEventListener("timeupdate", () => {
         updateCurrentTime();
         updateProgressBar();
+
+        // Auto-save playback time & title to localStorage
+        if (episodes[currentEpisodeIndex]?.metadata?.title) {
+            Storage.savePlaybackState(
+                episodes[currentEpisodeIndex].metadata.title,
+                audio.currentTime
+            );
+        }
     });
 
     audio.addEventListener("ended", handleAudioEnded);
@@ -83,6 +93,9 @@ function setupAudio() {
         updateEpisodeCardButton(false);
     });
 }
+
+
+
 
 function setupControls() {
     playButton?.addEventListener("click", togglePlayback);
@@ -249,12 +262,14 @@ function updateEpisodeNavigationButtons() {
     previousEpisodeButton.disabled = currentEpisodeIndex <= 0;
     nextEpisodeButton.disabled = currentEpisodeIndex >= episodes.length - 1;
 }
-
 function handleVolumeChange(event) {
     if (!audio) return;
     const value = parseFloat(event.target.value);
     audio.volume = value;
     updateVolumeIcon(value);
+
+    // Save volume level setting
+    Storage.saveVolume(value);
 }
 
 function toggleVolumeSlider() {

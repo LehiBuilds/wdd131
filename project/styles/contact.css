@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Contact Page Form Styles
+   ========================================================================== */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .contact-layout {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.contact-form-container {
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .form-group-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Star Rating Control */
+.star-rating {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.star-rating-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+}
+
+.star-rating-item .material-symbols-outlined {
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+}
+
+.star-rating-item .material-symbols-outlined.active {
+    color: var(--color-accent);
+    font-variation-settings: 'FILL' 1;
+}
+
+.star-rating-item input[type="radio"] {
+    accent-color: var(--color-accent);
+    cursor: pointer;
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+@media (min-width: 480px) {
+    .checkbox-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: var(--color-accent);
+    width: 16px;
+    height: 16px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.submit-btn:hover {
+    filter: brightness(1.1);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Side Column Info Panel */
+.side-panel-card {
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
