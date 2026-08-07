@@ -128,13 +128,13 @@
    4. Collapsible Summary & Metadata
    ========================================================================== */
 
-.summary-section {
+.summary-section,
+.details-section {
     border-top: 1px solid var(--color-border, #27272a);
-    /* padding-top: 1rem; */
-    /* margin-top: 1rem; */
 }
 
-.summary-section p {
+.summary-content p,
+.details-content p {
     background-color: var(--color-surface-container);
     padding: 1rem;
     border-radius: 8px;
@@ -168,17 +168,38 @@
     transition: transform 300ms ease;
 }
 
-.summary-content {
+.summary-content,
+.details-content {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
 }
 
-.summary-toggle-checkbox:checked~.summary-content {
-    max-height: 800px;
+.summary-toggle-checkbox:checked~.summary-content,
+.summary-toggle-checkbox:checked~.details-content,
+.details-section .summary-toggle-checkbox:checked~.details-content {
+    max-height: 1200px;
     opacity: 1;
     margin-top: 0.75rem;
+}
+
+/* Details meta + downloads inside collapsed area */
+.details-meta {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.details-meta-card {
+    flex: 1 1 auto;
+}
+
+.details-downloads {
+    margin-top: 0.75rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
 }
 
 .summary-toggle-checkbox:checked~.summary-header .summary-chevron {
@@ -324,6 +345,15 @@
     padding: 0.9rem 1rem;
 }
 
+/* Compact styling for meta used inside details section to visually separate it from sidebar */
+.details-meta-card .info-row {
+    gap: 0.6rem;
+}
+
+.details-meta-card .material-symbols-outlined {
+    color: var(--color-text-secondary);
+}
+
 .info-row {
     display: flex;
     align-items: flex-start;
@@ -431,12 +461,25 @@
         display: contents;
     }
 
-    .player-wrapper { order: 1; }
-    .summary-section { order: 2; }
-    .episode-info-card { order: 3; }
-    .sidebar-group { order: 4; }
-    .sidebar-actions { order: 5; }
-    .transcript-section { order: 6; }
+    .player-wrapper {
+        order: 1;
+    }
+
+    .details-section {
+        order: 2;
+    }
+
+    .sidebar-group {
+        order: 3;
+    }
+
+    .sidebar-actions {
+        order: 4;
+    }
+
+    .transcript-section {
+        order: 6;
+    }
 
     .back-nav {
         margin: 0.75rem 0 0.5rem;
