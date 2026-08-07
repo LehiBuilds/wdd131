@@ -103,25 +103,43 @@
    duplicated here — episode.html reuses .player-wrapper/.player/etc. from
    style.css so the player looks and behaves identically to the archive page.
    ========================================================================== */
-
-.read-along-toggle-btn.active {
-    color: var(--color-accent);
+.player-controls .read-along-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: auto;
+    height: 32px;
+    padding: 0 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border, #27272a);
+    background: transparent;
+    color: var(--color-text-secondary, #a1a1aa);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition, 200ms ease), border-color var(--transition, 200ms ease), color var(--transition, 200ms ease);
 }
 
-.read-along-toggle-btn.active:hover {
-    color: var(--color-accent);
-    filter: drop-shadow(0 30px 30px #333);
-    /* background:
-            linear-gradient(135deg,
-                rgba(204, 255, 0, .12),
-                rgba(204, 255, 0, .02));
-        border-color: var(--color-accent); */
-    transform: translateY(-1px);
-
+.player-controls .read-along-toggle-btn .material-symbols-outlined {
+    font-size: 16px;
 }
 
-.read-along-toggle-btn:not(.active) {
-    opacity: 0.5;
+.player-controls .read-along-toggle-btn:hover {
+    color: var(--color-text, #ffffff);
+}
+
+.player-controls .read-along-toggle-btn.active {
+    color: var(--color-accent, #ccff00);
+    border-color: var(--color-accent, #ccff00);
+    background: rgba(204, 255, 0, 0.08);
+}
+
+.player-controls .read-along-toggle-btn.active:hover {
+    color: var(--color-accent, #ccff00);
+}
+
+.player-controls .read-along-toggle-btn:not(.active) {
+    opacity: 0.75;
 }
 
 /* ==========================================================================

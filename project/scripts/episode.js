@@ -3,7 +3,8 @@ import { renderEpisode } from "./render.js";
 import {
     initializePlayer,
     loadEpisodeIntoPlayer,
-    configureEpisodeNavigation
+    configureEpisodeNavigation,
+    refreshPlayerControls
 } from "./player.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -48,6 +49,7 @@ async function loadEpisodeById(id) {
         setupDownloadButtons(episode);
         setupBackLink(episode);
         setupReadAlongToggleButton(episode.hasSync);
+        refreshPlayerControls();
         await loadEpisodeIntoPlayer(episode);
 
         const url = new URL(window.location);
@@ -84,7 +86,10 @@ function setupReadAlongToggleButton(hasSync) {
     button.setAttribute("aria-pressed", "true");
     button.setAttribute("aria-label", "Toggle Read-Along");
     button.title = "Toggle Read-Along";
-    button.innerHTML = `<span class="material-symbols-outlined" aria-hidden="true">bolt</span>`;
+    button.innerHTML = `
+        <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
+        <span class="read-along-toggle-text">Read-Along</span>
+    `;
 
     button.addEventListener("click", () => {
         const isActive = button.classList.toggle("active");

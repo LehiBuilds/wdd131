@@ -14,7 +14,7 @@ let progressBar;
 
 let volumeButton;
 let volumeSlider;
-let previousVolume = 1;
+let volumeContainer;
 
 let episodes = [];
 let currentEpisodeIndex = -1;
@@ -26,18 +26,40 @@ export function initializePlayer() {
     audio = document.getElementById("audio-player");
     currentTimeDisplay = document.getElementById("current-time");
     totalTimeDisplay = document.getElementById("total-time");
+    progressFill = document.getElementById("progress-fill");
+    progressBar = document.querySelector(".progress-bar");
+
+    setupAudio();
+    refreshPlayerControls();
+    setupVolumeOutsideClickCollapse();
+}
+
+// renderPlayer() rebuilds the buttons inside #player-controls (including the
+// volume control) from scratch every time an episode renders - e.g. on every
+// Previous/Next click on the episode page. Their listeners would otherwise be
+// left attached to removed nodes, so this re-queries and re-binds them.
+// The audio element, progress bar, and time displays are static markup and
+// are only ever queried once, in initializePlayer().
+export function refreshPlayerControls() {
     previousEpisodeButton = document.getElementById("previous-episode-btn");
     playButton = document.getElementById("play-btn");
     skipBackwardButton = document.getElementById("skip-backward-btn");
     skipForwardButton = document.getElementById("skip-forward-btn");
     nextEpisodeButton = document.getElementById("next-episode-btn");
-    progressFill = document.getElementById("progress-fill");
-    progressBar = document.querySelector(".progress-bar");
     volumeButton = document.getElementById("volume-btn");
     volumeSlider = document.getElementById("volume-slider");
+    volumeContainer = document.querySelector(".volume-container");
 
-    setupAudio();
     setupControls();
+}
+
+function setupVolumeOutsideClickCollapse() {
+    document.addEventListener("click", (event) => {
+        if (!volumeContainer || !volumeContainer.classList.contains("expanded")) return;
+        if (!volumeContainer.contains(event.target)) {
+            volumeContainer.classList.remove("expanded");
+        }
+    });
 }
 
 function setupAudio() {
@@ -70,7 +92,7 @@ function setupControls() {
     nextEpisodeButton?.addEventListener("click", playNextEpisode);
     progressBar?.addEventListener("click", seekAudio);
     volumeSlider?.addEventListener("input", handleVolumeChange);
-    volumeButton?.addEventListener("click", toggleMute);
+    volumeButton?.addEventListener("click", toggleVolumeSlider);
 }
 
 async function togglePlayback() {
@@ -235,18 +257,8 @@ function handleVolumeChange(event) {
     updateVolumeIcon(value);
 }
 
-function toggleMute() {
-    if (!audio) return;
-    if (audio.volume > 0) {
-        previousVolume = audio.volume;
-        audio.volume = 0;
-        if (volumeSlider) volumeSlider.value = 0;
-        updateVolumeIcon(0);
-    } else {
-        audio.volume = previousVolume || 1;
-        if (volumeSlider) volumeSlider.value = audio.volume;
-        updateVolumeIcon(audio.volume);
-    }
+function toggleVolumeSlider() {
+    volumeContainer?.classList.toggle("expanded");
 }
 
 function updateVolumeIcon(volume) {
