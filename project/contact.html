@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Lehi Ontoria Gomez">
-    <meta name="description" content="Contact the archivist and listenership collective of The Philippines Quezon City North Mission Podcast Archive 2020.">
-    <title>Contact | The PQCNM Podcast</title>
+    <meta name="description" content="Submit a product review and overall experience feedback for The Philippines Quezon City North Mission Podcast Archive 2020.">
+    <title>Product Review & Feedback | The PQCNM Podcast</title>
 
     <!-- Google Fonts & Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="icon" href="data:,">
 
-    <!-- Global & Page-Specific Stylesheets -->
+    <!-- External Stylesheets -->
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/contact.css">
 
-    <!-- Script Imports -->
+    <!-- Script Import -->
     <script type="module" src="scripts/contact.js"></script>
 </head>
 
@@ -45,122 +45,100 @@
 
     <!-- Main Container -->
     <main class="container">
-        <!-- Collection Header Section (Repetition & Alignment) -->
-        <section class="collection-header" style="margin-top: 2rem; margin-bottom: 2rem;">
-            <h1 id="collection-title">Contact the PQCNM Archival Team</h1>
-            <a id="collection-link" href="index.html">
-                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-                <span>Return to Podcast Archive</span>
-            </a>
-        </section>
+        <!-- Single Column Layout Container -->
+        <div class="contact-layout-single">
+            <!-- Header Section -->
+            <section class="collection-header">
+                <h1 id="collection-title">Product Review & Archive Feedback</h1>
+                <a id="collection-link" href="index.html">
+                    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                    <span>Return to Podcast Archive</span>
+                </a>
+            </section>
 
-        <!-- Two-Column Layout -->
-        <div class="contact-layout">
-            <!-- Contact Form Section -->
+            <!-- Product Review Form -->
             <div class="contact-form-container">
                 <form id="contact-form">
+                    <!-- Hidden input to store rating value -->
+                    <input type="hidden" id="selected-rating" name="rating" value="3">
+
                     <!-- Subject Dropdown -->
                     <div class="form-group">
-                        <label class="form-label" for="subject">Subject</label>
+                        <label class="form-label" for="subject">Feedback Subject</label>
                         <select id="subject" class="form-control">
-                            <option>General Archival Inquiry</option>
-                            <option>Episode Recording Feedback</option>
-                            <option>Transcript Correction</option>
-                            <option>Missionary Contributor Inquiry</option>
+                            <option>Overall Podcast Archive Review</option>
+                            <option>Audio & Playback Quality Review</option>
+                            <option>Transcript & Sync Feature Review</option>
+                            <option>General Message / Suggestion</option>
                         </select>
                     </div>
 
-                    <!-- Overall Listening Experience Rating -->
+                    <!-- Overall Star Rating (Radio-free) -->
                     <div class="form-group">
-                        <label class="form-label">Overall Listening Experience</label>
+                        <label class="form-label">Overall Experience Rating</label>
                         <div class="star-rating">
-                            <div class="star-rating-item">
-                                <span class="material-symbols-outlined active">star</span>
-                                <input type="radio" name="rating" value="1">
-                            </div>
-                            <div class="star-rating-item">
-                                <span class="material-symbols-outlined active">star</span>
-                                <input type="radio" name="rating" value="2">
-                            </div>
-                            <div class="star-rating-item">
-                                <span class="material-symbols-outlined active">star</span>
-                                <input type="radio" name="rating" value="3">
-                            </div>
-                            <div class="star-rating-item">
-                                <span class="material-symbols-outlined">star</span>
-                                <input type="radio" name="rating" value="4">
-                            </div>
-                            <div class="star-rating-item">
-                                <span class="material-symbols-outlined">star</span>
-                                <input type="radio" name="rating" value="5">
-                            </div>
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="1">star</span>
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="2">star</span>
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="3">star</span>
+                            <span class="material-symbols-outlined star-rating-icon" data-value="4">star</span>
+                            <span class="material-symbols-outlined star-rating-icon" data-value="5">star</span>
                         </div>
                     </div>
 
                     <!-- Feedback Type Checkboxes -->
                     <div class="form-group">
-                        <label class="form-label">Feedback Category (Check all that apply)</label>
+                        <label class="form-label">Feedback Focus (Check all that apply)</label>
                         <div class="checkbox-grid">
                             <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="audio"> Audio Quality
+                                <input type="checkbox" name="category" value="audio"> Audio Clarity
                             </label>
                             <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="sync"> Transcript / Read-Along Sync
+                                <input type="checkbox" name="category" value="sync"> Read-Along Sync
                             </label>
                             <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="missing"> Missing Episode Request
+                                <input type="checkbox" name="category" value="navigation"> Table of Contents / Nav
                             </label>
                             <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="other"> General Message
+                                <input type="checkbox" name="category" value="content"> Message Content
                             </label>
                         </div>
                     </div>
 
-                    <!-- Message TextArea -->
+                    <!-- Detailed Review Message -->
                     <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <textarea id="message" class="form-control" placeholder="Share your message or feedback with the archive maintainers..." required></textarea>
+                        <label class="form-label" for="message">Detailed Review / Feedback</label>
+                        <textarea id="message" class="form-control" placeholder="Share your experience listening to the archives or suggest improvements..." required></textarea>
                     </div>
 
                     <!-- Name and Email Row -->
                     <div class="form-group-row">
-                        <div class="form-group" style="margin-bottom: 0;">
+                        <div class="form-group">
                             <label class="form-label" for="full-name">Your Name</label>
                             <input id="full-name" class="form-control" type="text" placeholder="Full name" required>
                         </div>
-                        <div class="form-group" style="margin-bottom: 0;">
+                        <div class="form-group">
                             <label class="form-label" for="email">Your Email</label>
                             <input id="email" class="form-control" type="email" placeholder="email@example.com" required>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
-                    <button class="submit-btn" type="submit">Send Message</button>
+                    <button class="submit-btn" type="submit">Submit Product Review</button>
                 </form>
             </div>
 
-            <!-- Side Information Column (Proximity) -->
-            <aside class="side-column">
-                <div class="side-panel-card">
-                    <h3 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">Response Time</h3>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5;">
-                        We review incoming archival notes and episode corrections regularly. Returned missionaries and listeners will receive a reply within 48 hours.
-                    </p>
-                </div>
-
-                <div class="side-panel-card">
-                    <span class="episode-number" style="display: block; margin-bottom: 0.25rem;">EST. 2020</span>
-                    <h3 style="font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.5rem;">PQCNM Podcast Archive</h3>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5;">
-                        Preserving the spiritual guidance, leadership messages, and recordings from President and Sister Hughes for missionaries worldwide[cite: 5].
-                    </p>
-                </div>
-            </aside>
+            <!-- Response Info Panel -->
+            <div class="notice-panel-card">
+                <h3 class="notice-panel-title">Thank You For Your Feedback</h3>
+                <p class="notice-panel-text">
+                    Reviews and suggestions help us refine transcript accuracy and overall archive usability for returned missionaries and listeners worldwide. Replies to inquiries are usually processed within 48 hours.
+                </p>
+            </div>
         </div>
     </main>
 
-    <!-- Footer (Repetition) -->
-    <footer class="site-footer" style="padding: 2rem 0; margin-top: 3rem;">
+    <!-- Footer -->
+    <footer class="site-footer">
         <p>&copy; 2026 The PQCNM Podcast</p>
     </footer>
 </body>

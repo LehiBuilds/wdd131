@@ -23,20 +23,21 @@ function setupMobileNav() {
 }
 
 function setupStarRating() {
-    const items = document.querySelectorAll(".star-rating-item");
+    const stars = document.querySelectorAll(".star-rating-icon");
+    const ratingInput = document.getElementById("selected-rating");
 
-    items.forEach((item, index) => {
-        const starIcon = item.querySelector(".material-symbols-outlined");
-        const radio = item.querySelector("input[type='radio']");
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            const ratingValue = index + 1;
+            if (ratingInput) {
+                ratingInput.value = ratingValue;
+            }
 
-        item.addEventListener("click", () => {
-            radio.checked = true;
-            items.forEach((sItem, sIndex) => {
-                const icon = sItem.querySelector(".material-symbols-outlined");
-                if (sIndex <= index) {
-                    icon.classList.add("active");
+            stars.forEach((s, sIndex) => {
+                if (sIndex < ratingValue) {
+                    s.classList.add("active");
                 } else {
-                    icon.classList.remove("active");
+                    s.classList.remove("active");
                 }
             });
         });
@@ -52,23 +53,27 @@ function setupContactForm() {
         const submitBtn = form.querySelector(".submit-btn");
         const originalText = submitBtn.textContent;
 
-        submitBtn.textContent = "TRANSMITTING...";
+        submitBtn.textContent = "SUBMITTING REVIEW...";
         submitBtn.disabled = true;
 
         setTimeout(() => {
-            submitBtn.textContent = "MESSAGE SENT";
+            submitBtn.textContent = "REVIEW SUBMITTED";
 
             setTimeout(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 form.reset();
 
-                // Reset stars
-                document.querySelectorAll(".star-rating-item .material-symbols-outlined").forEach((icon, index) => {
+                // Reset star ratings back to default (3 stars)
+                const stars = document.querySelectorAll(".star-rating-icon");
+                const ratingInput = document.getElementById("selected-rating");
+                if (ratingInput) ratingInput.value = "3";
+
+                stars.forEach((star, index) => {
                     if (index < 3) {
-                        icon.classList.add("active");
+                        star.classList.add("active");
                     } else {
-                        icon.classList.remove("active");
+                        star.classList.remove("active");
                     }
                 });
             }, 2500);
