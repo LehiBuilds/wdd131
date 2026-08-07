@@ -130,7 +130,7 @@ function setupReadAlongSync() {
             const start = parseFloat(p.dataset.start);
             const end = parseFloat(p.dataset.end);
 
-            if (currentTime >= start && currentTime <= end) {
+            if (!isNaN(start) && !isNaN(end) && currentTime >= start && currentTime <= end) {
                 if (!p.classList.contains("active")) {
                     paragraphElements.forEach(el => el.classList.remove("active"));
                     p.classList.add("active");
@@ -140,16 +140,16 @@ function setupReadAlongSync() {
         });
     });
 
-    // Click paragraph to jump audio position
+    // Click paragraph to jump audio position ONLY if clickable / sync-enabled
     transcriptContainer.addEventListener("click", (e) => {
-        const paragraph = e.target.closest(".transcript-paragraph");
-        if (paragraph && paragraph.dataset.start) {
-            const startTime = parseFloat(paragraph.dataset.start);
-            if (!isNaN(startTime)) {
-                audioPlayer.currentTime = startTime;
-                if (audioPlayer.paused) {
-                    audioPlayer.play();
-                }
+        const paragraph = e.target.closest(".transcript-paragraph.clickable");
+        if (!paragraph || !paragraph.dataset.start) return;
+
+        const startTime = parseFloat(paragraph.dataset.start);
+        if (!isNaN(startTime) && startTime >= 0) {
+            audioPlayer.currentTime = startTime;
+            if (audioPlayer.paused) {
+                audioPlayer.play();
             }
         }
     });

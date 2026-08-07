@@ -1,22 +1,18 @@
-C:\Users\lehig\Documents\1.2 - Software Development\wdd131\project>tree /F
+:\Users\lehig\Documents\1.2 - Software Development\wdd131\project>tree /F
 Folder PATH listing
 Volume serial number is 8E4B-9250
 C:.
 │   about.html
 │   contact.html
-│   episode-01.html
 │   episode.html
 │   index.html
 │   project-tree-architecture.txt
 │   siteplan.html
 │
 ├───assets
-│   ├───favicons
-│   ├───images
-│   │       desktop-view-wireframe.png
-│   │       mobile-view-wrireframe.png
-│   │
-│   └───logo
+│   └───images
+│           desktop-view-wireframe.png
+│           mobile-view-wrireframe.png
 ├───episodes
 │   │   episodes.json
 │   │
@@ -313,7 +309,10 @@ C:.
 │       player.js
 │       render.js
 │
-└───styles
-        episode.css
-        siteplan.css
-        style.css
+├───styles
+│       episode.css
+│       siteplan.css
+│       style.css
+│
+└───tools
+        generate-episodes-json.js
