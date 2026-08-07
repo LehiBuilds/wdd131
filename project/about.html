@@ -15,8 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="icon" href="data:,">
 
-    <!-- CSS Stylesheet -->
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/about.css">
 
     <!-- Script Import -->
     <script type="module" src="scripts/about.js"></script>
@@ -44,24 +45,20 @@
 
     <!-- Main Container -->
     <main class="container">
-        <section class="collection-header" style="margin-top: 2rem; margin-bottom: 2rem;">
-            <a id="collection-link" href="index.html">
-                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-                <span>Return to Podcast Archive</span>
-            </a>
+        <section class="collection-header">
             <h1 id="collection-title">About This Collection: The Philippines Quezon City North Mission Podcast Archive 2020</h1>
         </section>
 
         <section class="archive-section">
-            <div class="episode-card" style="cursor: default;">
-                <div class="episode-title-group">
-                    <span class="episode-number">Archival Mission & Purpose</span>
-                    <h2 style="font-size: 1.35rem; margin-top: 0.25rem; color: var(--color-text);">
-                        Preserving Mission Teachings & Leadership Messages
-                    </h2>
+            <div class="about-hero-card">
+                <div class="about-hero-header">
+                    <span class="about-badge">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Archival Mission & Purpose
+                    </span>
+                    <h2>Preserving Mission Teachings & Leadership Messages</h2>
                 </div>
-
-                <div class="episode-summary-card" style="margin-top: 1rem;">
+                <div class="about-hero-body">
                     <p>
                         The Philippines Quezon City North Mission Podcast Archive organizes a collection of over 60 audio recordings preserved from 2020. Created primarily for returned missionaries who served under the leadership of President and Sister Hughes, this digital repository preserves inspiring spiritual guidance, teachings, and missionary advice to encourage lifelong spiritual growth and reflection.
                     </p>
@@ -69,12 +66,10 @@
             </div>
 
             <!-- Session Data Storage Table -->
-            <div class="episode-card" style="cursor: default; margin-top: 1.25rem;">
+            <div class="episode-card storage-card">
                 <div class="episode-title-group">
                     <span class="episode-number">Session Data</span>
-                    <h2 style="font-size: 1.35rem; margin-top: 0.25rem; color: var(--color-text);">
-                        Your Stored Preferences & Progress
-                    </h2>
+                    <h2>Your Stored Preferences & Progress</h2>
                 </div>
 
                 <div id="storage-table-container">
@@ -85,7 +80,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer" style="padding: 2rem 0; margin-top: 3rem;">
+    <footer class="site-footer">
         <p>&copy; 2026 The PQCNM Podcast</p>
     </footer>
 </body>

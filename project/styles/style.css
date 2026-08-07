@@ -99,7 +99,7 @@ nav a.active {
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 1rem 3rem;
+    padding: 0 0 3rem;
 }
 
 
