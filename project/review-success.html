@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lehi Ontoria Gomez">
+    <title>Review Submitted | The PQCNM Podcast</title>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/contact.css">
+</head>
+
+<body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="nav-wrapper">
+            <div class="logo">
+                <a href="index.html">The PQCNM Podcast</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a class="active" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="contact-layout-single">
+            <section class="collection-header" style="text-align: center; margin-bottom: 1.5rem;">
+                <span class="material-symbols-outlined" style="font-size: 3.5rem; color: var(--color-accent);">check_circle</span>
+                <h1 style="margin-top: 0.5rem;">Thank You For Your Feedback!</h1>
+                <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">
+                    Your review has been successfully submitted to the PQCNM Archival team.
+                </p>
+            </section>
+
+            <!-- Dynamic Review Preview Card -->
+            <div class="review-preview-card">
+                <h2 style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--color-accent);">
+                    Submitted Review Preview
+                </h2>
+
+                <div class="preview-row">
+                    <span class="preview-label">Subject</span>
+                    <span id="prev-subject" class="preview-value">-</span>
+                </div>
+
+                <div class="preview-row">
+                    <span class="preview-label">Rating</span>
+                    <span id="prev-rating" class="preview-value preview-stars">-</span>
+                </div>
+
+                <div class="preview-row">
+                    <span class="preview-label">Feedback Focus</span>
+                    <span id="prev-focus" class="preview-value">-</span>
+                </div>
+
+                <div class="preview-row">
+                    <span class="preview-label">Detailed Message</span>
+                    <span id="prev-message" class="preview-value" style="white-space: pre-wrap;">-</span>
+                </div>
+
+                <div class="preview-row">
+                    <span class="preview-label">Submitted By</span>
+                    <span id="prev-name" class="preview-value">-</span>
+                </div>
+
+                <div class="preview-row">
+                    <span class="preview-label">Contact Email</span>
+                    <span id="prev-email" class="preview-value">-</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="index.html" class="submit-btn" style="display: inline-block; text-decoration: none; max-width: 280px;">
+                    Return to Archive
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 The PQCNM Podcast</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const data = JSON.parse(sessionStorage.getItem("submittedReview"));
+            if (!data) {
+                window.location.href = "contact.html";
+                return;
+            }
+
+            document.getElementById("prev-subject").textContent = data.subject;
+            document.getElementById("prev-rating").innerHTML = "★".repeat(parseInt(data.rating)) + "☆".repeat(5 - parseInt(data.rating));
+            document.getElementById("prev-focus").textContent = data.focus;
+            document.getElementById("prev-message").textContent = data.message;
+            document.getElementById("prev-name").textContent = data.name;
+            document.getElementById("prev-email").textContent = data.email;
+        });
+    </script>
+</body>
+
+</html>
