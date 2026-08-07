@@ -13,7 +13,10 @@
         "performance"
     ],
     "slug": "nephis-ship-and-the-law-of-specifics-virtual-interviews-and-the-accountability-mindset",
-"id": 6,
-"duration": "6:37",
-"durationInSeconds": 397
+    "id": 6,
+    "duration": "6:37",
+    "durationInSeconds": 397,
+
+    "audio": "audio.m4a",
+    "transcript": "transcript.json"
 }

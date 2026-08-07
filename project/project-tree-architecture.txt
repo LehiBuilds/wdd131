@@ -126,7 +126,7 @@ C:.
 │   │       transcript.json
 │   │
 │   ├───episode-21
-│   │       2020.04.14 - Mindsets in Crisis Lessons from Captain Moroni and Pahoran.m4a
+│   │       audio.m4a
 │   │       metadata.json
 │   │       transcript.json
 │   │

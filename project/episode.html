@@ -89,47 +89,42 @@
 
             </div>
 
-            <!-- RIGHT COLUMN: Sidebar Actions & Metadata -->
             <aside class="episode-sidebar">
-
-                <!-- Collapsible Details Section (summary + metadata + downloads) -->
                 <section class="details-section">
+                    <!-- Mobile Toggle Mechanics -->
                     <input type="checkbox" id="details-toggle" class="summary-toggle-checkbox" hidden>
                     <label for="details-toggle" class="summary-header">
                         <h2>Episode details</h2>
                         <span class="material-symbols-outlined summary-chevron" aria-hidden="true">expand_more</span>
                     </label>
-                    <div class="summary-content details-content">
-                        <h3>Summary</h3>
-                        <p id="episode-summary" class="episode-summary-text"></p>
 
-                        <div class="details-meta">
-                            <div class="episode-info-card details-meta-card">
-                                <div class="info-row">
-                                    <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
-                                    <div class="info-row-body">
-                                        <span class="info-label">Date</span>
-                                        <p id="episode-date" class="sidebar-value accent"></p>
-                                    </div>
+                    <!-- Sidebar Content Container -->
+                    <div class="summary-content details-content">
+
+                        <!-- 1. Episode Details (Horizontal Badges) -->
+                        <div class="sidebar-block">
+                            <h3>Details</h3>
+                            <div class="details-pills-row">
+                                <div class="pill-item">
+                                    <span id="episode-date" class="sidebar-value accent"></span>
                                 </div>
-                                <div class="info-row">
-                                    <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-                                    <div class="info-row-body">
-                                        <span class="info-label">Duration</span>
-                                        <p id="episode-duration" class="sidebar-value"></p>
-                                    </div>
+                                <div class="pill-item">
+                                    <span id="episode-duration" class="sidebar-value">Duration</span>
                                 </div>
-                                <div class="info-row">
-                                    <span class="material-symbols-outlined" aria-hidden="true">mic</span>
-                                    <div class="info-row-body">
-                                        <span class="info-label">Voice</span>
-                                        <p id="episode-speaker" class="sidebar-value">President Stewart Hughes</p>
-                                    </div>
+                                <div class="pill-item">
+                                    <span id="episode-speaker" class="sidebar-value">President Stewart Hughes</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="sidebar-actions">
+                        <!-- 2. Summary -->
+                        <div class="sidebar-block">
+                            <h3>Summary</h3>
+                            <p id="episode-summary" class="episode-summary-text"></p>
+                        </div>
+
+                        <!-- 3. Download -->
+                        <div class="sidebar-block">
                             <h3>Download</h3>
                             <div class="details-downloads">
                                 <a id="download-audio-btn" href="#" download class="btn-action">
@@ -142,19 +137,15 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="sidebar-group">
+
+                        <!-- 4. Topic -->
+                        <div class="sidebar-block">
                             <h3>Topic</h3>
                             <div id="episode-keywords" class="episode-tags-card"></div>
                         </div>
 
                     </div>
                 </section>
-
-
-                <!-- Action Buttons -->
-
-                <!-- Topic Metadata -->
-
             </aside>
 
         </div>
