@@ -52,6 +52,13 @@ function buildParagraphs(transcriptData, syncData) {
         ? transcriptData
         : transcriptData.paragraphs || [];
 
+    const syncParagraphs = syncData?.paragraphs || [];
+    if (syncParagraphs.length && syncParagraphs.length !== rawParagraphs.length) {
+        console.warn(
+            `Sync/transcript paragraph count mismatch: transcript has ${rawParagraphs.length}, sync has ${syncParagraphs.length}. Timestamps may be misaligned.`
+        );
+    }
+
     return rawParagraphs.map((p, index) => {
         let start = p.start ?? 0;
         let end = p.end ?? 0;
