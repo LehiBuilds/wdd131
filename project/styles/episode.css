@@ -170,7 +170,7 @@
 }
 
 
-.summary-header h2 {
+.summary-header span:first-child {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -234,92 +234,6 @@
     color: rgba(255, 255, 255, 0.85);
     margin: 0 1rem 1rem;
     text-indent: 12px;
-}
-
-/* ==========================================================================
-   5. Interactive Transcript
-   ========================================================================== */
-
-.transcript-section {
-    border-top: 1px solid var(--color-border, #27272a);
-    padding-top: 1.25rem;
-}
-
-.transcript-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.25rem;
-}
-
-.transcript-header h2 {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-secondary, #a1a1aa);
-    margin: 0;
-    margin-left: 0.5rem;
-}
-
-.transcript-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    /* Standardized gap between paragraphs */
-    max-width: none;
-    margin: 0;
-}
-
-.transcript-paragraph {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #d0d0d0;
-    padding: 0.25rem 0.75rem;
-    /* Tightened & standardized padding for ALL modes */
-    margin: 0;
-    border-left: 3px solid transparent;
-    border-radius: 0 8px 8px 0;
-    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.transcript-timestamp {
-    display: block;
-    min-width: 2.75rem;
-    margin-right: 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    color: var(--color-text-secondary, #a1a1aa);
-}
-
-.transcript-paragraph.active .transcript-timestamp {
-    color: var(--color-accent, #ccff00);
-}
-
-.transcript-text {
-    color: inherit;
-}
-
-/* Sync-enabled interactivity only */
-.transcript-paragraph.clickable {
-    cursor: pointer;
-}
-
-.transcript-paragraph.clickable:hover {
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.transcript-paragraph.clickable:active {
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.transcript-paragraph.active {
-    color: var(--color-text, #ffffff);
-    background: rgba(204, 255, 0, 0.08);
-    border-left-color: var(--color-accent, #ccff00);
-    font-weight: 500;
 }
 
 /* ==========================================================================

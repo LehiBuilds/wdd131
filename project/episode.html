@@ -8,9 +8,9 @@
     <meta name="description" content="Listen to an episode from the Philippines Quezon City North Mission Podcast Archive 2020 with interactive transcripts and read-along features.">
     <title>The PQCNM Podcast</title>
 
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="icon" href="data:,">
 
@@ -60,7 +60,8 @@
 
                 <!-- Direct Compact Player Container -->
                 <div class="player-wrapper">
-                    <section class="player">
+                    <!-- Changed section to div to resolve missing heading warning -->
+                    <div class="player">
                         <div class="player-content">
                             <div class="progress-bar">
                                 <div id="progress-fill"></div>
@@ -74,9 +75,8 @@
                             <div id="player-controls" class="player-controls"></div>
                             <audio id="audio-player" preload="metadata"></audio>
                         </div>
-                    </section>
+                    </div>
                 </div>
-
 
                 <!-- Transcript Section -->
                 <section class="transcript-section" aria-labelledby="transcript-heading">
@@ -90,11 +90,14 @@
             </div>
 
             <aside class="episode-sidebar">
-                <section class="details-section">
+                <!-- Using div instead of section if there's no visible heading, or keeping section but omitting h2 errors -->
+                <div class="details-section">
                     <!-- Mobile Toggle Mechanics -->
                     <input type="checkbox" id="details-toggle" class="summary-toggle-checkbox" hidden>
+
+                    <!-- Label only contains phrasing content (spans) -->
                     <label for="details-toggle" class="summary-header">
-                        <h2>Episode details</h2>
+                        <span>Episode details</span>
                         <span class="material-symbols-outlined summary-chevron" aria-hidden="true">expand_more</span>
                     </label>
 
@@ -145,7 +148,7 @@
                         </div>
 
                     </div>
-                </section>
+                </div>
             </aside>
 
         </div>
