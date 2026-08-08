@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Review Success Page Styles
+   ========================================================================== */
+
+.success-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.success-icon {
+    font-size: 3.5rem;
+    color: var(--color-accent);
+}
+
+.success-header h1 {
+    margin-top: 0.5rem;
+}
+
+.success-subtext {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.review-preview-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    color: var(--color-accent);
+}
+
+.preview-value-wrap {
+    white-space: pre-wrap;
+}
+
+.return-link-wrap {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.return-link-btn {
+    display: inline-block;
+    text-decoration: none;
+    max-width: 280px;
+}

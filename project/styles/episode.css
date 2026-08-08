@@ -1,18 +1,3 @@
-:root {
-    --color-surface: #131313;
-    --color-surface-container: #1c1b1b;
-    --color-surface-bright: #3a3939;
-    --color-accent: #ccff00;
-    --color-text: #ffffff;
-    --color-text-secondary: #a0a0a0;
-    --color-border: #3a3939;
-    --container-width: 900px;
-    --radius: 4px;
-    --transition: 200ms ease;
-    --font-main: 'Inter', sans-serif;
-    --header-height: 60px;
-}
-
 /* ==========================================================================
    1. Page Layout & Grid Setup
    ========================================================================== */

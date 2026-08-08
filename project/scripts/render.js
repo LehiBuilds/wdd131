@@ -27,43 +27,6 @@ function renderHeader(episode) {
 
     document.title = `${fullTitle} | The PQCNM Podcast`;
 }
-
-// export function renderPlayer() {
-//     const artworkEl = document.getElementById("player-artwork");
-//     if (artworkEl) {
-//         artworkEl.innerHTML = `
-//             <span class="material-symbols-outlined" aria-hidden="true">album</span>
-//         `;
-//     }
-
-//     const controlsEl = document.getElementById("player-controls");
-//     if (controlsEl) {
-//         controlsEl.innerHTML = `
-//             <button id="previous-episode-btn" type="button" aria-label="Previous episode">
-//                 <span class="material-symbols-outlined" aria-hidden="true">skip_previous</span>
-//             </button>
-//             <button id="skip-backward-btn" type="button" aria-label="Skip back 10 seconds">
-//                 <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
-//             </button>
-//             <button id="play-btn" type="button" aria-label="Play">
-//                 <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-//             </button>
-//             <button id="skip-forward-btn" type="button" aria-label="Skip forward 30 seconds">
-//                 <span class="material-symbols-outlined" aria-hidden="true">forward_30</span>
-//             </button>
-//             <button id="next-episode-btn" type="button" aria-label="Next episode">
-//                 <span class="material-symbols-outlined" aria-hidden="true">skip_next</span>
-//             </button>
-//             <div class="volume-container">
-//                 <button id="volume-btn" type="button" aria-label="Mute / Unmute">
-//                     <span class="material-symbols-outlined" aria-hidden="true">volume_up</span>
-//                 </button>
-//                 <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume slider">
-//             </div>
-//         `;
-//     }
-// }
-
 export function renderPlayer() {
     const controlsEl = document.getElementById("player-controls");
     if (controlsEl) {

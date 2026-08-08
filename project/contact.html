@@ -49,10 +49,6 @@
         <div class="contact-layout-single">
             <!-- Header Section -->
             <section class="collection-header">
-                <!-- <a id="collection-link" href="index.html">
-                    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-                    <span>Return to Podcast Archive</span>
-                </a> -->
                 <h1 id="collection-title">Product Feedback & Review</h1>
             </section>
 
@@ -66,7 +62,7 @@
                     <div class="form-group">
                         <label class="form-label" for="subject">Feedback Subject <span class="required-star">*</span></label>
                         <div class="select-wrapper">
-                            <select id="subject" class="form-control" required>
+                            <select id="subject" name="subject" class="form-control" required>
                                 <option value="" disabled selected>Select a subject...</option>
                                 <option value="Overall Podcast Archive Review">Overall Podcast Archive Review</option>
                                 <option value="Audio & Playback Quality Review">Audio & Playback Quality Review</option>
@@ -79,20 +75,20 @@
 
                     <!-- Overall Star Rating -->
                     <div class="form-group">
-                        <label class="form-label">Overall Experience Rating <span class="required-star">*</span></label>
-                        <div class="star-rating">
-                            <span class="material-symbols-outlined star-rating-icon active" data-value="1">star</span>
-                            <span class="material-symbols-outlined star-rating-icon active" data-value="2">star</span>
-                            <span class="material-symbols-outlined star-rating-icon active" data-value="3">star</span>
-                            <span class="material-symbols-outlined star-rating-icon" data-value="4">star</span>
-                            <span class="material-symbols-outlined star-rating-icon" data-value="5">star</span>
+                        <label id="rating-label" class="form-label">Overall Experience Rating <span class="required-star">*</span></label>
+                        <div class="star-rating" role="radiogroup" aria-labelledby="rating-label">
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="1" role="radio" aria-checked="true" aria-label="1 star" tabindex="0">star</span>
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="2" role="radio" aria-checked="true" aria-label="2 stars" tabindex="-1">star</span>
+                            <span class="material-symbols-outlined star-rating-icon active" data-value="3" role="radio" aria-checked="true" aria-label="3 stars" tabindex="-1">star</span>
+                            <span class="material-symbols-outlined star-rating-icon" data-value="4" role="radio" aria-checked="false" aria-label="4 stars" tabindex="-1">star</span>
+                            <span class="material-symbols-outlined star-rating-icon" data-value="5" role="radio" aria-checked="false" aria-label="5 stars" tabindex="-1">star</span>
                         </div>
                     </div>
 
                     <!-- Feedback Type Checkboxes -->
                     <div class="form-group">
-                        <label class="form-label">Feedback Focus (Select at least one) <span class="required-star">*</span></label>
-                        <div class="checkbox-grid">
+                        <label id="focus-label" class="form-label">Feedback Focus (Select at least one) <span class="required-star">*</span></label>
+                        <div class="checkbox-grid" role="group" aria-labelledby="focus-label">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="category" value="Audio Clarity" class="category-checkbox"> Audio Clarity
                             </label>
@@ -111,18 +107,18 @@
                     <!-- Detailed Review Message -->
                     <div class="form-group">
                         <label class="form-label" for="message">Detailed Review / Feedback <span class="optional-tag">(Optional)</span></label>
-                        <textarea id="message" class="form-control" placeholder="Share your experience listening to the archives or suggest improvements..."></textarea>
+                        <textarea id="message" name="message" class="form-control" placeholder="Share your experience listening to the archives or suggest improvements..."></textarea>
                     </div>
 
                     <!-- Name and Email Row (Optional) -->
                     <div class="form-group-row">
                         <div class="form-group">
                             <label class="form-label" for="full-name">Your Name <span class="optional-tag">(Optional)</span></label>
-                            <input id="full-name" class="form-control" type="text" placeholder="Full name">
+                            <input id="full-name" name="fullName" class="form-control" type="text" placeholder="Full name">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="email">Your Email <span class="optional-tag">(Optional)</span></label>
-                            <input id="email" class="form-control" type="email" placeholder="email@example.com">
+                            <input id="email" name="email" class="form-control" type="email" placeholder="email@example.com">
                         </div>
                     </div>
 

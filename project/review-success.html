@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Lehi Ontoria Gomez">
+    <meta name="description" content="Confirmation page showing your submitted product review for The Philippines Quezon City North Mission Podcast Archive 2020.">
     <title>Review Submitted | The PQCNM Podcast</title>
 
     <!-- Google Fonts & Material Symbols -->
@@ -16,6 +17,10 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="styles/review-success.css">
+
+    <script type="module" src="scripts/review-success.js"></script>
+
 </head>
 
 <body>
@@ -37,17 +42,17 @@
 
     <main class="container">
         <div class="contact-layout-single">
-            <section class="collection-header" style="text-align: center; margin-bottom: 1.5rem;">
-                <span class="material-symbols-outlined" style="font-size: 3.5rem; color: var(--color-accent);">check_circle</span>
-                <h1 style="margin-top: 0.5rem;">Thank You For Your Feedback!</h1>
-                <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">
+            <section class="collection-header success-header">
+                <span class="material-symbols-outlined success-icon">check_circle</span>
+                <h1>Thank You For Your Feedback!</h1>
+                <p class="success-subtext">
                     Your review has been successfully submitted to the PQCNM Archival team.
                 </p>
             </section>
 
             <!-- Dynamic Review Preview Card -->
             <div class="review-preview-card">
-                <h2 style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--color-accent);">
+                <h2 class="review-preview-heading">
                     Submitted Review Preview
                 </h2>
 
@@ -68,7 +73,7 @@
 
                 <div class="preview-row">
                     <span class="preview-label">Detailed Message</span>
-                    <span id="prev-message" class="preview-value" style="white-space: pre-wrap;">-</span>
+                    <span id="prev-message" class="preview-value preview-value-wrap">-</span>
                 </div>
 
                 <div class="preview-row">
@@ -82,8 +87,8 @@
                 </div>
             </div>
 
-            <div style="margin-top: 2rem; text-align: center;">
-                <a href="index.html" class="submit-btn" style="display: inline-block; text-decoration: none; max-width: 280px;">
+            <div class="return-link-wrap">
+                <a href="index.html" class="submit-btn return-link-btn">
                     Return to Archive
                 </a>
             </div>
@@ -94,22 +99,6 @@
         <p>&copy; 2026 The PQCNM Podcast</p>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const data = JSON.parse(sessionStorage.getItem("submittedReview"));
-            if (!data) {
-                window.location.href = "contact.html";
-                return;
-            }
-
-            document.getElementById("prev-subject").textContent = data.subject;
-            document.getElementById("prev-rating").innerHTML = "★".repeat(parseInt(data.rating)) + "☆".repeat(5 - parseInt(data.rating));
-            document.getElementById("prev-focus").textContent = data.focus;
-            document.getElementById("prev-message").textContent = data.message;
-            document.getElementById("prev-name").textContent = data.name;
-            document.getElementById("prev-email").textContent = data.email;
-        });
-    </script>
 </body>
 
 </html>

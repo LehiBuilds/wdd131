@@ -27,20 +27,38 @@ function setupStarRating() {
     const stars = document.querySelectorAll(".star-rating-icon");
     const ratingInput = document.getElementById("selected-rating");
 
-    stars.forEach((star, index) => {
-        star.addEventListener("click", () => {
-            const ratingValue = index + 1;
-            if (ratingInput) {
-                ratingInput.value = ratingValue;
-            }
+    const selectRating = (ratingValue) => {
+        if (ratingInput) {
+            ratingInput.value = ratingValue;
+        }
 
-            stars.forEach((s, sIndex) => {
-                if (sIndex < ratingValue) {
-                    s.classList.add("active");
-                } else {
-                    s.classList.remove("active");
-                }
-            });
+        stars.forEach((s, sIndex) => {
+            const isSelected = sIndex < ratingValue;
+            s.classList.toggle("active", isSelected);
+            s.setAttribute("aria-checked", sIndex === ratingValue - 1 ? "true" : "false");
+            // Only the currently selected star sits in the tab order (standard radiogroup pattern)
+            s.setAttribute("tabindex", sIndex === ratingValue - 1 ? "0" : "-1");
+        });
+
+        stars[ratingValue - 1]?.focus();
+    };
+
+    stars.forEach((star, index) => {
+        const ratingValue = index + 1;
+
+        star.addEventListener("click", () => selectRating(ratingValue));
+
+        star.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                selectRating(ratingValue);
+            } else if (event.key === "ArrowRight" && index < stars.length - 1) {
+                event.preventDefault();
+                selectRating(ratingValue + 1);
+            } else if (event.key === "ArrowLeft" && index > 0) {
+                event.preventDefault();
+                selectRating(ratingValue - 1);
+            }
         });
     });
 }
