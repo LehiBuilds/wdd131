@@ -773,6 +773,10 @@ input:checked+.toggle-slider:before {
 }
 
 @media (max-width: 640px) {
+    .container {
+        padding: 0 1rem;
+    }
+
     .site-header {
         padding: 0 1rem;
         display: flex;

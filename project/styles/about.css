@@ -56,7 +56,7 @@
 
 .storage-card {
     cursor: default;
-    margin-top: 1.25rem;
+    margin: 1.25rem 0;
 }
 
 .storage-card:hover {
